@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+
+    var loggedIn = (bool)ViewData["LoggedIn"];
+}
+<!DOCTYPE html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <link href="/Content/Site.css" type="text/css" rel="stylesheet">
+    <title>WEBVNUE</title>
+</head>
+<div class="mainpic">
+    <div class="container">
+        <h1><span style="color:darkgrey">WEB</span><span style="color:cornflowerblue">VNUE</span></h1>
+        <br /><br />
+        @if (!@loggedIn)
+        {
+            <a class="btn" href="/Account/Register">Sign Up</a>
+        }
+        else
+        {
+            <a class="btn" href="/Account">Account</a>
+        }
+    </div>
+
+</div>

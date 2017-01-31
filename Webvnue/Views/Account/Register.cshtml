@@ -1,0 +1,98 @@
+﻿@model Webvnue.Models.Register
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Register</title>
+    <link href="~/Content/webvnue-main.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    {
+        @Html.AntiForgeryToken();
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+                    <form role="form">
+                        <h1>
+                            <span class="font">
+                                Register
+                            </span>
+                        </h1>
+                        <h2><small>What are you waiting for?</small></h2>
+                        <h2><small>Make millions today.</small></h2>
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="FirstName" id="first_name" class="form-control input-lg" placeholder="First Name" tabindex="1">
+                                    @Html.ValidationMessage("FirstName", "", new {@class = "text-danger"})
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="text" name="LastName" id="last_name" class="form-control input-lg" placeholder="Last Name" tabindex="2">
+                                    @Html.ValidationMessage("LastName", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="UserName" id="display_name" class="form-control input-lg" placeholder="Username" tabindex="3">
+                            @Html.ValidationMessage("UserName", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="Email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">
+                            @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="BirthDate" id="email" class="form-control input-lg" placeholder="Date of Birth" tabindex="4">
+                            @Html.ValidationMessage("BirthDate", "", new { @class = "text-danger" })
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="Password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">
+                                    @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="col-xs-12 col-sm-6 col-md-6">
+                                <div class="form-group">
+                                    <input type="password" name="ConfirmPassword" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">
+                                    @Html.ValidationMessage("ConfirmPassword", "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-xs-8 col-sm-9 col-md-9">
+                                By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a>.
+                            </div>
+                        </div>
+
+                        <hr class="colorgraph">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- Modal -->
+            <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>STEAL MY SHIT AND YOU DIE MOTHER FUCKER.</p>
+                        </div>
+                    </div><!-- /.modal-content -->
+                </div><!-- /.modal-dialog -->
+            </div><!-- /.modal -->
+        </div>
+    }
+    @*@Html.ValidationSummary()*@
+</body>
+</html>
