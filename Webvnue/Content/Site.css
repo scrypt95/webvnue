@@ -26,7 +26,7 @@ h1{
 }
 .mainpic{ 
   text-align: center;
-  background: url("http://cdn.wallpapersafari.com/9/64/mUbVzc.jpg") no-repeat center center;
+  background: url("/Images/Cityscape.jpg") no-repeat center center;
   background-size: cover;
   height: 600px;
 
@@ -47,4 +47,33 @@ footer{
     text-decoration: none;
     display: inline-block;
     font-family: 'oswald'
+}
+.botpic{
+  text-align: center;
+  background: url("/Images/makeitrain.jpg") no-repeat center center;
+  background-size: cover;
+  height: 600px;
+
+}
+.botpic .btn {
+        background-color: #1c1c1c;
+        color: #fff;
+        font-size: 18px;
+        padding: 8px 30px;
+        text-decoration: none;
+        display: inline-block;
+        font-family: 'oswald';
+        position: relative center;
+}
+.botpic .container {
+        position: relative;
+        top: 400px;
+}
+h2{
+    position: relative;
+    text-align: center;
+    font-family: 'Oswald';
+    font-size: 100px;
+}
+.sharpangle{
 }
