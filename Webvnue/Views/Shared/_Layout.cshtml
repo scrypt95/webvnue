@@ -32,30 +32,34 @@
                     </ul>
                 }
                 <div class="logoutbutt">
-                <ul class="nav navbar-nav navbar-right">
-                    @if (userName != null)
-                    {
-                        using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()                    ;
-                            <li>
-                                 <input class="btn btn-primary" type="submit" value="Log Out" />
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        
-                        using (Html.BeginForm("Login", "Account", FormMethod.Get))
-                        {
-                            <li>
+                    <ul class="nav navbar-nav navbar-right">                    
 
-                                <input class="btn btn-primary" type="submit" value="Login" />
-                            </li>
-                        }
 
-                    }
-                </ul>
+                            @if (userName != null)
+                            {
+                                using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()                    ;
+                                    <li>
+                                        <input class="btn btn-primary" type="submit" value="Log Out" />
+                                    </li>
+                                }
+                            }
+                            else
+                            {
+
+                                using (Html.BeginForm("Login", "Account", FormMethod.Get))
+                                {
+                                    <li>
+
+                                        <input class="btn btn-primary" type="submit" value="Login" />
+                                    </li>
+                                }
+
+                            }
+
+                    </ul>
+                </div> 
             </div>
             </div>
             </div>
@@ -68,9 +72,11 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Webvnue</p>
-        </footer>
+        <div class="footerbackground">
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Webvnue</p>
+            </footer>
+        </div>
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
