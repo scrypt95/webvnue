@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Webvnue</title>
@@ -30,7 +31,7 @@
                         <li><a href="/Account">Welcome, @userName</a></li>
                     </ul>
                 }
-
+                <div class="logoutbutt">
                 <ul class="nav navbar-nav navbar-right">
                     @if (userName != null)
                     {
@@ -38,15 +39,24 @@
                         {
                             @Html.AntiForgeryToken()                    ;
                             <li>
-                                 <input class="btn btn-default" type="submit" value="Log Out" />
+                                 <input class="btn btn-primary" type="submit" value="Log Out" />
                             </li>
                         }
                     }
                     else
                     {
-                        <li><a href="/Account/Login">Login</a></li>
+                        
+                        using (Html.BeginForm("Login", "Account", FormMethod.Get))
+                        {
+                            <li>
+
+                                <input class="btn btn-primary" type="submit" value="Login" />
+                            </li>
+                        }
+
                     }
                 </ul>
+            </div>
             </div>
             </div>
             <div class="navbar-collapse collapse">

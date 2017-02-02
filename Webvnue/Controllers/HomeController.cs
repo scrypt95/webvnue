@@ -19,6 +19,7 @@ namespace Webvnue.Controllers
             if (loggedIn)
             {
                 ViewData["FirstName"] = user.FirstName;
+                ViewData["UserName"] = user.UserName;
             }
             ViewData["LoggedIn"] = loggedIn;
 

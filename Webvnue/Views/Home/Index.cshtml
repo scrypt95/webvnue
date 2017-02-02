@@ -2,6 +2,7 @@
     ViewBag.Title = "Home Page";
 
     var loggedIn = (bool)ViewData["LoggedIn"];
+    var userName = (string)ViewData["UserName"];
 }
 <!DOCTYPE html>
 <head>
@@ -15,11 +16,14 @@
         <br /><br />
         @if (!@loggedIn)
         {
-            <a class="btn" href="/Account/Register">Sign Up</a>
+            <a class="btn btn-default" href="/Account/Register">Sign Up</a>
+        }
+        else if (@loggedIn && @userName == "Jtpeterson2010") {
+            <a class="btn btn-default" href="/Account">HI FAGGOT</a>
         }
         else
         {
-            <a class="btn" href="/Account">Account</a>
+            <a class="btn btn-default" href="/Account">Account</a>
         }
     </div>
 
@@ -35,7 +39,7 @@
     </div>
     <div class="botpic">
         <div class="container">
-            <a class="btn" href="/Account/Register">REGISTER</a>
+            <a class="btn btn-default" href="/Account/Register">REGISTER</a>
         </div>
     </div>
 </div>
