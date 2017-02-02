@@ -44,45 +44,44 @@
 
                         @if (userName != null)
                         {
-                            using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
-                            {
-                                @Html.AntiForgeryToken()                    ;
-                                <li>
+                            <li>
+                                @using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+                                {
+                                    @Html.AntiForgeryToken()                    ;
                                     <input class="btn btn-primary" type="submit" value="Log Out" />
-                                </li>
-                            }
+                                }
+                            </li>
                         }
                         else
                         {
+                            <li>
 
-                            using (Html.BeginForm("Login", "Account", FormMethod.Get))
-                            {
-                                <li>
-
+                                @using (Html.BeginForm("Login", "Account", FormMethod.Get))
+                                {
                                     <input class="btn btn-primary" type="submit" value="Login" />
-                                </li>
-                            }
+                                }
+                            </li>
 
                         }
-                    </ul>
-            </div>
-            </div>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                        </ul>
+                </div>
+                </div>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav"></ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Webvnue</p>
-        </footer>
-    </div>
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+            <footer>
+                <p>&copy; @DateTime.Now.Year - Webvnue</p>
+            </footer>
+        </div>
 
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/bootstrap.min.js"></script>
-</body>
-</html>
+        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+    </body>
+    </html>
