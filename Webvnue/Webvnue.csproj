@@ -143,6 +143,7 @@
     <Content Include="Content\webvnue-main.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Images\avatar.jpg" />
     <Content Include="Images\Cityscape.jpg" />
     <Content Include="Images\makeitrain.jpg" />
     <Content Include="Scripts\bootstrap.js" />
