@@ -32,30 +32,39 @@
                     </ul>
                 }
                 <div class="logoutbutt">
-                <ul class="nav navbar-nav navbar-right">
-                    @if (userName != null)
-                    {
-                        using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
-                        {
-                            @Html.AntiForgeryToken()                    ;
-                            <li>
-                                 <input class="btn btn-primary" type="submit" value="Log Out" />
-                            </li>
-                        }
-                    }
-                    else
-                    {
-                        
-                        using (Html.BeginForm("Login", "Account", FormMethod.Get))
-                        {
-                            <li>
+                    <ul class="nav navbar-nav navbar-right">
 
-                                <input class="btn btn-primary" type="submit" value="Login" />
-                            </li>
-                        }
+                        <li>
+                            <a href="/Contact">Contact Us</a>
+                        </li>
 
-                    }
-                </ul>
+                        <li>
+                            <a href="/FAQ">FAQ</a>
+                        </li>
+
+                        @if (userName != null)
+                        {
+                            using (Html.BeginForm("LogOut", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()                    ;
+                                <li>
+                                    <input class="btn btn-primary" type="submit" value="Log Out" />
+                                </li>
+                            }
+                        }
+                        else
+                        {
+
+                            using (Html.BeginForm("Login", "Account", FormMethod.Get))
+                            {
+                                <li>
+
+                                    <input class="btn btn-primary" type="submit" value="Login" />
+                                </li>
+                            }
+
+                        }
+                    </ul>
             </div>
             </div>
             </div>
