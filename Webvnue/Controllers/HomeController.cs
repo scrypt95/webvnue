@@ -14,16 +14,13 @@ namespace Webvnue.Controllers
         public ActionResult Index()
         {
             Models.MyIdentityUser user = getCurrentUser();
+            bool loggedIn = System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
-            if(user != null)
+            if (loggedIn)
             {
-                ViewData["LoggedIn"] = true;
                 ViewData["FirstName"] = user.FirstName;
             }
-            else
-            {
-                ViewData["LoggedIn"] = false;
-            }
+            ViewData["LoggedIn"] = loggedIn;
 
             return View();
         }

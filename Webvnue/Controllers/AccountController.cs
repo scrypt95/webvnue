@@ -34,6 +34,7 @@ namespace Webvnue.Controllers
             if (user != null)
             {
                 ViewData["FirstName"] = user.FirstName;
+                ViewData["CurrentUser"] = user;
             }
 
             ViewBag.FullName = user.FirstName;
