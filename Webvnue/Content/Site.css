@@ -26,7 +26,7 @@ h1{
 }
 .mainpic{ 
   text-align: center;
-  background: url("/Images/Cityscape.jpg") no-repeat center center;
+  background: url("/Images/Cityscape.jpeg") no-repeat center center;
   background-size: cover;
   height: 600px;
 
@@ -82,5 +82,11 @@ h2{
     padding-top: 7.5px;
 }
 .video-how{
+    text-align: center;
+}
+.FAQ2{
+
+}
+.video-contact{
     text-align: center;
 }

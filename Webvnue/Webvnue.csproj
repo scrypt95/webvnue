@@ -144,7 +144,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\avatar.jpg" />
-    <Content Include="Images\Cityscape.jpg" />
+    <Content Include="Images\Cityscape.jpeg" />
     <Content Include="Images\makeitrain.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
