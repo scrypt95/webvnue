@@ -78,9 +78,7 @@ h2{
 .video-sexy{
     text-align: center;
 }
-.logoutbutt{
-    padding-top: 7.5px;
-}
+
 .video-how{
     text-align: center;
 }
@@ -89,4 +87,10 @@ h2{
 }
 .video-contact{
     text-align: center;
+}
+.faqheader{
+    font-family: Batang;
+    font-size: 150px;
+    text-align: center;
+    font-style: italic;
 }
