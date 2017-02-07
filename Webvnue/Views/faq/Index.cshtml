@@ -1,11 +1,17 @@
 ﻿
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
 }
-
-<div class="faqheader">FAQ</div>
-<div class="container ">
+<!DOCTYPE html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <link href="/Content/Site.css" type="text/css" rel="stylesheet">
+    <title>FAQ</title>
+</head>
+<div class="faqpic">
+<div class="faqheader"><span style="color:grey">Frequently Asked</span><span style="color:cornflowerblue"> Questions</span></div>
+<div class="container2">
     <div class="panel-group" id="faqAccordion">
         <div class="panel panel-default ">
             <div class="panel-heading accordion-toggle question-toggle collapsed" data-toggle="collapse" data-parent="#faqAccordion" data-target="#question0">
@@ -59,5 +65,6 @@
         </div>
 
     </div>
+</div>
     <!--/panel-group-->
 </div>

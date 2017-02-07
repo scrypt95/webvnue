@@ -142,11 +142,17 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\webvnue-main.css" />
+    <Content Include="Images\faq2.jpg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Images\avatar.jpg" />
     <Content Include="Images\Cityscape.jpeg" />
+    <Content Include="Images\Faq.jpeg" />
+    <Content Include="Images\faq3.jpg" />
     <Content Include="Images\makeitrain.jpg" />
+    <Content Include="Images\support.jpg" />
+    <Content Include="Images\support2.jpg" />
+    <Content Include="Images\support3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />

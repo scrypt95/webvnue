@@ -14,10 +14,11 @@
             <div class="profile-sidebar">
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic" align="center">
-                    <img alt="User Pic" src="~/Images/avatar.jpg" class="img-thumbnail img-responsive">
+                    <img alt="User Pic" src="~/Images/avatar.jpg" class="img-thumbnail">
 
 
                 </div>
+                <br />
                 <!-- END SIDEBAR USERPIC -->
                 <!-- SIDEBAR USER TITLE -->
                 <div class="profile-usertitle">
@@ -71,22 +72,56 @@
         <div class="col-md-9 order-content">
 
             <div class="form_main col-md-4 col-sm-5 col-xs-7">
-                <h4 class="heading"><strong>Personal </strong> Contact <span></span></h4>
+                <h4 class="heading"><strong>Account </strong> Info <span></span></h4>
                 <div class="form">
-                    <form action="" method="" id="contactFrm" name="contactFrm">
-                        <input type="text" required="" placeholder="Name" value="" name="name" class="txt">
-                        <input type="text" required="" placeholder="Email" value="" name="email" class="txt">
-                        <input type="password" required="" placeholder="Change Pwd" value="" name="password" class="txt"><br>
-                        <button type="button" class="btn btn-default">Update</button>
-                    </form>
+                    <div class=" col-md-9 col-lg-9 ">
+                        <table class="table table-user-information">
+                            <tbody>
+                                <tr>
+                                    <td>Name:</td>
+                                    <td>@currentUser.FirstName @currentUser.LastName</td>
+                                </tr>
+                                <tr>
+                                    <td>Username:</td>
+                                    <td>@currentUser.UserName</td>
+                                </tr>
+                                <tr>
+                                    <td>Date of Birth</td>
+                                    <td>@currentUser.BirthDate</td>
+                                </tr>
+
+                                <tr>
+                                <tr>
+                                    <td>Email:</td>
+                                    <td>@currentUser.Email</td>
+                                </tr>
+                                <tr>
+                                    <td>Email Confirmed:</td>
+                                    @if (@currentUser.EmailConfirmed == true)
+                                    {
+                                        <td>Confirmed.</td>
+                                    }
+                                    else
+                                    {
+                                        <td>NOT Confirmed.</td>
+                                    }
+                                    <td></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <a href="#" class="btn btn-primary">Update Account Info</a>
+                        
+                    </div>
                 </div>
+            </div>
+        </div>
+
             </div>
 
         </div>
 
 
-    </div>
-</div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
