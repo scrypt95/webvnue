@@ -34,11 +34,18 @@
                     <li><a href="/faq">FAQ</a></li>
                     @if (userName != null)
                     {
-                    <li><a href="/"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        <!--<li><a href="/Account/Logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>-->
+                        <li>
+                            @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()                    ;
+                                <input type="submit" value="Logout" />
+                            }
+                        </li>
                     }
                     else
                     {
-                    <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
                     }
                 </ul>
