@@ -215,9 +215,9 @@ namespace Webvnue.Controllers
             return View(changeProfileModel);
         }
 
-        [HttpPost]
+        [HttpGet]
         [Authorize]
-        [ValidateAntiForgeryToken]
+        //[ValidateAntiForgeryToken]
         public ActionResult Logout()
         {
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;

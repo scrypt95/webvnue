@@ -34,7 +34,8 @@
                     <li><a href="/faq">FAQ</a></li>
                     @if (userName != null)
                     {
-                        <!--<li><a href="/Account/Logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>-->
+                        <li><a href="/Account/Logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        <!--
                         <li>
                             @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
                             {
@@ -42,6 +43,7 @@
                                 <input type="submit" value="Logout" />
                             }
                         </li>
+                            -->
                     }
                     else
                     {
