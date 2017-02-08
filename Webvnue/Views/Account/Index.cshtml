@@ -8,7 +8,7 @@
 <head>
     <link href="~/Content/accountindex.css" rel="stylesheet" type="text/css" />
 </head>
- <div class="container">
+<div class="container">
     <div class="row profile">
         <div class="col-md-3">
             <div class="profile-sidebar">
@@ -33,31 +33,32 @@
                 <div class="profile-usermenu">
                     <ul class="nav">
                         <li class="active">
-                            <a href="#">
+                            <a data-toggle="tab" href="#accountinfo">
                                 <i class="glyphicon glyphicon-home"></i>
                                 <span class="hidden-xs">Account Info</span>
                             </a>
+
                         </li>
                         <li>
-                            <a href="#">
+                            <a data-toggle="tab" href="#referrals">
                                 <i class="glyphicon glyphicon-user"></i>
-                                <span class="hidden-xs">My Referals</span>
+                                <span class="hidden-xs">My Referrals</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a data-toggle="tab" href="#webvnueearned">
                                 <i class="glyphicon glyphicon-ok"></i>
                                 <span class="hidden-xs">Webvnue Earned</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a data-toggle="tab" href="#reflink">
                                 <i class="glyphicon glyphicon-flag"></i>
-                                <span class="hidden-xs">Referal Link</span>
+                                <span class="hidden-xs">Referral Link</span>
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a data-toggle="tab" href="#shoppingbag">
                                 <i class="glyphicon glyphicon-shopping-cart"></i>
                                 <span class="hidden-xs">Shopping Bag</span>
                             </a>
@@ -69,70 +70,146 @@
                 <!-- END MENU -->
             </div>
         </div>
-        <div class="col-md-9 order-content">
+        <div class="tab-content">
+            <div id="accountinfo" class="tab-pane active">
+                <div class="col-md-9 order-content">
 
-            <div class="form_main col-md-4 col-sm-5 col-xs-7">
-                <h4 class="heading"><strong>Account </strong> Info <span></span></h4>
-                <div class="form">
-                    <div class=" col-md-9 col-lg-9 ">
-                        <table class="table table-user-information">
-                            <tbody>
-                                <tr>
-                                    <td>Name:</td>
-                                    <td>@currentUser.FirstName @currentUser.LastName</td>
-                                </tr>
-                                <tr>
-                                    <td>Username:</td>
-                                    <td>@currentUser.UserName</td>
-                                </tr>
-                                <tr>
-                                    <td>Date of Birth</td>
-                                    <td>@currentUser.BirthDate</td>
-                                </tr>
+                    <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                        <h4 class="heading"><strong>Account </strong> Info <span></span></h4>
+                        <div class="form">
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                        <tr>
+                                            <td>Name:</td>
+                                            <td>@currentUser.FirstName @currentUser.LastName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Username:</td>
+                                            <td>@currentUser.UserName</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Date of Birth</td>
+                                            <td>@currentUser.BirthDate</td>
+                                        </tr>
 
-                                <tr>
-                                <tr>
-                                    <td>Email:</td>
-                                    <td>@currentUser.Email</td>
-                                </tr>
-                                <tr>
-                                    <td>Email Confirmed:</td>
-                                    @if (@currentUser.EmailConfirmed == true)
-                                    {
-                                        <td>Confirmed.</td>
-                                    }
-                                    else
-                                    {
-                                        <td>NOT Confirmed.</td>
-                                    }
-                                    <td></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                                        <tr>
+                                        <tr>
+                                            <td>Email:</td>
+                                            <td>@currentUser.Email</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Email Confirmed:</td>
+                                            @if (@currentUser.EmailConfirmed == true)
+                                            {
+                                                <td>Confirmed.</td>
+                                            }
+                                            else
+                                            {
+                                                <td>NOT Confirmed.</td>
+                                            }
+                                            <td></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
 
-                        <a href="#" class="btn btn-primary">Update Account Info</a>
-                        
+                                <a href="#" class="btn btn-primary">Update Account Info</a>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="referrals" class="tab-pane">
+                <div class="col-md-9 order-content">
+
+                    <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                        <h4 class="heading"><strong>Referrals </strong><span></span></h4>
+                        <div class="form">
+                            <div class="col-md-9 col-lg-9">
+
+                                <!--
+                                    Write code for referrals here
+
+                                    -->
+
+                                <img src="~/Images/a4.jpg" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="webvnueearned" class="tab-pane">
+                <div class="col-md-9 order-content">
+
+                    <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                        <h4 class="heading"><strong>Webvnue </strong> Earned <span></span></h4>
+                        <div class="form">
+                            <div class="col-md-9 col-lg-9">
+
+                                <!--
+                                    Write code for webvnue earned here
+
+                                    -->
+
+                                <img src="~/Images/a2.jpg" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="reflink" class="tab-pane">
+                <div class="col-md-9 order-content">
+
+                    <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                        <h4 class="heading"><strong>Referral </strong> Link <span></span></h4>
+                        <div class="form">
+                            <div class="col-md-9 col-lg-9">
+
+                                <!--
+                                    Write code for Ref link here
+
+                                    -->
+
+                                <img src="~/Images/a3.jpg" />
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="shoppingbag" class="tab-pane">
+                <div class="col-md-9 order-content">
+
+                    <div class="form_main col-md-4 col-sm-5 col-xs-7">
+                        <h4 class="heading"><strong>Shopping </strong> Bag <span></span></h4>
+                        <div class="form">
+                            <div class="col-md-9 col-lg-9">
+
+                                <!--
+                                    Write code for Shopping Bag here
+
+                                    -->
+                                <img src="~/Images/a1.jpg" />
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
 
-            </div>
+    </div>
 
-        </div>
+</div>
 
 
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-<script src="js/bootstrap.min.js"></script>
-
-
-
-
-
-
-
+<!-- <script src="~/Scripts/bootstrap.min.js"></script> -->
 <!--   <div class="container">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
