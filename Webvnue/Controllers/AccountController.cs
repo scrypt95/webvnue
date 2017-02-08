@@ -224,5 +224,44 @@ namespace Webvnue.Controllers
             authenticationManager.SignOut();
             return RedirectToAction("Index", "Home");
         }
+
+        public ActionResult ConfirmEmail(string Token, string Email)
+        {
+            Models.MyIdentityUser user = userManager.FindById(Token);
+            if (user != null)
+            {
+                if (user.Email == Email)
+                {
+                    user.EmailConfirmed = true;
+                    IdentityResult result = userManager.Update(user);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult ConfirmEmail() {
+            Models.MyIdentityUser user = getCurrentUser();
+
+            System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(new System.Net.Mail.MailAddress("webvnue@gmail.com", "Webvnue"), new System.Net.Mail.MailAddress(user.Email));
+            m.Subject = "Email Confirmation";
+            m.Body = string.Format("Dear {0}, <br/> Thank you for your registration, Click on the below link to complete your registration: <br/> <a href =\"{1}\" title =\"User Email Confirm\">{1}</a>", user.FirstName, Url.Action("ConfirmEmail", "Account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
+            m.IsBodyHtml = true;
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com");
+            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
+
+            return Json(new{});
+        }
     }
 }
