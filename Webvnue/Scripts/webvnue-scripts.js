@@ -6,7 +6,7 @@
             url: "/Account/ConfirmEmail",
             data: {},
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert("Error");
+                alert(errorThrown);
             },
             success: function (result) {
                 alert("Email Sent");
