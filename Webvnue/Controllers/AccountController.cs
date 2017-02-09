@@ -33,6 +33,7 @@ namespace Webvnue.Controllers
             {
                 ViewData["ReferralList"] = getReferralList(user);
             }
+            ViewData["ReferralListCount"] = referralList.Count;
 
             return View();
         }

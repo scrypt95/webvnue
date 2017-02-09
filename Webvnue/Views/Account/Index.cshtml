@@ -5,6 +5,7 @@
     var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
 
     var referralList = (IEnumerable<Webvnue.Models.MyIdentityUser>)ViewData["ReferralList"];
+    var referralListCount = (int)ViewData["ReferralListCount"];
 }
 
 <head>
@@ -165,12 +166,13 @@
                         <div class="form">
                             <div class="col-md-9 col-lg-9">
 
+                                <div class="webvnue-earned">
+                                    <h2>Webvnue earned: $@(@referralListCount * 3)</h2>
+                                 </div>
                                 <!--
                                     Write code for webvnue earned here
-
+                                    <img src="~/Images/a4.jpg" />
                                     -->
-
-                                <img src="~/Images/a4.jpg" />
                             </div>
                         </div>
                     </div>
