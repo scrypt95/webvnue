@@ -16,8 +16,14 @@
         return false;
     });
 
+    $("#refbutton").click(function (event) {
+        $("#referral-link").show();
+    });
+
 });
 
+/*
 function showReferralLink() {
     document.getElementById('referral-link').style.display = "block";
 }
+*/

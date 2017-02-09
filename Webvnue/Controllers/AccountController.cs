@@ -78,8 +78,12 @@ namespace Webvnue.Controllers
 
         public ActionResult Register(string Token)
         {
-            IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
-            authenticationManager.SignOut();
+            bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
+
+            if (loggedIn)
+            {
+                return RedirectToAction("Index", "Home");
+            }
 
             Models.MyIdentityUser user = userManager.FindById(Token);
 
@@ -120,8 +124,16 @@ namespace Webvnue.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("UserName", "Error while creating the user!");
+                    ModelState.AddModelError("UserName", "Username already exists");
                 }
+            }
+            if (Token != null && validateToken(Token))
+            {
+                ViewData["Token"] = Token;
+            }
+            else
+            {
+                ViewData["Token"] = "";
             }
             return View(registerModel);
         }
