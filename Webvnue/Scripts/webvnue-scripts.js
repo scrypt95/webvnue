@@ -17,3 +17,7 @@
     });
 
 });
+
+function showReferralLink() {
+    document.getElementById('referral-link').style.display = "block";
+}

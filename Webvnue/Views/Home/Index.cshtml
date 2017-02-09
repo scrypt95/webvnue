@@ -1,8 +1,7 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 
-    var loggedIn = (bool)ViewData["LoggedIn"];
-    var userName = (string)ViewData["UserName"];
+    var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
 }
 <!DOCTYPE html>
 <head>
@@ -14,12 +13,9 @@
     <div class="container">
         <h1><span style="color:darkgrey">WEB</span><span style="color:cornflowerblue">VNUE</span></h1>
         <br /><br />
-        @if (!@loggedIn)
+        @if (currentUser == null)
         {
             <a class="btn btn-default" href="/Account/Register">Sign Up</a>
-        }
-        else if (@loggedIn && @userName == "Jtpeterson2010") {
-            <a class="btn btn-default" href="/Account">HI FAGGOT</a>
         }
         else
         {

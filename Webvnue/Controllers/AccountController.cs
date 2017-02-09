@@ -22,22 +22,17 @@ namespace Webvnue.Controllers
         {
             Models.MyIdentityUser user = getCurrentUser();
 
-            if (userManager.IsInRole(user.Id, "Administrator"))
-            {
-                ViewData["UserInfo"] = "You're an Administrator!";
-            }
-
-            if (userManager.IsInRole(user.Id, "User"))
-            {
-                ViewData["UserInfo"] = "You're a regular user!";
-            }
             if (user != null)
             {
-                ViewData["FirstName"] = user.FirstName;
                 ViewData["CurrentUser"] = user;
             }
 
-            ViewBag.FullName = user.FirstName;
+            List<Models.MyIdentityUser> referralList = getReferralList(user);
+
+            if(referralList.Count > 0)
+            {
+                ViewData["ReferralList"] = getReferralList(user);
+            }
 
             return View();
         }
@@ -53,6 +48,23 @@ namespace Webvnue.Controllers
             return user;
         }
 
+        private List<Models.MyIdentityUser> getReferralList(Models.MyIdentityUser user)
+        {
+            List<Models.MyIdentityUser> referralList = new List<Models.MyIdentityUser>();
+
+            var db = new Models.MyIdentityDbContext();
+
+            foreach(var referral in db.Referrals)
+            {
+                if(user.Id == referral.ReferrerId)
+                {
+                    referralList.Add(userManager.FindById(referral.RefereeId));
+                }
+            }
+
+            return referralList;
+        }
+
         public AccountController()
         {
             Models.MyIdentityDbContext db = new Models.MyIdentityDbContext();
@@ -64,14 +76,24 @@ namespace Webvnue.Controllers
             roleManager = new RoleManager<Models.MyIdentityRole>(roleStore);
         }
 
-        public ActionResult Register()
+        public ActionResult Register(string Token)
         {
+            IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+            authenticationManager.SignOut();
+
+            Models.MyIdentityUser user = userManager.FindById(Token);
+
+            if (user != null)
+            {
+                ViewData["Referrer"] = user;
+            }
+
             return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Models.Register registerModel)
+        public ActionResult Register(Models.Register registerModel, string Token)
         {
             if (ModelState.IsValid)
             {
@@ -88,6 +110,12 @@ namespace Webvnue.Controllers
                 if (result.Succeeded)
                 {
                     userManager.AddToRole(user.Id, "User");
+
+                    if (Token != null && validateToken(Token))
+                    {
+                        addNewReferral(user, Token);
+                    }
+
                     return RedirectToAction("Login", "Account");
                 }
                 else
@@ -96,6 +124,34 @@ namespace Webvnue.Controllers
                 }
             }
             return View(registerModel);
+        }
+
+        private bool validateToken(string Token)
+        {
+            Models.MyIdentityUser user = userManager.FindById(Token);
+
+            if(user != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        private void addNewReferral(Models.MyIdentityUser user, string Token)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            Models.Referral newReferral = new Models.Referral();
+            newReferral.Id = Guid.NewGuid().ToString();
+            newReferral.ReferrerId = userManager.FindById(Token).Id;
+            newReferral.RefereeId = user.Id;
+
+            db.Referrals.Add(newReferral);
+            db.SaveChanges();
         }
 
         public ActionResult Login(string returnUrl)

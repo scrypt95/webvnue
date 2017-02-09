@@ -3,6 +3,8 @@
     ViewBag.Title = "Index";
 
     var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
+
+    var referralList = (IEnumerable<Webvnue.Models.MyIdentityUser>)ViewData["ReferralList"];
 }
 
 <head>
@@ -57,13 +59,6 @@
                                 <span class="hidden-xs">Referral Link</span>
                             </a>
                         </li>
-                        <li>
-                            <a data-toggle="tab" href="#shoppingbag">
-                                <i class="glyphicon glyphicon-shopping-cart"></i>
-                                <span class="hidden-xs">Shopping Bag</span>
-                            </a>
-
-                        </li>
 
                     </ul>
                 </div>
@@ -90,7 +85,7 @@
                                         </tr>
                                         <tr>
                                             <td>Date of Birth</td>
-                                            <td>@currentUser.BirthDate</td>
+                                            <td>@currentUser.BirthDate.Month/@currentUser.BirthDate.Day/@currentUser.BirthDate.Year</td>
                                         </tr>
 
                                         <tr>
@@ -127,14 +122,35 @@
                     <div class="form_main col-md-4 col-sm-5 col-xs-7">
                         <h4 class="heading"><strong>Referrals </strong><span></span></h4>
                         <div class="form">
-                            <div class="col-md-9 col-lg-9">
+                            <div class="col-md-12 col-lg-12">
+
+                                @if (referralList != null)
+                                {
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th>Name</th>
+                                            <th>Username</th>
+                                            <th>Email</th>
+                                        </tr>
+                                        @foreach (var referral in referralList)
+                                        {
+                                            <tr>
+                                                <td>@referral.FirstName @referral.LastName</td>
+                                                <td>@referral.UserName</td>
+                                                <td>@referral.Email</td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                                else
+                                {
+                                    <h2>You have no referral(s)!</h2>
+                                }
 
                                 <!--
                                     Write code for referrals here
-
+                                    <img src="~/Images/a4.jpg" />
                                     -->
-
-                                <img src="~/Images/a4.jpg" />
 
                             </div>
                         </div>
@@ -154,7 +170,7 @@
 
                                     -->
 
-                                <img src="~/Images/a2.jpg" />
+                                <img src="~/Images/a4.jpg" />
                             </div>
                         </div>
                     </div>
@@ -166,39 +182,25 @@
                     <div class="form_main col-md-4 col-sm-5 col-xs-7">
                         <h4 class="heading"><strong>Referral </strong> Link <span></span></h4>
                         <div class="form">
-                            <div class="col-md-9 col-lg-9">
+                            <div class="col-md-12 col-lg-12">
+                                <button class="btn btn-default" onclick="showReferralLink()">Show link</button>
+                                <div id="referral-link" style="display:none;">
+                                    <br />
+                                    <a href="@Url.Action("Register", "Account",new {Token = currentUser.Id } ,Request.Url.Scheme)" target="_blank">@Url.Action("Register", "Account", new { Token = currentUser.Id }, Request.Url.Scheme)</a>
+                                </div>
 
                                 <!--
                                     Write code for Ref link here
-
+                                    <img src="~/Images/a3.jpg" />
+                                    <input type="button" name="answer" value="Show Div" onclick="showReferralLink()" />
                                     -->
-
-                                <img src="~/Images/a3.jpg" />
 
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div id="shoppingbag" class="tab-pane">
-                <div class="col-md-9 order-content">
 
-                    <div class="form_main col-md-4 col-sm-5 col-xs-7">
-                        <h4 class="heading"><strong>Shopping </strong> Bag <span></span></h4>
-                        <div class="form">
-                            <div class="col-md-9 col-lg-9">
-
-                                <!--
-                                    Write code for Shopping Bag here
-
-                                    -->
-                                <img src="~/Images/a1.jpg" />
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
 
     </div>
@@ -208,86 +210,89 @@
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <!-- <script src="~/Scripts/bootstrap.min.js"></script> -->
-<!--   <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">@currentUser.FirstName @currentUser.LastName</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="~/Images/avatar.jpg" class="img-thumbnail img-responsive"> </div>
+@*
+       <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">@currentUser.FirstName @currentUser.LastName</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 " align="center"> <img alt="User Pic" src="~/Images/avatar.jpg" class="img-thumbnail img-responsive"> </div>
 
-                            <div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
-                              <dl>
-                                <dt>DEPARTMENT:</dt>
-                                <dd>Administrator</dd>
-                                <dt>HIRE DATE</dt>
-                                <dd>11/12/2013</dd>
-                                <dt>DATE OF BIRTH</dt>
-                                   <dd>11/12/2013</dd>
-                                <dt>GENDER</dt>
-                                <dd>Male</dd>
-                              </dl>
-                            </div>
-                            <div class=" col-md-9 col-lg-9 ">
-                                <table class="table table-user-information">
-                                    <tbody>
-                                        <tr>
-                                            <td>Name:</td>
-                                            <td>@currentUser.FirstName @currentUser.LastName</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Username:</td>
-                                            <td>@currentUser.UserName</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Date of Birth</td>
-                                            <td>@currentUser.BirthDate</td>
-                                        </tr>
+                                <div class="col-xs-10 col-sm-10 hidden-md hidden-lg"> <br>
+                                  <dl>
+                                    <dt>DEPARTMENT:</dt>
+                                    <dd>Administrator</dd>
+                                    <dt>HIRE DATE</dt>
+                                    <dd>11/12/2013</dd>
+                                    <dt>DATE OF BIRTH</dt>
+                                       <dd>11/12/2013</dd>
+                                    <dt>GENDER</dt>
+                                    <dd>Male</dd>
+                                  </dl>
+                                </div>
+                                <div class=" col-md-9 col-lg-9 ">
+                                    <table class="table table-user-information">
+                                        <tbody>
+                                            <tr>
+                                                <td>Name:</td>
+                                                <td>@currentUser.FirstName @currentUser.LastName</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Username:</td>
+                                                <td>@currentUser.UserName</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Date of Birth</td>
+                                                <td>@currentUser.BirthDate</td>
+                                            </tr>
 
-                                        <tr>
-                                        <tr>
-                                            <td>Email:</td>
-                                            <td>@currentUser.Email</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Email Confirmed:</td>
-                                            @if (@currentUser.EmailConfirmed == true)
-                                            {
-                                                <td>Confirmed.</td>
-                                            }
-                                            else
-                                            {
-                                                <td>NOT Confirmed.</td>
-                                            }
-                                            <td></td>
-                                        </tr>
-                                    </tbody>
-                                </table>
+                                            <tr>
+                                            <tr>
+                                                <td>Email:</td>
+                                                <td>@currentUser.Email</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Email Confirmed:</td>
+                                                @if (@currentUser.EmailConfirmed == true)
+                                                {
+                                                    <td>Confirmed.</td>
+                                                }
+                                                else
+                                                {
+                                                    <td>NOT Confirmed.</td>
+                                                }
+                                                <td></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
 
-                                <a href="#" class="btn btn-primary">My Cock Size</a>
-                                <a href="#" class="btn btn-primary">Your Cock Size</a>
+                                    <a href="#" class="btn btn-primary">My Cock Size</a>
+                                    <a href="#" class="btn btn-primary">Your Cock Size</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="panel-footer">
-                        <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
-                        <span class="pull-right">
-                            <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
-                            <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
-                        </span>
-                    </div>
+                        <div class="panel-footer">
+                            <a data-original-title="Broadcast Message" data-toggle="tooltip" type="button" class="btn btn-sm btn-primary"><i class="glyphicon glyphicon-envelope"></i></a>
+                            <span class="pull-right">
+                                <a href="edit.html" data-original-title="Edit this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-warning"><i class="glyphicon glyphicon-edit"></i></a>
+                                <a data-original-title="Remove this user" data-toggle="tooltip" type="button" class="btn btn-sm btn-danger"><i class="glyphicon glyphicon-remove"></i></a>
+                            </span>
+                        </div>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-<div class="video-sexy">
+    <div class="video-sexy">
 
-    <iframe width="816" height="459" src="https://www.youtube.com/embed/zpOULjyy-n8?autoplay=1" frameborder="0" allowfullscreen></iframe>
-</div>
-    -->
+        <iframe width="816" height="459" src="https://www.youtube.com/embed/zpOULjyy-n8?autoplay=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+*@

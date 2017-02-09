@@ -14,7 +14,7 @@ namespace Webvnue.Models
         public string LastName { get; set; }
         [Required(ErrorMessage = "Please enter a username.")]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Please enter a Email address.")]
+        [Required(ErrorMessage = "Please enter a email address.")]
         [EmailAddress]
         public string Email { get; set; }
         [Required(ErrorMessage = "Please enter a valid date of birth (Ex: 1/1/2000).")]

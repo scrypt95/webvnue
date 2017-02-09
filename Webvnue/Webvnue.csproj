@@ -185,6 +185,7 @@
     <Compile Include="Models\MyIdentityDbContext.cs" />
     <Compile Include="Models\MyIdentityRole.cs" />
     <Compile Include="Models\MyIdentityUser.cs" />
+    <Compile Include="Models\Referral.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
