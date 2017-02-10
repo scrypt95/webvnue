@@ -270,6 +270,7 @@ namespace Webvnue.Controllers
             var result = userManager.ResetPassword(user.Id, model.Code, model.Password);
             if (result.Succeeded)
             {
+                sendEmail(user, "Password Changed", "Your password has been changed");
                 return RedirectToAction("Index", "Home");
             }
             return View();
