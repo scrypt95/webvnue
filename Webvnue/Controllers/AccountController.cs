@@ -202,7 +202,7 @@ namespace Webvnue.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("", "Invalid username or password");
+                    ModelState.AddModelError("invalid", "Invalid username or password");
                 }
             }
 
@@ -314,14 +314,14 @@ namespace Webvnue.Controllers
 
             System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(new System.Net.Mail.MailAddress("webvnue@gmail.com", "Webvnue"), new System.Net.Mail.MailAddress(user.Email));
             m.Subject = "Email Confirmation";
-            m.Body = string.Format("Dear {0}, <br/> Thank you for your registration, Click on the below link to complete your registration: <br/> <a href =\"{1}\" title =\"User Email Confirm\">{1}</a>", user.FirstName, Url.Action("ConfirmEmail", "account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
+            m.Body = string.Format("Dear {0}, <br/><br/> Thank you for joining Webvnue. <br/><br/> Click on the below link to confirm your email: <br/><br/> <a href =\"{1}\" title =\"User Email Confirm\">{1}</a>", user.FirstName, Url.Action("ConfirmEmail", "account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
             m.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");
             smtp.EnableSsl = true;
             smtp.Send(m);
 
-            return Json(new{});
+            return null;
         }
     }
 }

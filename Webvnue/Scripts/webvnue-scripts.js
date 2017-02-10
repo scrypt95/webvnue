@@ -4,9 +4,8 @@
         $.ajax({
             type: "POST",
             url: "/account/ConfirmEmail",
-            data: {},
             error: function (XMLHttpRequest, textStatus, errorThrown) {
-                alert(errorThrown);
+                $("#email-button").replaceWith("Error, try again later")
             },
             success: function (result) {
                 $("#email-button").replaceWith("Sent!")

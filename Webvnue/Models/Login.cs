@@ -8,9 +8,9 @@ namespace Webvnue.Models
 {
     public class Login
     {
-        [Required]
+        [Required(ErrorMessage = "You must enter a username!")]
         public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "You must enter a password!")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
         public bool RememberMe { get; set; }

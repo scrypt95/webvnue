@@ -13,7 +13,7 @@ namespace Webvnue.App_Start
         {
             CookieAuthenticationOptions options = new CookieAuthenticationOptions();
             options.AuthenticationType = DefaultAuthenticationTypes.ApplicationCookie;
-            options.LoginPath = new PathString("/Account/Login");
+            options.LoginPath = new PathString("/account/login");
             app.UseCookieAuthentication(options);
         }
     }
