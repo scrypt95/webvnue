@@ -179,12 +179,14 @@
     </Compile>
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ChangeProfile.cs" />
+    <Compile Include="Models\forgotpassword.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MyIdentityDbContext.cs" />
     <Compile Include="Models\MyIdentityRole.cs" />
     <Compile Include="Models\MyIdentityUser.cs" />
     <Compile Include="Models\Referral.cs" />
     <Compile Include="Models\Register.cs" />
+    <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -201,6 +203,8 @@
     <Content Include="Views\help\contact.cshtml" />
     <Content Include="Views\help\faq.cshtml" />
     <Content Include="Views\Account\settings.cshtml" />
+    <Content Include="Views\Account\forgotpassword.cshtml" />
+    <Content Include="Views\Account\resetpassword.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

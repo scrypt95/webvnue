@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using Microsoft.Owin.Security.DataProtection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -73,6 +75,9 @@ namespace Webvnue.Controllers
 
             RoleStore<Models.MyIdentityRole> roleStore = new RoleStore<Models.MyIdentityRole>(db);
             roleManager = new RoleManager<Models.MyIdentityRole>(roleStore);
+
+            var provider = new DpapiDataProtectionProvider("Webvnue");
+            userManager.UserTokenProvider = new DataProtectorTokenProvider<Models.MyIdentityUser>(provider.Create("ResetPassword"));
         }
 
         public ActionResult register(string Token)
@@ -209,6 +214,67 @@ namespace Webvnue.Controllers
             return View(loginModel);
         }
 
+        public ActionResult forgotpassword()
+        {
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult forgotpassword(Models.forgotpassword model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = userManager.FindByEmail(model.Email);
+                if (user == null)
+                {
+                    // || !(userManager.IsEmailConfirmed(user.Id)
+                    // Don't reveal that the user does not exist or is not confirmed
+                    return RedirectToAction("Index", "Home");
+                }
+
+                string code = userManager.GeneratePasswordResetToken(user.Id);
+                var callbackUrl = Url.Action("ResetPassword", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
+                sendEmail(user, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                // await UserManager.SendEmailAsync(user.Id, "Reset Password", "Please reset your password by clicking <a href=\"" + callbackUrl + "\">here</a>");
+                return RedirectToAction("Index", "Home");
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        public ActionResult resetpassword(string code)
+        {
+            if(code == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            else
+            {
+                return View();
+            }
+        }
+        [HttpPost]
+        public ActionResult resetpassword(Models.ResetPassword model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            var user = userManager.FindByEmail(model.Email);
+            if (user == null)
+            {
+                // Don't reveal that the user does not exist
+                return RedirectToAction("Index", "Home");
+            }
+            var result = userManager.ResetPassword(user.Id, model.Code, model.Password);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
+
         [Authorize]
         public ActionResult ChangePassword()
         {
@@ -322,6 +388,18 @@ namespace Webvnue.Controllers
             smtp.Send(m);
 
             return null;
+        }
+
+        private void sendEmail(Models.MyIdentityUser user, string subject, string body)
+        {
+            System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(new System.Net.Mail.MailAddress("webvnue@gmail.com", "Webvnue"), new System.Net.Mail.MailAddress(user.Email));
+            m.Subject = subject;
+            m.Body = body;
+            m.IsBodyHtml = true;
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
         }
     }
 }

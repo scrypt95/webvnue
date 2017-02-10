@@ -15,5 +15,6 @@ namespace Webvnue.Models
         public string NewPassword { get; set; }
         [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmNewPassword { get; set; }
+        public string code { get; set; }
     }
 }
