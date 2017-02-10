@@ -19,7 +19,12 @@ namespace Webvnue.Controllers
             {
                 ViewData["CurrentUser"] = user;
             }
-
+            return View();
+        }
+        [Route("Ibo/{id?}")]
+        public ActionResult Ibo(string id)
+        {
+            ViewData["Param"] = id;
             return View();
         }
 
