@@ -13,7 +13,7 @@
     <link href="~/Content/webvnue-main.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    @using (Html.BeginForm("Register", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+    @using (Html.BeginForm("register", "account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
     {
         @Html.AntiForgeryToken();
         <div class="container">

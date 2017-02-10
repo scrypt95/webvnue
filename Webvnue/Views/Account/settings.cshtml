@@ -1,7 +1,5 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-
     var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
 
     var referralList = (IEnumerable<Webvnue.Models.MyIdentityUser>)ViewData["ReferralList"];
@@ -167,8 +165,8 @@
                             <div class="col-md-9 col-lg-9">
 
                                 <div class="webvnue-earned">
-                                    <h2>Webvnue earned: $@(@referralListCount * 3)</h2>
-                                 </div>
+                                    <h2>Webvnue monthly income: $@(@referralListCount * 3)</h2>
+                                </div>
                                 <!--
                                     Write code for webvnue earned here
                                     <img src="~/Images/a4.jpg" />
@@ -188,7 +186,7 @@
                                 <button class="btn btn-default" id="refbutton">Show link</button>
                                 <div id="referral-link" style="display:none;">
                                     <br />
-                                    @Url.Action("Register", "Account", new { Token = currentUser.Id }, Request.Url.Scheme)
+                                    @Url.Action("register", "account", new { Token = currentUser.Id }, Request.Url.Scheme)
                                 </div>
 
                                 <!--
@@ -211,7 +209,7 @@
 
 
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+@*<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>*@
 
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->

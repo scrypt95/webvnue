@@ -3,13 +3,13 @@
     $("#email-button").click(function (event) {
         $.ajax({
             type: "POST",
-            url: "/Account/ConfirmEmail",
+            url: "/account/ConfirmEmail",
             data: {},
             error: function (XMLHttpRequest, textStatus, errorThrown) {
                 alert(errorThrown);
             },
             success: function (result) {
-                alert("Email Sent");
+                $("#email-button").replaceWith("Sent!")
             }
 
         });

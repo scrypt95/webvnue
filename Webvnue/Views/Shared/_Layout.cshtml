@@ -22,7 +22,7 @@
             @if (currentUser != null)
             {
                 <ul class="nav navbar-nav">
-                    <li><a href="/Account">Welcome, @currentUser.FirstName</a></li>
+                    <li><a href="/@currentUser.UserName">Welcome, @currentUser.FirstName</a></li>
                 </ul>
             }
             <div class="logoutbutt">
@@ -31,10 +31,10 @@
                     <li><a href="/help/faq">FAQ</a></li>
                     @if (currentUser != null)
                     {
-                        <li><a href="/Account/Logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        <li><a href="/account/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
                         <!--
                         <li>
-                            @using (Html.BeginForm("Logout", "Account", FormMethod.Post))
+                            @using (Html.BeginForm("logout", "account", FormMethod.Post))
                             {
                                 @Html.AntiForgeryToken()                    ;
                                 <input type="submit" value="Logout" />
@@ -44,7 +44,7 @@
                     }
                     else
                     {
-                        <li><a href="/Account/Login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        <li><a href="/account/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
                     }
                 </ul>

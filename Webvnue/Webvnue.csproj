@@ -165,16 +165,14 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\webvnue-scripts.js" />
     <Content Include="Web.config" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\Account\login.cshtml" />
+    <Content Include="Views\Account\register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.cs" />
-    <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ContactController.cs" />
-    <Compile Include="Controllers\faqController.cs" />
+    <Compile Include="Controllers\accountController.cs" />
+    <Compile Include="Controllers\helpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -199,9 +197,10 @@
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\faq\Index.cshtml" />
     <Content Include="Views\Home\Personal.cshtml" />
+    <Content Include="Views\help\contact.cshtml" />
+    <Content Include="Views\help\faq.cshtml" />
+    <Content Include="Views\Account\settings.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

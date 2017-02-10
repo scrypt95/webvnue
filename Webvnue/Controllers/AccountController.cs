@@ -10,15 +10,13 @@ using System.Web.Mvc;
 
 namespace Webvnue.Controllers
 {
-    public class AccountController : Controller
+    public class accountController : Controller
     {
         private UserManager<Models.MyIdentityUser> userManager;
         private RoleManager<Models.MyIdentityRole> roleManager;
 
-
-        // GET: Account
         [Authorize]
-        public ActionResult Index()
+        public ActionResult settings()
         {
             Models.MyIdentityUser user = getCurrentUser();
 
@@ -29,7 +27,7 @@ namespace Webvnue.Controllers
 
             List<Models.MyIdentityUser> referralList = getReferralList(user);
 
-            if(referralList.Count > 0)
+            if (referralList.Count > 0)
             {
                 ViewData["ReferralList"] = getReferralList(user);
             }
@@ -66,7 +64,7 @@ namespace Webvnue.Controllers
             return referralList;
         }
 
-        public AccountController()
+        public accountController()
         {
             Models.MyIdentityDbContext db = new Models.MyIdentityDbContext();
 
@@ -77,7 +75,7 @@ namespace Webvnue.Controllers
             roleManager = new RoleManager<Models.MyIdentityRole>(roleStore);
         }
 
-        public ActionResult Register(string Token)
+        public ActionResult register(string Token)
         {
             bool loggedIn = (System.Web.HttpContext.Current.User != null) && System.Web.HttpContext.Current.User.Identity.IsAuthenticated;
 
@@ -98,7 +96,7 @@ namespace Webvnue.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Register(Models.Register registerModel, string Token)
+        public ActionResult register(Models.Register registerModel, string Token)
         {
             if (ModelState.IsValid)
             {
@@ -167,7 +165,7 @@ namespace Webvnue.Controllers
             db.SaveChanges();
         }
 
-        public ActionResult Login(string returnUrl)
+        public ActionResult login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
             return View();
@@ -175,7 +173,7 @@ namespace Webvnue.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(Models.Login loginModel, string returnUrl)
+        public ActionResult login(Models.Login loginModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
@@ -287,7 +285,7 @@ namespace Webvnue.Controllers
         [HttpGet]
         [Authorize]
         //[ValidateAntiForgeryToken]
-        public ActionResult Logout()
+        public ActionResult logout()
         {
             IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
             authenticationManager.SignOut();
@@ -303,17 +301,10 @@ namespace Webvnue.Controllers
                 {
                     user.EmailConfirmed = true;
                     IdentityResult result = userManager.Update(user);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    return RedirectToAction("Index", "Home");
                 }
             }
-            else
-            {
-                return RedirectToAction("Index", "Home");
-            }
+
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpPost]
@@ -323,7 +314,7 @@ namespace Webvnue.Controllers
 
             System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(new System.Net.Mail.MailAddress("webvnue@gmail.com", "Webvnue"), new System.Net.Mail.MailAddress(user.Email));
             m.Subject = "Email Confirmation";
-            m.Body = string.Format("Dear {0}, <br/> Thank you for your registration, Click on the below link to complete your registration: <br/> <a href =\"{1}\" title =\"User Email Confirm\">{1}</a>", user.FirstName, Url.Action("ConfirmEmail", "Account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
+            m.Body = string.Format("Dear {0}, <br/> Thank you for your registration, Click on the below link to complete your registration: <br/> <a href =\"{1}\" title =\"User Email Confirm\">{1}</a>", user.FirstName, Url.Action("ConfirmEmail", "account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
             m.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
             smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");

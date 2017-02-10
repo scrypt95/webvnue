@@ -21,11 +21,26 @@ namespace Webvnue.Controllers
             }
             return View();
         }
-        [Route("{id}")]
-        public ActionResult Personal(string id)
+        [Route("{user}")]
+        public ActionResult Personal(string user)
         {
-            ViewData["Param"] = id;
-            return View();
+            Models.MyIdentityUser userLoggedIn = getCurrentUser();
+
+            if (userLoggedIn != null)
+            {
+                ViewData["CurrentUser"] = userLoggedIn;
+            }
+
+            Models.MyIdentityUser requestedUserPage = findUser(user);
+
+            if(requestedUserPage != null)
+            {
+                return View();
+            }
+            else
+            {
+                return HttpNotFound("NOT FOUND MOTHER FUCKER");
+            }
         }
 
         private Models.MyIdentityUser getCurrentUser()
@@ -35,6 +50,17 @@ namespace Webvnue.Controllers
             UserManager<Models.MyIdentityUser> userManager = new UserManager<Models.MyIdentityUser>(userStore);
 
             Models.MyIdentityUser user = userManager.FindByName(HttpContext.User.Identity.Name);
+
+            return user;
+        }
+
+        private Models.MyIdentityUser findUser(string userName)
+        {
+            Models.MyIdentityDbContext db = new Models.MyIdentityDbContext();
+            UserStore<Models.MyIdentityUser> userStore = new UserStore<Models.MyIdentityUser>(db);
+            UserManager<Models.MyIdentityUser> userManager = new UserManager<Models.MyIdentityUser>(userStore);
+
+            Models.MyIdentityUser user = userManager.FindByName(userName);
 
             return user;
         }
