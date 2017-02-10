@@ -11,6 +11,7 @@ namespace Webvnue.Controllers
     public class ContactController : Controller
     {
         // GET: Contact
+        [Route("help/contact")]
         public ActionResult Index()
         {
             Models.MyIdentityUser user = getCurrentUser();

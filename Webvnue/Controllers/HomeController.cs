@@ -21,8 +21,8 @@ namespace Webvnue.Controllers
             }
             return View();
         }
-        [Route("Ibo/{id?}")]
-        public ActionResult Ibo(string id)
+        [Route("{id}")]
+        public ActionResult Personal(string id)
         {
             ViewData["Param"] = id;
             return View();

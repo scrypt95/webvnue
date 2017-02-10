@@ -13,13 +13,14 @@ namespace Webvnue
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
             routes.MapMvcAttributeRoutes();
-            
+
+            /*
             routes.MapRoute(
                 name: "Home",
                 url: "{id}",
-                defaults: new { controller = "Home", action="Ibo"},
+                defaults: new { controller = "Home", action="User"},
                 constraints: new { id = @"\d+" }
-            );
+            );*/
 
             routes.MapRoute(
                 name: "Default",

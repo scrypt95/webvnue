@@ -11,6 +11,7 @@ namespace Webvnue.Controllers
     public class faqController : Controller
     {
         // GET: faq
+        [Route("help/faq")]
         public ActionResult Index()
         {
             Models.MyIdentityUser user = getCurrentUser();
