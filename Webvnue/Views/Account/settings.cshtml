@@ -100,9 +100,20 @@
                                             }
                                             else
                                             {
-                                                <td><button class="btn btn-default" id="email-button">Send Email</button></td>
+                                                <td><button class="btn btn-danger" id="email-button">Send Email</button></td>
                                             }
                                             <td></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Subscription:</td>
+                                            @if (@currentUser.Subscription == true)
+                                            {
+                                                <td>Subscribed</td>
+                                            }
+                                            else
+                                            {
+                                                <td><a href="/services/subscribe" class="btn btn-danger">Subscribe</a></td>
+                                            }
                                         </tr>
                                     </tbody>
                                 </table>

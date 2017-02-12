@@ -10,6 +10,7 @@ namespace Webvnue.Models
     public class MyIdentityDbContext : IdentityDbContext<MyIdentityUser>
     {
         public DbSet<Referral> Referrals { get; set; }
+        public DbSet<UserCreditCard> UserCCInfo { get; set; }
 
         public MyIdentityDbContext() : base("connectionstring")
         {

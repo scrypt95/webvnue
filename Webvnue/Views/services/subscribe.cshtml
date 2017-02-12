@@ -1,0 +1,126 @@
+﻿
+@model Webvnue.Models.CreditCardModel
+@{
+    ViewBag.Title = "subscribe";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<br/>
+<br />
+<div class="container">
+    <form class="form-horizontal" role="form" method="post">
+        <fieldset>
+            <legend>Subscribe to start earning money.</legend>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="first-name">First Name</label>
+                <div class="col-sm-9">
+                    @*<input type="text" class="form-control" name="FirstName" id="first-name" placeholder="First Name">*@
+                    @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="last-name">Last Name</label>
+                <div class="col-sm-9">
+                    @*<input type="text" class="form-control" name="LastName" id="last-name" placeholder="Last Name">*@
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="card-number">Credit Card Number</label>
+                <div class="col-sm-9">
+                    @*<input type="text" class="form-control" name="CardNumber" id="card-number" placeholder="Credit Card Number">*@
+                    @Html.TextBoxFor(m => m.CardNumber, new { @class = "form-control", @placeholder = "Credit Card Number" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="type">Card Type</label>
+                <div class="col-sm-2">
+                    @{
+                        List<SelectListItem> listItems = new List<SelectListItem>();
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Visa",
+                            Value = "visa"
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Mastercard",
+                            Value = "mastercard",
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Discover",
+                            Value = "discover"
+                        });
+                        listItems.Add(new SelectListItem
+                        {
+                            Text = "Ameican Express",
+                            Value = "amex"
+                        });
+                    }
+                    @Html.DropDownListFor(model => model.CardType, listItems, new { @class = "form-control col-sm-2" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="expiry-month">Expiration Date</label>
+                <div class="col-sm-9">
+                    <div class="row">
+                        <div class="col-xs-2">
+                            @Html.DropDownListFor(model => model.ExpireMonth, new SelectList(ViewBag.ExpireMonth, "Value", "Text"), new { @class = "form-control" })
+                        </div>
+                        <div class="col-xs-2">
+                            @Html.DropDownListFor(model => model.ExpireYear, new SelectList(ViewBag.ExpireYear, "Value", "Text"), new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="cvv">CVV</label>
+                <div class="col-sm-1">
+                    <input type="text" class="form-control" name="cvv" id="cvv" placeholder="CVV">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="country">Country</label>
+                <div class="col-sm-3">
+                    @Html.DropDownListFor(model => model.Country, new SelectList(ViewBag.Countries, "Value", "Text"), new { @class = "form-control col-sm-2" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="address">Address</label>
+                <div class="col-sm-3">
+                    @*<input type="text" class="form-control" name="Address" id="address" placeholder="Address">*@
+                    @Html.TextBoxFor(m => m.Address, new { @class = "form-control", @placeholder = "Address" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="city">City</label>
+                <div class="col-sm-3">
+                    @*<input type="text" class="form-control" name="City" id="city" placeholder="City">*@
+                    @Html.TextBoxFor(m => m.City, new { @class = "form-control", @placeholder = "City" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="state">State</label>
+                <div class="col-sm-1">
+                    @*<input type="text" class="form-control" name="State" id="state" placeholder="State">*@
+                    @Html.TextBoxFor(m => m.State, new { @class = "form-control", @placeholder = "State" })
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label" for="zip-code">Zip Code</label>
+                <div class="col-sm-2">
+                    @*<input type="text" class="form-control" name="ZipCode" id="zip-code" placeholder="Zip Code">*@
+                    @Html.TextBoxFor(m => m.ZipCode, new { @class = "form-control", @placeholder = "Zip Code" })
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-sm-offset-3 col-sm-9">
+                    @*<button type="button" class="btn btn-success">Subscribe</button>*@
+                    <input type="submit" value="Subscribe" class="btn btn-success">
+                </div>
+            </div>
+        </fieldset>
+    </form>
+                        
+</div>

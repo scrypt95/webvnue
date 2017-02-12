@@ -11,6 +11,7 @@ namespace Webvnue.Controllers
     public class HomeController : Controller
     {
         // GET: Home
+        //[RequireHttps]
         public ActionResult Index()
         {
             Models.MyIdentityUser user = getCurrentUser();
@@ -35,6 +36,7 @@ namespace Webvnue.Controllers
 
             if(requestedUserPage != null)
             {
+                ViewData["User"] = requestedUserPage.FirstName;
                 return View();
             }
             else
