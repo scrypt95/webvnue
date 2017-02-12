@@ -34,6 +34,11 @@ namespace Webvnue.Controllers
             
             Models.MyIdentityUser user = getCurrentUser();
 
+            if (user != null)
+            {
+                ViewData["CurrentUser"] = user;
+            }
+
             if (user.Subscription)
             {
                 return RedirectToAction("Index", "Home");
@@ -67,13 +72,17 @@ namespace Webvnue.Controllers
                 return View("failed");
             }
 
-            return View();
         }
 
         [Authorize]
         public ActionResult success()
         {
             Models.MyIdentityUser user = getCurrentUser();
+
+            if (user != null)
+            {
+                ViewData["CurrentUser"] = user;
+            }
 
             if (user.Subscription)
             {
@@ -87,6 +96,11 @@ namespace Webvnue.Controllers
         public ActionResult failed()
         {
             Models.MyIdentityUser user = getCurrentUser();
+
+            if (user != null)
+            {
+                ViewData["CurrentUser"] = user;
+            }
 
             if (user.Subscription)
             {
