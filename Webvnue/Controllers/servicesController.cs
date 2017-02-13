@@ -24,6 +24,7 @@ namespace Webvnue.Controllers
 
         public ActionResult subscription()
         {
+            //comment
             return View();
         }
 
@@ -49,7 +50,7 @@ namespace Webvnue.Controllers
             sortList.Insert(0, new SelectListItem()
             {
                 Text = "United States",
-                Value = "US"
+                Value = "US",
             });
             ViewBag.Countries = sortList;
             ViewBag.ExpireMonth = getExpireMonth();

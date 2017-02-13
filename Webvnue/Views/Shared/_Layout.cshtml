@@ -27,12 +27,13 @@
             }
             <div class="logoutbutt">
                 <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/account/settings">Account</a></li>
                     <li><a href="/help/contact">Contact Us</a></li>
                     <li><a href="/help/faq">FAQ</a></li>
                     @if (currentUser != null)
                     {
                         <li><a href="/account/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
-                        <!--
+                        @*
                         <li>
                             @using (Html.BeginForm("logout", "account", FormMethod.Post))
                             {
@@ -40,7 +41,7 @@
                                 <input type="submit" value="Logout" />
                             }
                         </li>
-                            -->
+                            *@
                     }
                     else
                     {
