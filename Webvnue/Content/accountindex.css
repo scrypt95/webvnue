@@ -4,12 +4,12 @@
 
 /* Profile container */
 .profile {
-  margin: 20px 0;
+  margin-top: 0px;
 }
 
 /* Profile sidebar */
 .profile-sidebar {
-  padding: 20px 0 10px 0;
+  padding: 5px 0 5px 0;
   background: #fff;
 }
 .col-md-3{
@@ -27,18 +27,18 @@ padding:0 0 0 15px;
     border-radius: 50% !important;*/
 }
 
-.profile-usertitle {
+/*.usertitle {
   text-align: center;
   margin-top: 20px;
 }
 
-.profile-usertitle-name {
+.usertitle-name {
   color: #5a7391;
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 7px;
 }
-
+*/
 .profile-usertitle-job {
   text-transform: uppercase;
   color: #5b9bd1;

@@ -147,3 +147,17 @@ h3 {
     font-family: 'oswald';
 
 }
+.usertitle{
+    text-align: center;
+    font-family: 'oswald';
+    font-size: 25px;    
+}
+.navbar-inverse{
+    background-color: #4286f4;
+}
+.nav.navbar-nav li a {
+    color: white;
+}
+.navbar-inverse .navbar-brand{
+    color: white;
+}
