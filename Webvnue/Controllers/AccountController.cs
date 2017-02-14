@@ -122,9 +122,10 @@ namespace Webvnue.Controllers
                     if (Token != null && validateToken(Token))
                     {
                         addNewReferral(user, Token);
-                        sendEmail(user, "Webvnue New Referral Notification", string.Format("Dear, {0} <br/><br/> {1} has signed up under your referral! <br/><br/> Your monthly income has increased by $4.50. <br/></br> Best Regards, <br/>Webvnue"));
+                        sendEmail(userManager.FindById(Token), "Webvnue Referral Notification", string.Format("Dear, {0} <br/><br/> {1} has signed up under your referral! <br/><br/> Your monthly income has increased by $4.50. <br/><br/> Best Regards, <br/>Team Webvnue", userManager.FindById(Token).FirstName, user.FirstName));
                     }
 
+                    sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
                     return RedirectToAction("Login", "Account");
                 }
                 else
