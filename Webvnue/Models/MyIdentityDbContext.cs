@@ -12,7 +12,7 @@ namespace Webvnue.Models
         public DbSet<Referral> Referrals { get; set; }
         public DbSet<UserCreditCard> UserCCInfo { get; set; }
 
-        public MyIdentityDbContext() : base("connectionstring")
+        public MyIdentityDbContext() : base("webvnuedb")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyIdentityDbContext>());
         }
