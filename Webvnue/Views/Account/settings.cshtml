@@ -112,7 +112,8 @@
                                             <td>Subscription:</td>
                                             @if (@currentUser.Subscription == true)
                                             {
-                                                <td>Subscribed</td>
+                                                @*@<td>Subscribed</td>*@
+                                                <td><button class="btn btn-primary" id="unsubscribe-button">Unsubscribe</button></td>
                                             }
                                             else
                                             {

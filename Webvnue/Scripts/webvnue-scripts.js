@@ -33,6 +33,27 @@
 
     });
 
+    $("#unsubscribe-button").click(function(event){  
+        var input = confirm("Do you wish to unsubscribe from unsubscribing from the unsubscribe?")
+
+        if (input == true) {
+            $.ajax({
+                type: "POST",
+                url: "/services/unsubscribe",
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                    alert("There was an error. Please try again later")
+                },
+                success: function (result) {
+                    $('#accountinfo').load('/account/settings #accountinfo')
+                }
+
+            });
+        }
+        else {
+            alert("There was an error. Please try again later")
+        }
+    });
+
 });
 
 /*

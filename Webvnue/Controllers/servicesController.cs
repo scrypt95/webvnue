@@ -58,6 +58,7 @@ namespace Webvnue.Controllers
 
             return View();
         }
+
         [HttpPost]
         [Authorize]
         public ActionResult subscribe(Models.CreditCardModel model)
@@ -73,6 +74,17 @@ namespace Webvnue.Controllers
                 return View("failed");
             }
 
+        }
+
+        [HttpPost]
+        public ActionResult unsubscribe()
+        {
+
+            Models.MyIdentityUser user = userManager.FindById(getCurrentUser().Id);
+            user.Subscription = false;
+            IdentityResult result = userManager.Update(user);
+
+            return null;
         }
 
         [Authorize]
