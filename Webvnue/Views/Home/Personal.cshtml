@@ -1,10 +1,13 @@
 ﻿
 @{
-        var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
+    var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
+    var reflist = (List<Webvnue.Models.MyIdentityUser>)ViewData["ReferralList"];
+
+
         ViewBag.Title = "Personal";
-        Layout = "~/Views/Shared/_Layout.cshtml";
-        var user = (string)ViewData["User"];
-    }
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var user = (string)ViewData["User"];
+}
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -17,7 +20,7 @@
                 <div class="panel-body">
                     <div class="media">
                         <div align="center">
-                            <img class="thumbnail img-responsive" src="~/Images/avatar.jpg" width="300px" height="300px">
+                            <img class="thumbnail img-responsive" src="~/Images/avatar.jpg" width="300" height="300">
                         </div>
                         <div class="media-body">
                             <hr>
@@ -64,7 +67,7 @@
                     <br><br><hr>
                     <span class="pull-left">
                         <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Photos <span class="badge">1</span></a>
-                        <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Referrals <span class="badge">1</span></a>
+                        <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Referrals <span class="badge">@reflist.Count</span></a>
                     </span>
                     <span class="pull-right">
                         <a href="#" class="btn btn-primary" style="text-decoration:none; font-family:'oswald'"><span class="glyphicon glyphicon-envelope"></span> Message</a>
@@ -78,7 +81,7 @@
                 <div class="panel-body">
                     <div class="pull-left">
                         <a href="#">
-                            <img class="media-object img-circle" src="~/Images/avatar.jpg" width="40px" height="50px" style="margin-right:8px; margin-top:-5px;">
+                            <img class="media-object img-circle" src="~/Images/avatar.jpg" width="40" height="50" style="margin-right:8px; margin-top:-5px;">
                         </a>
                     </div>
                     <h4><a href="#" style="text-decoration:none;"><strong>@currentUser.FirstName @currentUser.LastName</strong>-</a><a href="#" style="text-decoration:none; color:grey;"></a></h4>
@@ -119,7 +122,7 @@
                     <div class="media">
                         <div class="pull-left">
                             <a href="#">
-                                <img class="media-object img-circle" src="~/Images/avatar.jpg" width="30px" height="35px" style="margin-left:3px; margin-right:-5px;">
+                                <img class="media-object img-circle" src="~/Images/avatar.jpg" width="30" height="35" style="margin-left:3px; margin-right:-5px;">
                             </a>
                         </div>
                         <div class="media-body">

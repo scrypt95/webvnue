@@ -10,6 +10,16 @@ namespace Webvnue.Controllers
 {
     public class HomeController : Controller
     {
+        private UserManager<Models.MyIdentityUser> userManager;
+
+        public HomeController()
+        {
+            Models.MyIdentityDbContext db = new Models.MyIdentityDbContext();
+
+            UserStore<Models.MyIdentityUser> userStore = new UserStore<Models.MyIdentityUser>(db);
+            userManager = new UserManager<Models.MyIdentityUser>(userStore);
+        }
+
         // GET: Home
         //[RequireHttps]
         public ActionResult Index()
@@ -22,6 +32,7 @@ namespace Webvnue.Controllers
             }
             return View();
         }
+
         [Route("{user}")]
         public ActionResult Personal(string user)
         {
@@ -30,6 +41,7 @@ namespace Webvnue.Controllers
             if (userLoggedIn != null)
             {
                 ViewData["CurrentUser"] = userLoggedIn;
+                ViewData["ReferralList"] = getReferralList(userLoggedIn);
             }
 
             Models.MyIdentityUser requestedUserPage = findUser(user);
@@ -65,6 +77,23 @@ namespace Webvnue.Controllers
             Models.MyIdentityUser user = userManager.FindByName(userName);
 
             return user;
+        }
+
+        private List<Models.MyIdentityUser> getReferralList(Models.MyIdentityUser user)
+        {
+            List<Models.MyIdentityUser> referralList = new List<Models.MyIdentityUser>();
+
+            var db = new Models.MyIdentityDbContext();
+
+            foreach (var referral in db.Referrals)
+            {
+                if (user.Id == referral.ReferrerId)
+                {
+                    referralList.Add(userManager.FindById(referral.RefereeId));
+                }
+            }
+
+            return referralList;
         }
     }
 }
