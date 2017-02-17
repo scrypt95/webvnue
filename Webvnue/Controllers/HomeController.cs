@@ -2,6 +2,7 @@
 using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -55,6 +56,55 @@ namespace Webvnue.Controllers
             {
                 return HttpNotFound("NOT FOUND MOTHER FUCKER");
             }
+        }
+
+        [HttpPost]
+        public ActionResult UploadImage(HttpPostedFileBase[] uploadImage)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            if (uploadImage.Length == 0)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
+            if (db.UserProfileImages.Find(getCurrentUser().Id) != null){
+                var profile = db.UserProfileImages.Find(getCurrentUser().Id);
+                db.UserProfileImages.Remove(profile);
+                db.SaveChanges();
+            }
+
+            foreach (var image in uploadImage)
+            {
+                if (image.ContentLength > 0)
+                {
+                    byte[] imageData = null;
+                    using (var binaryReader = new BinaryReader(image.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(image.ContentLength);
+                    }
+                    var userImage = new Models.UserProfileImage()
+                    {
+                        UserId = getCurrentUser().Id,
+                        ImageData = imageData,
+                        FileName = image.FileName
+                    };
+
+                    db.UserProfileImages.Add(userImage);
+                    db.SaveChanges();
+                }
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
+        public ActionResult profileimg(string id)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            var item = db.UserProfileImages.Find(id);
+            byte[] buffer = item.ImageData;
+
+            return File(buffer, "image/jpg", string.Format("{0}.jpg", id));
         }
 
         private Models.MyIdentityUser getCurrentUser()

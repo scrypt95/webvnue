@@ -31,7 +31,7 @@ namespace Webvnue.Controllers
         [HttpPost]
         public ActionResult src(HttpPostedFileBase[] uploadImages)
         {
-            if (uploadImages.Count() < 1)
+            if (uploadImages.Count() <= 1)
             {
                 return RedirectToAction("Index", "Home");
             }

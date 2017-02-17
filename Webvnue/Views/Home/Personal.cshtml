@@ -20,8 +20,18 @@
                 <div class="panel-body">
                     <div class="media">
                         <div align="center">
-                            <img class="thumbnail img-responsive" src="~/Images/avatar.jpg" width="300" height="300">
-                        </div>
+                            @*<img class="thumbnail img-responsive" src="~/Images/avatar.jpg" width="300" height="300">*@
+                            <img src="/Home/profileimg/@currentUser.Id" width="300" height="300"/>
+                        @using (Html.BeginForm("UploadImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                                <span class="span4">
+                                    <input type="file" name="uploadImage" multiple="multiple" class="input-files" />
+                                </span>
+                                <span class="span2">
+                                    <input type="submit" name="button" value="Upload" class="btn btn-upload" />
+                                </span>
+                        }
+                    </div>
                         <div class="media-body">
                             <hr>
                             <div class="bio-panel"><strong>About me</strong></div>
