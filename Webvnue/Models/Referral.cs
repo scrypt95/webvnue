@@ -6,6 +6,7 @@ using System.Web;
 
 namespace Webvnue.Models
 {
+
     public class Referral
     {
         public string Id { get; set; }

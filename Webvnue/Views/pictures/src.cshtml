@@ -1,0 +1,22 @@
+﻿
+@{
+    ViewBag.Title = "src";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var user = (Webvnue.Models.MyIdentityUser)ViewData["User"];
+}
+
+<img src="/pictures/img/@user.Id" />
+
+@using (Html.BeginForm("src", "pictures", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+    <div class="row">
+        <span class="span4">
+            <input type="file" name="uploadImages" multiple="multiple" class="input-files" />
+        </span>
+        <span class="span2">
+            <input type="submit" name="button" value="Upload" class="btn btn-upload" />
+        </span>
+    </div>
+}
+

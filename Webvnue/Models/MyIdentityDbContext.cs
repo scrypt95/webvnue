@@ -11,6 +11,7 @@ namespace Webvnue.Models
     {
         public DbSet<Referral> Referrals { get; set; }
         public DbSet<UserCreditCard> UserCCInfo { get; set; }
+        public DbSet<UserProfileImage> UserProfileImages { get; set; }
 
         public MyIdentityDbContext() : base("connectionstring")
         {

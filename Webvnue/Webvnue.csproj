@@ -183,6 +183,7 @@
     <Compile Include="Controllers\accountController.cs" />
     <Compile Include="Controllers\helpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\picturesController.cs" />
     <Compile Include="Controllers\servicesController.cs" />
     <Compile Include="Controllers\transactionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -201,6 +202,7 @@
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Models\UserCreditCard.cs" />
+    <Compile Include="Models\UserProfileImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -227,6 +229,7 @@
     <Content Include="Views\services\subscribe.cshtml" />
     <Content Include="Views\services\success.cshtml" />
     <Content Include="Views\services\failed.cshtml" />
+    <Content Include="Views\pictures\src.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
