@@ -21,17 +21,23 @@
                     <div class="media">
                         <div align="center">
                             @*<img class="thumbnail img-responsive" src="~/Images/avatar.jpg" width="300" height="300">*@
-                            <img src="/Home/profileimg/@currentUser.Id" width="300" height="300"/>
-                        @using (Html.BeginForm("UploadImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
-                        {
-                                <span class="span4">
-                                    <input type="file" name="uploadImage" multiple="multiple" class="input-files" />
-                                </span>
-                                <span class="span2">
-                                    <input type="submit" name="button" value="Upload" class="btn btn-upload" />
-                                </span>
-                        }
-                    </div>
+                            <img class="thumbnail img-responsive" src="/Home/profileimg/@currentUser.Id" width="300" height="300"/>
+                            <div id="uploadphotobtn">
+                                <button class="btn btn-success" id="upload-button">Upload Photo</button>
+                            </div>
+                                <div id="uploadphoto" style="display:none;">
+
+                                    @using (Html.BeginForm("UploadImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <span class="span4">
+                                            <input type="file" name="uploadImage" multiple="multiple" class="btn btn-upload" />
+                                        </span>
+                                        <span class="span2">
+                                            <input type="submit" name="button" value="Upload" class="btn btn-success" />
+                                        </span>
+                                    }
+                                </div>
+                            </div>
                         <div class="media-body">
                             <hr>
                             <div class="bio-panel"><strong>About me</strong></div>
@@ -85,7 +91,7 @@
                 <div class="panel-body">
                     <div class="pull-left">
                         <a href="#">
-                            <img class="media-object img-circle" src="~/Images/avatar.jpg" width="40" height="50" style="margin-right:8px; margin-top:-5px;">
+                            <img class="thumbnail img-circle img-responsive" src="/Home/profileimg/@currentUser.Id" width="50" height="60" style="margin-right:8px; margin-top:-5px;">
                         </a>
                     </div>
                     <h4><a href="#" style="text-decoration:none;"><strong>@currentUser.FirstName @currentUser.LastName</strong>-</a><a href="#" style="text-decoration:none; color:grey;"></a></h4>
@@ -126,7 +132,7 @@
                     <div class="media">
                         <div class="pull-left">
                             <a href="#">
-                                <img class="media-object img-circle" src="~/Images/avatar.jpg" width="30" height="35" style="margin-left:3px; margin-right:-5px;">
+                                <img class="media-object img-circle img-responsive" src="/Home/profileimg/@currentUser.Id" width="30" height="35" style="margin-left:3px; margin-right:-5px;">
                             </a>
                         </div>
                         <div class="media-body">

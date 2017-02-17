@@ -54,6 +54,11 @@
         }
     });
 
+    $("#upload-button").click(function (event) {
+        $("#uploadphoto").show();
+        $("#uploadphotobtn").hide();
+    });
+
 });
 
 /*

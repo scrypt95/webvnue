@@ -31,8 +31,9 @@
                     {
                         <li><a href="/account/settings">Account</a></li>
                     }
-                    <li><a href="/help/contact">Contact Us</a></li>
+<!--                    <li><a href="/help/contact">Contact Us</a></li>
                     <li><a href="/help/faq">FAQ</a></li>
+    -->
                     @if (currentUser != null)
                     {
                         <li><a href="/account/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
@@ -51,9 +52,18 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Webvnue</p>
+            <p>
+                &copy; @DateTime.Now.Year - Webvnue |
+
+                <a class="bottomlinks" href="/help/contact">Contact Us </a>
+                |
+
+                <a class="bottomlinks" href="/help/FAQ">FAQ</a>
+
+            </p>
+
         </footer>
-    </div>
+    </div> 
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
