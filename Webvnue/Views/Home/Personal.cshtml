@@ -22,6 +22,7 @@
                         <div align="center">
                             @*<img class="thumbnail img-responsive" src="~/Images/avatar.jpg" width="300" height="300">*@
                             <img class="thumbnail img-responsive" src="/Home/profileimg/@currentUser.Id" width="300" height="300"/>
+                            <br />
                             <div id="uploadphotobtn">
                                 <button class="btn btn-success" id="upload-button">Upload Photo</button>
                             </div>
@@ -94,7 +95,7 @@
                             <img class="thumbnail img-circle img-responsive" src="/Home/profileimg/@currentUser.Id" width="50" height="60" style="margin-right:8px; margin-top:-5px;">
                         </a>
                     </div>
-                    <h4><a href="#" style="text-decoration:none;"><strong>@currentUser.FirstName @currentUser.LastName</strong>-</a><a href="#" style="text-decoration:none; color:grey;"></a></h4>
+                    <h4><a href="#" style="text-decoration:none;"><strong>@currentUser.FirstName @currentUser.LastName - </strong></a><a href="#" style="text-decoration:none; color:grey;"></a></h4>
                     <span>
                         <div class="navbar-right">
                             <div class="dropdown">
