@@ -68,6 +68,11 @@ namespace Webvnue.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }
 
+            if (uploadImage[0] == null)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
             if (db.UserProfileImages.Find(getCurrentUser().Id) != null){
                 var profile = db.UserProfileImages.Find(getCurrentUser().Id);
                 db.UserProfileImages.Remove(profile);
@@ -76,6 +81,7 @@ namespace Webvnue.Controllers
 
             foreach (var image in uploadImage)
             {
+
                 if (image.ContentLength > 0)
                 {
                     byte[] imageData = null;

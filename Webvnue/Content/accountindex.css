@@ -1,5 +1,5 @@
 ﻿body {
-  background: #F1F3FA;
+  background: white;
 }
 
 /* Profile container */
@@ -72,7 +72,7 @@ padding:0 0 0 15px;
 }
 
 .profile-usermenu ul li a:hover {
-  background-color: #fafcfd;
+  background-color: lightblue;
   color: #5b9bd1;
 }
 
@@ -82,7 +82,7 @@ padding:0 0 0 15px;
 
 .profile-usermenu ul li.active a {
   color: #5b9bd1;
-  background-color: #f6f9fb;
+  background-color: white;
   border-left: 2px solid #5b9bd1;
   margin-left: -2px;
 }
@@ -90,7 +90,7 @@ padding:0 0 0 15px;
 /* order Content */
 .order-content {
   padding: 20px;
-  background: #F6F9FB;
+  background: white;
   min-height: 460px;
 }
 .form_main {
