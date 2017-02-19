@@ -1,12 +1,10 @@
 ﻿
 @{
     var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
-    var reflist = (List<Webvnue.Models.MyIdentityUser>)ViewData["ReferralList"];
-
-
-        ViewBag.Title = "Personal";
+    //var reflist = (List<Webvnue.Models.MyIdentityUser>)ViewData["ReferralList"];
+    ViewBag.Title = "Personal";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    var user = (string)ViewData["User"];
+    var visitedUser = (Webvnue.Models.MyIdentityUser)ViewData["VisitedUser"];
 }
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -21,8 +19,8 @@
                     <div class="media">
                         <div align="center">
                             @*<img class="thumbnail img-responsive" src="~/Images/avatar.jpg" width="300" height="300">*@
-                           <div class="profilename"> @currentUser.FirstName @currentUser.LastName </div>
-                            <img class="thumbnail img-responsive" src="/Home/profileimg/@currentUser.Id" width="300" height="300" />
+                           <div class="profilename"> @visitedUser.FirstName @visitedUser.LastName </div>
+                            <img class="thumbnail img-responsive" src="/Home/profileimg/@visitedUser.Id" width="300" height="300" />
                             <br />
                             <div id="uploadphotobtn">
                                 <button class="btn btn-success" id="upload-button">Update Profile Photo</button>
@@ -52,7 +50,7 @@
                             <p>Male</p>
                             <hr>
                             <div class="bio-panel"><strong>Birthday</strong></div>
-                            <p>@currentUser.BirthDate.Month/@currentUser.BirthDate.Day/@currentUser.BirthDate.Year</p>
+                            <p>@visitedUser.BirthDate.Month/@visitedUser.BirthDate.Day/@visitedUser.BirthDate.Year</p>
                         </div>
                     </div>
                 </div>
@@ -78,7 +76,7 @@
                     <!--  </span> -->
                     <span class="pull-left">
                         <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Photos <span class="badge">1</span></a>
-                        <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Referrals <span class="badge">@reflist.Count</span></a>
+                        <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Referrals <span class="badge">0</span></a>
                     </span>
                     <span class="pull-right">
                         <a href="#" class="btn btn-primary" style="text-decoration:none; font-family:'oswald'"><span class="glyphicon glyphicon-envelope"></span> Message</a>
@@ -186,10 +184,10 @@
 
 
 
+        @*
 
 
-
-            <!-- Simple post content example.
+             Simple post content example.
             <div class="panel panel-default">
                 <div class="panel-body">
                     <div class="pull-left">
@@ -245,7 +243,7 @@
                 </div>
             </div>
             
-  -->
+  *@
 
          </div>
        </div>

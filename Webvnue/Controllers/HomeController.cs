@@ -42,14 +42,14 @@ namespace Webvnue.Controllers
             if (userLoggedIn != null)
             {
                 ViewData["CurrentUser"] = userLoggedIn;
-                ViewData["ReferralList"] = getReferralList(userLoggedIn);
+                //ViewData["ReferralList"] = getReferralList(userLoggedIn);
             }
 
             Models.MyIdentityUser requestedUserPage = findUser(user);
 
             if(requestedUserPage != null)
             {
-                ViewData["User"] = requestedUserPage.FirstName;
+                ViewData["VisitedUser"] = requestedUserPage;
                 return View();
             }
             else

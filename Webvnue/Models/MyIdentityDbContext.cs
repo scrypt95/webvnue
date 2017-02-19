@@ -13,7 +13,7 @@ namespace Webvnue.Models
         public DbSet<UserCreditCard> UserCCInfo { get; set; }
         public DbSet<UserProfileImage> UserProfileImages { get; set; }
 
-        public MyIdentityDbContext() : base("connectionstring")
+        public MyIdentityDbContext() : base("webvnue")
         {
             Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyIdentityDbContext>());
         }
