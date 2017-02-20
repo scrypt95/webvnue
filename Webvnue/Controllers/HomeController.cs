@@ -50,6 +50,8 @@ namespace Webvnue.Controllers
             if(requestedUserPage != null)
             {
                 ViewData["VisitedUser"] = requestedUserPage;
+                ViewData["VisitedUserImages"] = getUserImageIdList(requestedUserPage);
+
                 return View();
             }
             else
@@ -59,7 +61,7 @@ namespace Webvnue.Controllers
         }
 
         [HttpPost]
-        public ActionResult UploadImage(HttpPostedFileBase[] uploadImage)
+        public ActionResult UploadProfileImage(HttpPostedFileBase[] uploadImage)
         {
             var db = new Models.MyIdentityDbContext();
 
@@ -103,6 +105,51 @@ namespace Webvnue.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        [HttpPost]
+        public ActionResult UploadImage(HttpPostedFileBase[] uploadMainImage)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            if (uploadMainImage.Length == 0)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
+            if (uploadMainImage[0] == null)
+            {
+                return Redirect(Request.UrlReferrer.ToString());
+            }
+
+            foreach (var image in uploadMainImage)
+            {
+
+                if (image.ContentLength > 0)
+                {
+                    byte[] imageData = null;
+                    using (var binaryReader = new BinaryReader(image.InputStream))
+                    {
+                        imageData = binaryReader.ReadBytes(image.ContentLength);
+                    }
+                    var userImage = new Models.UserImage()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        UserId = getCurrentUser().Id,
+                        ImageData = imageData,
+                        FileName = image.FileName,
+                        Rating = 0,
+                        TimeStamp = DateTime.Now,
+                        Views = 0
+                        
+                    };
+
+                    db.UserImages.Add(userImage);
+                    db.SaveChanges();
+                }
+            }
+
+            return Redirect(Request.UrlReferrer.ToString());
+        }
+
         public ActionResult profileimg(string id)
         {
             var db = new Models.MyIdentityDbContext();
@@ -111,6 +158,49 @@ namespace Webvnue.Controllers
             byte[] buffer = item.ImageData;
 
             return File(buffer, "image/jpg", string.Format("{0}.jpg", id));
+        }
+
+        public ActionResult showImage(string id)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            var image = db.UserImages.Find(id);
+            byte[] buffer = image.ImageData;
+
+            return File(buffer, "image/jpg", string.Format("{0}.jpg", id));
+
+
+            /*
+            List<FileContentResult> imageList = new List<FileContentResult>();
+
+            foreach(var image in db.UserImages)
+            {
+                if(image.UserId == id)
+                {
+                    imageList.Add(new FileContentResult(image.ImageData, "image/jpg"));
+                }
+            }
+
+            return imageList;
+            */
+        }
+
+        private List<string> getUserImageIdList(Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            List<string> userImageIdList = new List<string>();
+
+            foreach(var obj in db.UserImages)
+            {
+                if (obj.UserId == user.Id)
+                {
+                    userImageIdList.Add(obj.Id);
+                }
+            }
+
+            return userImageIdList;
+
         }
 
         private Models.MyIdentityUser getCurrentUser()

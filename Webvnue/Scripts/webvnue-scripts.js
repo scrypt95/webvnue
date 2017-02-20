@@ -58,6 +58,10 @@
         $("#uploadphoto").show();
         $("#uploadphotobtn").hide();
     });
+    $("#upload-mainbtn").click(function (event) {
+        $("#uploadmainphoto").show();
+        $("#upload-mainbtn").hide();
+    });
 
 });
 

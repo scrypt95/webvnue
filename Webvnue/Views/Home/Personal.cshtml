@@ -5,6 +5,7 @@
     ViewBag.Title = "Personal";
     Layout = "~/Views/Shared/_Layout.cshtml";
     var visitedUser = (Webvnue.Models.MyIdentityUser)ViewData["VisitedUser"];
+    var visitedUserImages = (IEnumerable<string>)ViewData["VisitedUserImages"];
 }
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -22,21 +23,27 @@
                            <div class="profilename"> @visitedUser.FirstName @visitedUser.LastName </div>
                             <img class="thumbnail img-responsive" src="/Home/profileimg/@visitedUser.Id" width="300" height="300" />
                             <br />
-                            <div id="uploadphotobtn">
-                                <button class="btn btn-success" id="upload-button">Update Profile Photo</button>
-                            </div>
-                            <div id="uploadphoto" style="display:none;">
-
-                                @using (Html.BeginForm("UploadImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            @if (currentUser != null)
+                            {
+                                if (currentUser.Id == visitedUser.Id)
                                 {
-                                    <span class="span4">
-                                        <input type="file" name="uploadImage" multiple="multiple" class="btn btn-upload" />
-                                    </span>
-                                        <span class="span2">
-                                            <input type="submit" name="button" value="Upload" class="btn btn-success" />
+                                <div id="uploadphotobtn">
+                                    <button class="btn btn-success" id="upload-button">Update Profile Photo</button>
+                                </div>
+                                <div id="uploadphoto" style="display:none;">
+
+                                    @using (Html.BeginForm("UploadProfileImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                    {
+                                        <span class="span4">
+                                            <input type="file" name="uploadImage" multiple="multiple" class="btn btn-upload" />
                                         </span>
+                                            <span class="span2">
+                                                <input type="submit" name="button" value="Upload" class="btn btn-success" />
+                                            </span>
+                                    }
+                                </div>
                                 }
-                            </div>
+                            }
                         </div>
                         <div class="media-body">
                             <hr>
@@ -115,9 +122,27 @@
                             <img src="~/Images/avatar.jpg" class="img-responsive img-gallery" alt="Third image">
                         </a>
                     </div>  /.col -->
-            <div class="navbar-left">
-                <button class="btn btn-link" type="button"><span class="glyphicon glyphicon-camera"></span> Upload photos</button>
-                </div>
+            @if (currentUser != null)
+            {
+                if (currentUser.Id == visitedUser.Id)
+                {
+                    <div class="navbar-left">
+                        <button class="btn btn-link" type="button" id="upload-mainbtn"><span class="glyphicon glyphicon-camera"></span> Upload photos</button>
+                    </div>
+                    <div id="uploadmainphoto" style="display:none;">
+
+                        @using (Html.BeginForm("UploadImage", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                        {
+                            <span>
+                                <input type="file" name="uploadMainImage" multiple="multiple" class="btn btn-upload" />
+                            </span>
+                            <span>
+                                 <input type="submit" name="button" value="Upload" class="btn btn-success" />
+                            </span>
+                        }
+                    </div>
+                }
+            }
             <div class="navbar-right">
                 <div class="dropdown">
                     <button class="btn btn-default btn-md dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
@@ -134,37 +159,50 @@
            <br />
             <br />
 
-                <ul class="row">
+            <ul class="row">
+                @foreach (var imageid in visitedUserImages)
+                {
                     <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/avatar.jpg')"></div>
+                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Home/showImage/@imageid')"></div>
                     </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/djt.jpg')"></div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <a href="https://pornhub.com">
-                            <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/makeitrain.jpg')"></div>
-                        </a>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('https://static.pexels.com/photos/33045/lion-wild-africa-african.jpg')"></div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-                    </li>
-                    <li class="col-lg-4 col-md-4 col-sm-6">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-                    </li>
-                </ul>
+                }
+
+                @*
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/avatar.jpg')"></div>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/djt.jpg')"></div>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <a href="https://pornhub.com">
+                    <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/makeitrain.jpg')"></div>
+                </a>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('https://static.pexels.com/photos/33045/lion-wild-africa-african.jpg')"></div>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
+            </li>
+            <li class="col-lg-4 col-md-4 col-sm-6">
+                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
+            </li>
+                *@
+            </ul>
+
+
+
+
 
 
 

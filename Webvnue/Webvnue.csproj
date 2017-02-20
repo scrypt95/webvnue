@@ -203,6 +203,7 @@
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Models\UserCreditCard.cs" />
+    <Compile Include="Models\UserImage.cs" />
     <Compile Include="Models\UserProfileImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
