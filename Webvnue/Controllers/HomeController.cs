@@ -42,7 +42,6 @@ namespace Webvnue.Controllers
             if (userLoggedIn != null)
             {
                 ViewData["CurrentUser"] = userLoggedIn;
-                //ViewData["ReferralList"] = getReferralList(userLoggedIn);
             }
 
             Models.MyIdentityUser requestedUserPage = findUser(user);
@@ -51,6 +50,8 @@ namespace Webvnue.Controllers
             {
                 ViewData["VisitedUser"] = requestedUserPage;
                 ViewData["VisitedUserImages"] = getUserImageIdList(requestedUserPage);
+                ViewData["VisitedUserImagesCount"] = getUserImageIdList(requestedUserPage).Count;
+                ViewData["VisitedUserReferralListCount"] = getReferralList(requestedUserPage).Count;
 
                 return View();
             }
