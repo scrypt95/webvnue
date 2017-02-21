@@ -13,7 +13,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+/*    max-width: 280px; */
 }
 
 h1{
@@ -22,13 +22,14 @@ h1{
     margin: 0;
     position: relative;
     text-align: center;
-    top: 20%;
+    top: 100px;
+
 }
 .mainpic{ 
   text-align: center;
-  background: url("/Images/Cityscape.jpeg") no-repeat center center;
+ /* background: url("/Images/Cityscape.jpeg") no-repeat center center;*/
   background-size: cover;
-  height: 600px;
+  height: 700px;
 
 }
 footer{
@@ -37,11 +38,9 @@ footer{
 }
 .mainpic .container {
     position: relative;
-    top: 100px;
+    top: 0px;
 }
 .mainpic .btn {
-    background-color: #1c1c1c;
-    color: #fff;
     font-size: 18px;
     padding: 8px 30px;
     text-decoration: none;
@@ -193,4 +192,25 @@ ul{
 .modal-backdrop {
   z-index: -1;
 }
+.tnc{
+    color:black;
+    background-color: white;
+}
+.oswald{
+    margin-top: 50px;
+    font-family: 'oswald';
+    font-size: 30px;
+    color: darkgrey;
+    font-weight: bold;
+}
+.mainpic .container .form-group{
+    width: 180px;
 
+}
+.mainpic .container .form-group2{
+    width: 365px;
+
+}
+.mainpic .container .tnc{
+    width: 365px;
+}
