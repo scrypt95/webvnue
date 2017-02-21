@@ -141,8 +141,7 @@ namespace Webvnue.Controllers
             {
                 ViewData["Token"] = "";
             }
-            return RedirectToAction("Index", "Home");
-//           return View(registerModel);
+           return View(registerModel);
         }
 
         private bool validateToken(string Token)

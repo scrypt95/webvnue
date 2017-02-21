@@ -34,6 +34,50 @@ namespace Webvnue.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult Index(Models.Register registerModel, string Token)
+        {
+            if (ModelState.IsValid)
+            {
+                Models.MyIdentityUser user = new Models.MyIdentityUser();
+
+                user.UserName = registerModel.UserName;
+                user.Email = registerModel.Email;
+                user.FirstName = registerModel.FirstName;
+                user.LastName = registerModel.LastName;
+                user.BirthDate = registerModel.BirthDate;
+
+                IdentityResult result = userManager.Create(user, registerModel.Password);
+
+                if (result.Succeeded)
+                {
+                    userManager.AddToRole(user.Id, "User");
+
+                    if (Token != null && validateToken(Token))
+                    {
+                        addNewReferral(user, Token);
+                        sendEmail(userManager.FindById(Token), "Webvnue Referral Notification", string.Format("Dear {0}, <br/><br/> {1} has signed up under your referral! <br/><br/> Your monthly income has increased by $4.50. <br/><br/> Best Regards, <br/>Team Webvnue", userManager.FindById(Token).FirstName, user.FirstName));
+                    }
+
+                    sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
+                    return RedirectToAction("Login", "Account");
+                }
+                else
+                {
+                    ModelState.AddModelError("UserName", "Username already exists");
+                }
+            }
+            if (Token != null && validateToken(Token))
+            {
+                ViewData["Token"] = Token;
+            }
+            else
+            {
+                ViewData["Token"] = "";
+            }
+            return View(registerModel);
+        }
+
         [Route("{user}")]
         public ActionResult Personal(string user)
         {
@@ -241,6 +285,46 @@ namespace Webvnue.Controllers
             }
 
             return referralList;
+        }
+
+        private bool validateToken(string Token)
+        {
+            Models.MyIdentityUser user = userManager.FindById(Token);
+
+            if (user != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        private void addNewReferral(Models.MyIdentityUser user, string Token)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            Models.Referral newReferral = new Models.Referral();
+            newReferral.Id = Guid.NewGuid().ToString();
+            newReferral.ReferrerId = userManager.FindById(Token).Id;
+            newReferral.RefereeId = user.Id;
+
+            db.Referrals.Add(newReferral);
+            db.SaveChanges();
+        }
+
+        private void sendEmail(Models.MyIdentityUser user, string subject, string body)
+        {
+            System.Net.Mail.MailMessage m = new System.Net.Mail.MailMessage(new System.Net.Mail.MailAddress("webvnue@gmail.com", "Webvnue"), new System.Net.Mail.MailAddress(user.Email));
+            m.Subject = subject;
+            m.Body = body;
+            m.IsBodyHtml = true;
+            System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
+            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");
+            smtp.EnableSsl = true;
+            smtp.Send(m);
         }
     }
 }
