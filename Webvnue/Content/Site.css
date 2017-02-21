@@ -220,3 +220,8 @@ ul{
 .mainpic .container .btn{
     width: 365px;
 }
+
+.input-validation-error {
+    border: 1px solid #ff0000 !important;
+    /*background-color: #FF0000;*/
+}

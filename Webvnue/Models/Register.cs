@@ -8,21 +8,21 @@ namespace Webvnue.Models
 {
     public class Register
     {
-        [Required(ErrorMessage = "Please enter a first name.")]
+        [Required]
         public string FirstName { get; set; }
-        [Required(ErrorMessage = "Please enter a last name.")]
+        [Required]
         public string LastName { get; set; }
-        [Required(ErrorMessage = "Please enter a username.")]
+        [Required]
         public string UserName { get; set; }
-        [Required(ErrorMessage = "Please enter a email address.")]
+        [Required]
         [EmailAddress]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Please enter a valid date of birth (Ex: 1/1/2000).")]
+        [Required]
         public DateTime BirthDate { get; set; }
-        [Required(ErrorMessage = "Please enter a password.")]
+        [Required]
         public string Password { get; set; }
-        [Required(ErrorMessage ="Please confirm your password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Required]
+        [Compare("Password")]
         public string ConfirmPassword { get; set; }
     }
 }
