@@ -1,9 +1,11 @@
 ﻿using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
 
@@ -60,7 +62,18 @@ namespace Webvnue.Controllers
                     }
 
                     sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
-                    return RedirectToAction("Login", "Account");
+
+                    IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
+                    authenticationManager.SignOut(DefaultAuthenticationTypes.ExternalCookie);
+
+                    ClaimsIdentity identity = userManager.CreateIdentity(user, DefaultAuthenticationTypes.ApplicationCookie);
+
+                    AuthenticationProperties props = new AuthenticationProperties();
+
+                    authenticationManager.SignIn(props, identity);
+
+                    return Redirect(Url.Content(string.Format("~/{0}", user.UserName)));
+
                 }
                 else
                 {
