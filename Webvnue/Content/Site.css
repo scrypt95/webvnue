@@ -16,6 +16,7 @@ textarea {
 /*    max-width: 280px; */
 }
 
+
 h1{
     font-family: 'Oswald', 'Times New Roman', Times, serif;
     font-size: 150px;
@@ -38,6 +39,7 @@ footer{
 }
 .mainpic .container {
     position: relative;
+    background-color: #ededed;
     top: 0px;
 }
 .mainpic .btn {
@@ -192,11 +194,8 @@ ul{
 .modal-backdrop {
   z-index: -1;
 }
-.tnc{
-    color:black;
-    background-color: white;
-}
 .oswald{
+    padding-left:30px;
     margin-top: 50px;
     font-family: 'oswald';
     font-size: 30px;
