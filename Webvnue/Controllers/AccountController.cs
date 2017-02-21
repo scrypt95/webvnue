@@ -178,6 +178,12 @@ namespace Webvnue.Controllers
             return View();
         }
 
+        public ActionResult logon(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult login(Models.Login loginModel, string returnUrl)

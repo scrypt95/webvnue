@@ -188,6 +188,9 @@ ul{
     font-weight: bold;
     padding-bottom: 10px;
 }
-.navbar-right .btn{
-
+.navbar-right .btn {
 }
+.modal-backdrop {
+  z-index: -1;
+}
+

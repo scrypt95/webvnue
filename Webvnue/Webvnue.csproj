@@ -232,6 +232,7 @@
     <Content Include="Views\services\success.cshtml" />
     <Content Include="Views\services\failed.cshtml" />
     <Content Include="Views\pictures\src.cshtml" />
+    <Content Include="Views\Account\logon.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
