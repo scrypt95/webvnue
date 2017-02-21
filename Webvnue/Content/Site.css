@@ -27,7 +27,7 @@ h1{
 }
 .mainpic{ 
   text-align: center;
- /* background: url("/Images/Cityscape.jpeg") no-repeat center center;*/
+/* background: url("https://www.youtube.com/embed/Ds1lcT2Wn3E") no-repeat center center;*/
   background-size: cover;
   height: 700px;
 
@@ -209,8 +209,15 @@ ul{
 }
 .mainpic .container .form-group2{
     width: 365px;
+    padding-bottom: 15px;
 
 }
 .mainpic .container .tnc{
+    padding-bottom: 15px;
+    width: 365px;
+}
+.mainpic .container .sexy-video{
+}
+.mainpic .container .btn{
     width: 365px;
 }

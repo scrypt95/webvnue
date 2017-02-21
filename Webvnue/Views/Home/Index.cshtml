@@ -1,13 +1,13 @@
 ﻿@{
     ViewBag.Title = "Home Page";
-    
-   
-        var referrer = (Webvnue.Models.MyIdentityUser)ViewData["Referrer"];
-        var Token = (string)ViewData["Token"];
-  
 
 
-        var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
+    var referrer = (Webvnue.Models.MyIdentityUser)ViewData["Referrer"];
+    var Token = (string)ViewData["Token"];
+
+
+
+    var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
 }
 @model Webvnue.Models.Register
 
@@ -23,7 +23,8 @@
     @Html.AntiForgeryToken();
 
 
-<div class="mainpic">
+    <div class="mainpic">
+
         <div class="container">
             <div class="col-md-12">
                 <div class="row">
@@ -53,112 +54,107 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-8">
+                    <div class="col-md-6 col-md-offset-1">
+                        <div class="form-group2">
+                            <iframe width="560" height="315" src="https://www.youtube.com/embed/Ds1lcT2Wn3E" frameborder="0" allowfullscreen></iframe>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-md-offset-1">
                         <div class="form-group2">
                             @*<input type="text" name="UserName" id="display_name" class="form-control input-lg" placeholder="Username" tabindex="3">*@
                             @Html.TextBoxFor(m => m.UserName, new { @class = "form-control input-lg", @placeholder = "Username" })
                             @Html.ValidationMessage("UserName", "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <br />
-
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-8">
+                    <div class="col-md-4 col-md-offset-1">
                         <div class="form-group2">
                             @*<input type="email" name="Email" id="email" class="form-control input-lg" placeholder="Email Address" tabindex="4">*@
                             @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-lg", @placeholder = "Email Address" })
                             @Html.ValidationMessage("Email", "", new { @class = "text-danger" })
                         </div>
                     </div>
-                </div>
-                <br />
 
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-8">
+                    <div class="col-md-4 col-md-offset-1">
                         <div class="form-group2">
                             @*<input type="text" name="BirthDate" id="email" class="form-control input-lg" placeholder="Date of Birth" tabindex="4">*@
                             @Html.TextBoxFor(m => m.BirthDate, new { @class = "form-control input-lg", @placeholder = "Date of Birth" })
                             @Html.ValidationMessage("BirthDate", "", new { @class = "text-danger" })
                         </div>
+                    </div>
+
+
+
+
+                    <div class="col-md-2 col-md-offset-1">
+                        <div class="form-group">
+                            @*<input type="password" name="Password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">*@
+                            @Html.TextBoxFor(m => m.Password, new { @class = "form-control input-lg", @placeholder = "Password", @type = "password" })
+                            @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
                         </div>
                     </div>
-                    <br />
-
-                        <div class="row">
-                            <div class="col-md-2 col-md-offset-8">
-                                <div class="form-group">
-                                    @*<input type="password" name="Password" id="password" class="form-control input-lg" placeholder="Password" tabindex="5">*@
-                                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control input-lg", @placeholder = "Password", @type = "password" })
-                                    @Html.ValidationMessage("Password", "", new { @class = "text-danger" })
-                                </div>
-                            </div>
-                            <div class="col-md-2">
-                                <div class="form-group">
-                                    @*<input type="password" name="ConfirmPassword" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">*@
-                                    @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control input-lg", @placeholder = "Confirm Password", @type = "password" })
-                                    @Html.ValidationMessage("ConfirmPassword", "", new { @class = "text-danger" })
-                                </div>
-                            </div>
+                    <div class="col-md-2">
+                        <div class="form-group">
+                            @*<input type="password" name="ConfirmPassword" id="password_confirmation" class="form-control input-lg" placeholder="Confirm Password" tabindex="6">*@
+                            @Html.TextBoxFor(m => m.ConfirmPassword, new { @class = "form-control input-lg", @placeholder = "Confirm Password", @type = "password" })
+                            @Html.ValidationMessage("ConfirmPassword", "", new { @class = "text-danger" })
                         </div>
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-8">
-                                <div class="tnc">
-                                    By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a>.
-                                </div>
-                            </div>
-                        </div>
-                    <br />
-                        <div class="row">
-                            <div class="col-md-4 col-md-offset-8"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
-                        </div>
-
-                        @if (referrer != null)
-                        {
-                            <input type="hidden" value="@referrer.Id" name="Token" />
-                        }
-                        else if (Token != null)
-                        {
-                            <input type="hidden" value="@Token" name="Token" />
-                        }
-
-                        <!-- Modal -->
-                        <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-                                        <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
-                                    </div>
-                                    <div class="modal-body">
-                                        <p>STEAL MY SHIT AND YOU DIE MOTHER FUCKER.</p>
-                                    </div>
-                                </div><!-- /.modal-content -->
-                            </div><!-- /.modal-dialog -->
-                        </div><!-- /.modal -->
-
-
-
-
                     </div>
+
+
+                    <div class="col-md-4 col-md-offset-1">
+                        <div class="tnc">
+                            By clicking <strong class="label label-primary">Register</strong>, you agree to the <a href="#" data-toggle="modal" data-target="#t_and_c_m">Terms and Conditions</a>.
+                        </div>
+                    </div>
+
+
+                    <div class="col-md-4 col-md-offset-1"><input type="submit" value="Register" class="btn btn-primary btn-block btn-lg" tabindex="7"></div>
                 </div>
+
+                @if (referrer != null)
+                {
+                    <input type="hidden" value="@referrer.Id" name="Token" />
+                }
+                else if (Token != null)
+                {
+                    <input type="hidden" value="@Token" name="Token" />
+                }
+
+                <!-- Modal -->
+                <div class="modal fade" id="t_and_c_m" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                <h4 class="modal-title" id="myModalLabel">Terms & Conditions</h4>
+                            </div>
+                            <div class="modal-body">
+                                <p>STEAL MY SHIT AND YOU DIE MOTHER FUCKER.</p>
+                            </div>
+                        </div><!-- /.modal-content -->
+                    </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
+
+
             </div>
+        </div>
+    </div>
 
 }
 
-        @*
-            <div class="sharpangle">
-                <div class="container">
-                <h2>How it works...</h2>
-                <p>
-                    Welcome to Webvnue, I want to keep this short and sweet so i dont lose what little
-                    fucking retarded attention span you have. If you wanna make money,
-                    click sign up and register for this website. Then have your friends sign up aswell. Boom you made a million dollars. GG EZ faggot
-                </p>
-                </div>
-            </div>
-            <div class="video-sexy">
+@*
+    <div class="sharpangle">
+        <div class="container">
+        <h2>How it works...</h2>
+        <p>
+            Welcome to Webvnue, I want to keep this short and sweet so i dont lose what little
+            fucking retarded attention span you have. If you wanna make money,
+            click sign up and register for this website. Then have your friends sign up aswell. Boom you made a million dollars. GG EZ faggot
+        </p>
+        </div>
+    </div>
+    <div class="video-sexy">
 
-                <iframe width="900" height="450" src="https://www.youtube.com/embed/n8bCcSi2V4g?autoplay=0" frameborder="0" allowfullscreen></iframe>
-            </div>
-        *@
+        <iframe width="900" height="450" src="https://www.youtube.com/embed/n8bCcSi2V4g?autoplay=0" frameborder="0" allowfullscreen></iframe>
+    </div>
+*@
