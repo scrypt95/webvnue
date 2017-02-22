@@ -341,7 +341,7 @@ namespace Webvnue.Controllers
             m.Body = body;
             m.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");
+            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "Password999");
             smtp.EnableSsl = true;
             smtp.Send(m);
         }
