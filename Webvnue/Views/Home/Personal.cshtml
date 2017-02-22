@@ -179,17 +179,21 @@
                             
 
                   </div>
-                     <div class="navbar-right" style="position:absolute;top:5px;right:20px">
-                         <div class="dropdown">
-                             <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dd2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                 <span class="caret"></span>
-                             </button>
-                             <ul class="dropdown-menu" aria-labelledby="dd2" style="float: right;">
-                                 <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit Photo</a></li>
-                                 <li><a href="/Home/deletephoto/@imageid"><span class="glyphicon glyphicon-trash"></span> Delete Photo</a></li>
-                             </ul>
+
+                     @if (currentUser.Id == visitedUser.Id)
+                     {
+                         <div class="navbar-right" style="position:absolute;top:5px;right:20px">
+                             <div class="dropdown">
+                                 <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dd2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                     <span class="caret"></span>
+                                 </button>
+                                 <ul class="dropdown-menu" aria-labelledby="dd2" style="float: right;">
+                                     <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit Photo</a></li>
+                                     <li><a href="/Home/deletephoto/@imageid"><span class="glyphicon glyphicon-trash"></span> Delete Photo</a></li>
+                                 </ul>
+                             </div>
                          </div>
-                     </div>
+                     }
 
 
 
