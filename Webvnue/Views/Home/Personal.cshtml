@@ -160,6 +160,7 @@
               </div>
            <br />
             <br />
+            <hr />
 
             <ul class="row">
                                
@@ -169,14 +170,47 @@
                                 {
 
                  <li class="col-lg-4 col-md-4 col-sm-6">
-                        <a href="/Home/photo/@imageid" data-toggle="modal" data-target="#@imageid">
-                        <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Home/showImage/@imageid')"></div>
-                        </a>
+
+
+                     
+
+                      <!--  <a href="/Home/photo/@imageid" data-toggle="modal" data-target="#@imageid"> -->
+                        <div class="img-responsive img-thumbnail ratio-4-3" data-toggle="modal" data-target="#@imageid" style="background-image:url('/Home/showImage/@imageid')">  
+                            
+
+                  </div>
+                     <div class="navbar-right" style="position:absolute;top:5px;right:20px">
+                         <div class="dropdown">
+                             <button class="btn btn-default btn-sm dropdown-toggle" type="button" id="dd2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                 <span class="caret"></span>
+                             </button>
+                             <ul class="dropdown-menu" aria-labelledby="dd2" style="float: right;">
+                                 <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit Photo</a></li>
+                                 <li><a href="#"><span class="glyphicon glyphicon-trash"></span> Delete Photo</a></li>
+                             </ul>
+                         </div>
+                     </div>
 
 
 
                      <div class="modal fade" id="@imageid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                         <div class="modal-dialog modal-Md">
+
+                             <div class="container">
+                                 <div class="row">
+                                     <div class="col-md-10 col-md-offset-1">
+                                                 <div class="userphoto">
+                                                     <div class="img-responsive img-thumbnail">
+                                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                                                         <img src="/Home/showImage/@imageid" width="900">
+                                                     </div>
+                                                 </div>
+
+
+
+
+                                                 <!--          <img src="/Home/showImage/@imageid" style="width:500px;height:400px;">  -->
+                                             </div>
+                                     </div>
                              </div><!-- /.modal-content -->
                          </div><!-- /.modal-dialog -->
                     </li>
