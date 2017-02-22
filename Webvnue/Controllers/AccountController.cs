@@ -392,7 +392,7 @@ namespace Webvnue.Controllers
             m.Body = string.Format("Dear {0}, <br/><br/> Thank you for joining Webvnue. <br/><br/> Click on the below link to confirm your email: <br/><br/> <a href =\"{1}\" title =\"User Email Confirm\">{1}</a>", user.FirstName, Url.Action("ConfirmEmail", "account", new { Token = user.Id, Email = user.Email }, Request.Url.Scheme)) ;
             m.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");
+            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "Password999");
             smtp.EnableSsl = true;
             smtp.Send(m);
 
@@ -406,7 +406,7 @@ namespace Webvnue.Controllers
             m.Body = body;
             m.IsBodyHtml = true;
             System.Net.Mail.SmtpClient smtp = new System.Net.Mail.SmtpClient("smtp.gmail.com", 587);
-            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "#Iloveandy951");
+            smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "Password999");
             smtp.EnableSsl = true;
             smtp.Send(m);
         }
