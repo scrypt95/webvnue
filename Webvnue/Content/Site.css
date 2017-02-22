@@ -225,9 +225,32 @@ ul{
     border: 1px solid #ff0000 !important;
     /*background-color: #FF0000;*/
 }
-.container .userphoto img{
-       position:center;
-        width: 900px;
-        height: auto;
-        
+.container .userphoto img {
+    position: center;
+    width: 900px;
+    height: auto;
+}
+.panel-info{
+    border-color:black;
+    background-color:white;
+}
+.panel .panel-heading{
+background: rgba(0,0,0,1);
+background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 23%, rgba(246,246,246,1) 80%, rgba(255,255,255,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,1)), color-stop(23%, rgba(0,0,0,1)), color-stop(80%, rgba(246,246,246,1)), color-stop(100%, rgba(255,255,255,1)));
+background: -webkit-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 23%, rgba(246,246,246,1) 80%, rgba(255,255,255,1) 100%);
+background: -o-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 23%, rgba(246,246,246,1) 80%, rgba(255,255,255,1) 100%);
+background: linear-gradient(to right, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 23%, rgba(246,246,246,1) 80%, rgba(255,255,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#ffffff', GradientType=1 );
+color:white;
+border-color:black;
+}
+.panel-info .btn{
+    background-color:#2a2a2b;
+    border-color:black;
+
+}
+.loginheader{
+    font-family:'oswald';
+    font-size: 35px;
 }

@@ -210,7 +210,7 @@ namespace Webvnue.Controllers
                     }
                     else
                     {
-                        return RedirectToAction("Index", "Home");
+                        return Redirect(Url.Content(string.Format("~/{0}", user.UserName)));
                     }
                 }
                 else
