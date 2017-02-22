@@ -243,6 +243,12 @@ namespace Webvnue.Controllers
             */
         }
 
+        public ActionResult photo(string id)
+        {
+            ViewData["ImageId"] = id;
+            return View();
+        }
+
         private List<string> getUserImageIdList(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();

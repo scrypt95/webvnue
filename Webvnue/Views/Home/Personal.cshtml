@@ -162,10 +162,23 @@
             <br />
 
             <ul class="row">
-                @foreach (var imageid in visitedUserImages)
-                {
-                    <li class="col-lg-4 col-md-4 col-sm-6">
+                               
+                
+                
+                 @foreach (var imageid in visitedUserImages)
+                                {
+
+                 <li class="col-lg-4 col-md-4 col-sm-6">
+                        <a href="/Home/photo/@imageid" data-toggle="modal" data-target="#PicModal">
                         <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Home/showImage/@imageid')"></div>
+                        </a>
+
+
+
+                     <div class="modal fade" id="PicModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                         <div class="modal-dialog modal-Md">
+                             </div><!-- /.modal-content -->
+                         </div><!-- /.modal-dialog -->
                     </li>
                 }
 

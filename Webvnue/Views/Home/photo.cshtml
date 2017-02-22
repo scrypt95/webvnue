@@ -1,0 +1,38 @@
+﻿
+@{
+    Layout = null;
+    ViewBag.Title = "photo";
+    var imageid = (string)ViewData["ImageId"];
+}
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+</head>
+<body>
+    <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <div class="userphoto">
+                        <div class="img-responsive img-thumbnail">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span></button>
+                            <img src="/Home/showImage/@imageid">
+                        </div>
+                        </div>
+
+
+
+
+                        <!--          <img src="/Home/showImage/@imageid" style="width:500px;height:400px;">  -->
+                    </div>
+                </div>
+            </div>
+
+
+</body>
+</html>
