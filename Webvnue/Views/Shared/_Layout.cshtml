@@ -48,15 +48,6 @@
                         else
                         {
                             <li><a href="/account/logon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-
-                            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                <div class="modal-dialog">
-                                    <div class="modal-content">
-                                    </div>
-                                </div>
-                            </div>
-
-
                         }
                     </ul>
                 </div>
@@ -68,6 +59,13 @@
     </nav>
     <div class="container body-content">
         @RenderBody()
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
         
         <hr />
         <footer>

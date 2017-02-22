@@ -192,7 +192,7 @@ ul{
 .navbar-right .btn {
 }
 .modal-backdrop {
-  z-index: -1;
+  /*z-index: -1;*/
 }
 .oswald{
     padding-left:30px;
