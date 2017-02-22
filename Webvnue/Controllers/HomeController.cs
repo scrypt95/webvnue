@@ -226,27 +226,29 @@ namespace Webvnue.Controllers
             byte[] buffer = image.ImageData;
 
             return File(buffer, "image/jpg", string.Format("{0}.jpg", id));
-
-
-            /*
-            List<FileContentResult> imageList = new List<FileContentResult>();
-
-            foreach(var image in db.UserImages)
-            {
-                if(image.UserId == id)
-                {
-                    imageList.Add(new FileContentResult(image.ImageData, "image/jpg"));
-                }
-            }
-
-            return imageList;
-            */
         }
 
         public ActionResult photo(string id)
         {
             ViewData["ImageId"] = id;
             return View();
+        }
+
+        public ActionResult deletephoto(string id)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            foreach(var obj in db.UserImages)
+            {
+                if(obj.Id == id)
+                {
+                    db.UserImages.Remove(obj);
+                }
+            }
+
+            db.SaveChanges();
+
+            return Redirect(Request.UrlReferrer.ToString());
         }
 
         private List<string> getUserImageIdList(Models.MyIdentityUser user)
