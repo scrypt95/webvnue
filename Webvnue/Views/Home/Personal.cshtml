@@ -68,21 +68,7 @@
         <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <!--         <span>  -->
-                    <!--              <div class="dropdown pull-right">
-                                       <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                           Friends
-                                           <span class="caret"></span>
-                                       </button>
-                                       <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-                                           <li><a href="#">Familly</a></li>
-                                           <li><a href="#"><i class="fa fa-fw fa-check" aria-hidden="true"></i> Friends</a></li>
-                                           <li><a href="#">Work</a></li>
-                                           <li role="separator" class="divider"></li>
-                                           <li><a href="#"><i class="fa fa-fw fa-plus" aria-hidden="true"></i> Add a new aspect</a></li>
-                                       </ul>
-                                   </div>-->
-                    <!--  </span> -->
+
                     <span class="pull-left">
                         <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-picture-o" aria-hidden="true"></i> Photos <span class="badge">@visitedUserImageCount</span></a>
                         <a href="#" class="btn btn-link" style="text-decoration:none;"><i class="fa fa-fw fa-users" aria-hidden="true"></i> Referrals <span class="badge">@visitedUserReferralCount</span></a>
@@ -93,37 +79,8 @@
                     </span>
                 </div>
             </div>
-            <hr>
 
-                <!--          <img src="~/Images/djt.jpg" style="float: right; width: 30%; height: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <img src="~/Images/avatar.jpg" style="float: inherit; width: 30%; height: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <img src="~/Images/makeitrain.jpg" style="float: left; width: 30%; height: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <br />
-                          <img src="~/Images/a2.jpg" style="float: right; width: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <img src="~/Images/a1.jpg" style="float: inherit; width: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <img src="~/Images/faq3.jpg" style="float: left; width: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <br />
-                          <img src="~/Images/avatar.jpg" style="float: right; width: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <img src="~/Images/avatar.jpg" style="float: inherit; width: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                          <img src="~/Images/avatar.jpg" style="float: left; width: 30%; margin-right: 3%; margin-bottom: 0.5em;">
-                    
-                    <div class="col-xs-3 gallery-item">
-                        <a href="#galleryImg1" class="link-gallery" data-toggle="modal" data-target="#modalGallery">
-                            <img src="~/Images/subscribe.jpeg" class="img-responsive img-gallery" alt="First image">
-                        </a>
-                    </div> 
 
-                    <div class="col-xs-3 gallery-item">
-                        <a href="#galleryImg1" class="link-gallery" data-toggle="modal" data-target="#modalGallery">
-                            <img src="~/Images/djt.jpg" class="img-responsive img-gallery" alt="Second image">
-                        </a>
-                    </div> 
-
-                    <div class="col-xs-3 gallery-item">
-                        <a href="#galleryImg1" class="link-gallery" data-toggle="modal" data-target="#modalGallery">
-                            <img src="~/Images/avatar.jpg" class="img-responsive img-gallery" alt="Third image">
-                        </a>
-                    </div>  /.col -->
             @if (currentUser != null)
             {
                 if (currentUser.Id == visitedUser.Id)
@@ -159,7 +116,6 @@
                 </div>
               </div>
            <br />
-            <br />
             <hr />
 
             <ul class="row">
@@ -220,121 +176,12 @@
                     </li>
                 }
 
-                @*
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/avatar.jpg')"></div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/djt.jpg')"></div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <a href="https://pornhub.com">
-                    <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('/Images/makeitrain.jpg')"></div>
-                </a>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('https://static.pexels.com/photos/33045/lion-wild-africa-african.jpg')"></div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-            </li>
-            <li class="col-lg-4 col-md-4 col-sm-6">
-                <div class="img-responsive img-thumbnail ratio-4-3" style="background-image:url('http://placehold.it/800x600')"></div>
-            </li>
-                *@
+
             </ul>
 
 
 
-
-
-
-
-
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        @*
-
-
-             Simple post content example.
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="pull-left">
-                        <a href="#">
-                            <img class="thumbnail img-circle img-responsive" src="/Home/profileimg/@currentUser.Id" width="50" height="60" style="margin-right:8px; margin-top:-5px;">
-                        </a>
-                    </div>
-                    <h4><a href="#" style="text-decoration:none;"><strong>@currentUser.FirstName @currentUser.LastName - </strong></a><a href="#" style="text-decoration:none; color:grey;"></a></h4>
-                    <span>
-                        <div class="navbar-right">
-                            <div class="dropdown">
-                                <button class="btn btn-link btn-xs dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                                    <i class="fa fa-cog" aria-hidden="true"></i>
-                                    <span class="caret"></span>
-                                </button>
-                                <ul class="dropdown-menu" aria-labelledby="dd1" style="float: right;">                 
-                                    <li><a href="#"><span class="glyphicon glyphicon-pencil"></span> Edit Post</a></li>
-                                    <li><a href="#"><i class="fa fa-fw fa-eye-slash" aria-hidden="true"></i> Hide</a></li>
-                                    <li role="separator" class="divider"></li>
-                                    <li><a href="#"><i class="fa fa-fw fa-trash" aria-hidden="true"></i> Delete</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </span>
-                    <hr>
-                    <div class="post-content">
-                        <img class="img-responsive" src="https://media.giphy.com/media/j1QQj6To9Pbxu/giphy.gif">
-                        <p>I EAT PUSSY</p>
-                    </div>
-                    <hr>
-                    <div>
-                        <div class="pull-right btn-group-xs">
-                            <a class="btn btn-default btn-xs"><i class="fa fa-heart" aria-hidden="true"></i> Like</a>
-                            <a class="btn btn-default btn-xs"><i class="fa fa-retweet" aria-hidden="true"></i> Reshare</a>
-                            <a class="btn btn-default btn-xs"><i class="fa fa-comment" aria-hidden="true"></i> Comment</a>
-                        </div>
-                        <div class="pull-left">
-                            <p class="text-muted" style="margin-left:5px;"><i class="fa fa-globe" aria-hidden="true"></i> Public</p>
-                        </div>
-                        <br>
-                    </div>
-                    <hr>
-                    <div class="media">
-                        <div class="pull-left">
-                            <a href="#">
-                                <img class="thumbnail img-circle img-responsive" src="/Home/profileimg/@currentUser.Id" width="50" height="60" style="margin-left:3px; margin-right:-5px;">
-                            </a>
-                        </div>
-                        <div class="media-body">
-                            <textarea class="form-control" rows="1" placeholder="Comment"></textarea>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-  *@
+           </div>
 
          </div>
        </div>
