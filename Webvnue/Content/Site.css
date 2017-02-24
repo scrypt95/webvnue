@@ -257,3 +257,9 @@ border-color:black;
     font-family:'oswald';
     font-size: 35px;
 }
+#editbio{
+    position: absolute;
+    right: 20px;
+    top: 445px;
+    opacity: 1;    
+}
