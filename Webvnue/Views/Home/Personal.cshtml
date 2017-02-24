@@ -8,6 +8,7 @@
     var visitedUserImages = (IEnumerable<string>)ViewData["VisitedUserImages"];
     var visitedUserImageCount = (int)ViewData["VisitedUserImagesCount"];
     var visitedUserReferralCount = (int)ViewData["VisitedUserReferralListCount"];
+    var visitedUserProfileBio = (Webvnue.Models.UserProfileBio)ViewData["VisitedUserProfileBio"];
 } 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -52,21 +53,30 @@
 
                                 <div class="bio-panel">
                                     <strong>About me</strong>
-                                        <button class="btn btn-default btn-xs" type="button" id="editbio" title="Edit Info">
-                                            <span class="glyphicon glyphicon-pencil"></span>
-                                        </button>
+
+                                    @if (currentUser != null)
+                                    {
+                                        if (currentUser.Id == visitedUser.Id)
+                                        {
+                                            <button class="btn btn-default btn-xs" type="button" id="editbio" title="Edit Info" user-id="@visitedUser.Id">
+                                                <span class="glyphicon glyphicon-pencil"></span>
+                                            </button>
+                                        }
+                                    }
+
+
                                    </div>
 
-                            <p>My name is Josh, Lets make some money!</p>
+                            <p id="bio-aboutme">@visitedUserProfileBio.AboutMe</p>
                             <hr>
                             <div class="bio-panel"><strong>Location</strong></div>
-                            <p>Virginia Beach, VA</p>
+                            <p id="bio-location">@visitedUserProfileBio.Location</p>
                             <hr>
                             <div class="bio-panel"><strong>Gender</strong></div>
-                            <p>Male</p>
+                            <p id="bio-gender">@visitedUserProfileBio.Gender</p>
                             <hr>
                             <div class="bio-panel"><strong>Quote</strong></div>
-                            <p>@visitedUser.BirthDate.Month/@visitedUser.BirthDate.Day/@visitedUser.BirthDate.Year</p>
+                            <p id="bio-quote">@visitedUserProfileBio.Quote</p>
                         </div>
                     </div>
                 </div>

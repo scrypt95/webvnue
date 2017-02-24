@@ -103,12 +103,13 @@ namespace Webvnue.Controllers
 
             Models.MyIdentityUser requestedUserPage = findUser(user);
 
-            if(requestedUserPage != null)
+            if (requestedUserPage != null)
             {
                 ViewData["VisitedUser"] = requestedUserPage;
                 ViewData["VisitedUserImages"] = getUserImageIdList(requestedUserPage);
                 ViewData["VisitedUserImagesCount"] = getUserImageIdList(requestedUserPage).Count;
                 ViewData["VisitedUserReferralListCount"] = getReferralList(requestedUserPage).Count;
+                ViewData["VisitedUserProfileBio"] = getUserProfileBio(requestedUserPage.Id);
 
                 return View();
             }
@@ -133,7 +134,8 @@ namespace Webvnue.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }
 
-            if (db.UserProfileImages.Find(getCurrentUser().Id) != null){
+            if (db.UserProfileImages.Find(getCurrentUser().Id) != null)
+            {
                 var profile = db.UserProfileImages.Find(getCurrentUser().Id);
                 db.UserProfileImages.Remove(profile);
                 db.SaveChanges();
@@ -197,7 +199,7 @@ namespace Webvnue.Controllers
                         Rating = 0,
                         TimeStamp = DateTime.Now,
                         Views = 0
-                        
+
                     };
 
                     db.UserImages.Add(userImage);
@@ -238,9 +240,9 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
-            foreach(var obj in db.UserImages)
+            foreach (var obj in db.UserImages)
             {
-                if(obj.Id == id)
+                if (obj.Id == id)
                 {
                     db.UserImages.Remove(obj);
                 }
@@ -251,13 +253,59 @@ namespace Webvnue.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        private Models.UserProfileBio getUserProfileBio(string id)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            Models.UserProfileBio bio = new Models.UserProfileBio();
+
+            foreach (var obj in db.UserProfileBio)
+            {
+                if (obj.UserID == id)
+                {
+                    bio = obj;
+                }
+            }
+
+            return bio;
+
+            /*
+            return Json(new
+            {
+                Bio = bio
+            });
+            */
+        }
+
+        [HttpPost]
+        public ActionResult ajaxUserProfileBio(string id)
+        {
+
+            var db = new Models.MyIdentityDbContext();
+
+            Models.UserProfileBio bio = new Models.UserProfileBio();
+
+            foreach (var obj in db.UserProfileBio)
+            {
+                if (obj.UserID == id)
+                {
+                    bio = obj;
+                }
+            }
+
+            return Json(new
+            {
+                Bio = bio
+            });
+        }
+
         private List<string> getUserImageIdList(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
 
             List<string> userImageIdList = new List<string>();
 
-            foreach(var obj in db.UserImages)
+            foreach (var obj in db.UserImages)
             {
                 if (obj.UserId == user.Id)
                 {

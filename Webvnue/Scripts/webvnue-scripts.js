@@ -63,6 +63,35 @@
         $("#upload-mainbtn").hide();
     });
 
+    $("#editbio").click(function (event) {
+        /*
+        $('#bio-aboutme').replaceWith('<input type="text" class = "form-control input-lg" value="AboutME DUMMY TEXT"/>')
+        $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" value="LOCATION DUMMY TEXT"/>');
+        $('#bio-gender').replaceWith('<input type="text" class = "form-control input-lg" value="GENDER DUMMY TEXT"/>');
+        $('#bio-quote').replaceWith('<input type="text" class = "form-control input-lg" value="QUOTE DUMMY TEXT"/>');
+        */
+
+        var id = $("#editbio").attr("user-id")
+
+        var datavalue = { "id" : id};
+
+        $.ajax({
+            url: '/Home/ajaxUserProfileBio',
+            type: 'POST',
+            data: datavalue,
+            dataType: 'json',
+            success: function (data) {
+                $('#bio-aboutme').replaceWith('<input type="text" class = "form-control input-lg" value="' + data['Bio'].AboutMe + '"/>')
+                $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" value="' + data['Bio'].Location + '"/>');
+                $('#bio-gender').replaceWith('<input type="text" class = "form-control input-lg" value="' + data['Bio'].Gender + '"/>');
+                $('#bio-quote').replaceWith('<input type="text" class = "form-control input-lg" value=\'' + data['Bio'].Quote + '\'/>');
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    });
+
 });
 
 /*
