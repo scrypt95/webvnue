@@ -227,8 +227,11 @@ ul{
 }
 .container .userphoto img {
     position: center;
-    width: 900px;
+    width: 500px;
     height: auto;
+}
+.modal{
+    padding-top: 200px;
 }
 .panel-info{
     border-color:black;
