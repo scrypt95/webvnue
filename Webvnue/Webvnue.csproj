@@ -191,6 +191,15 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201702200455067_InitialCreate.cs" />
+    <Compile Include="Migrations\201702200455067_InitialCreate.Designer.cs">
+      <DependentUpon>201702200455067_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201702240706537_AddUserProfileBio.cs" />
+    <Compile Include="Migrations\201702240706537_AddUserProfileBio.Designer.cs">
+      <DependentUpon>201702240706537_AddUserProfileBio.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ChangeProfile.cs" />
@@ -206,6 +215,7 @@
     <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Models\UserCreditCard.cs" />
     <Compile Include="Models\UserImage.cs" />
+    <Compile Include="Models\UserProfileBio.cs" />
     <Compile Include="Models\UserProfileImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -245,6 +255,14 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201702200455067_InitialCreate.resx">
+      <DependentUpon>201702200455067_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201702240706537_AddUserProfileBio.resx">
+      <DependentUpon>201702240706537_AddUserProfileBio.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
