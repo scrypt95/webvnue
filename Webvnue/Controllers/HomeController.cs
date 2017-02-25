@@ -61,6 +61,7 @@ namespace Webvnue.Controllers
                         sendEmail(userManager.FindById(Token), "Webvnue Referral Notification", string.Format("Dear {0}, <br/><br/> {1} has signed up under your referral! <br/><br/> Your monthly income has increased by $4.50. <br/><br/> Best Regards, <br/>Team Webvnue", userManager.FindById(Token).FirstName, user.FirstName));
                     }
 
+                    addUserDefaultProfileBio(user);
                     sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
 
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
@@ -381,6 +382,23 @@ namespace Webvnue.Controllers
             newReferral.RefereeId = user.Id;
 
             db.Referrals.Add(newReferral);
+            db.SaveChanges();
+        }
+
+        private void addUserDefaultProfileBio(Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            Models.UserProfileBio bio = new Models.UserProfileBio();
+
+            bio.Id = Guid.NewGuid().ToString();
+            bio.UserID = user.Id;
+            bio.AboutMe = string.Format("Hello World!, I'm {0}. Let's make some money!", user.FirstName);
+            bio.Location = "Webvnue City";
+            bio.Gender = "Human";
+            bio.Quote = "\"You only live once, but if you do it right, once is enough.\" ― Mae West";
+
+            db.UserProfileBio.Add(bio);
             db.SaveChanges();
         }
 
