@@ -186,6 +186,7 @@
     <Compile Include="Controllers\helpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\picturesController.cs" />
+    <Compile Include="Controllers\searchController.cs" />
     <Compile Include="Controllers\servicesController.cs" />
     <Compile Include="Controllers\transactionController.cs" />
     <Compile Include="Global.asax.cs">
@@ -246,6 +247,7 @@
     <Content Include="Views\pictures\src.cshtml" />
     <Content Include="Views\Account\logon.cshtml" />
     <Content Include="Views\Home\photo.cshtml" />
+    <Content Include="Views\search\users.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

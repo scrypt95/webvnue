@@ -64,6 +64,11 @@
     });
 
     $("#editbio").click(function (event) {
+        $("#save-user-bio").show();
+        $("#editbio").hide();
+    });
+
+    $("#editbio").click(function (event) {
         /*
         $('#bio-aboutme').replaceWith('<input type="text" class = "form-control input-lg" value="AboutME DUMMY TEXT"/>')
         $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" value="LOCATION DUMMY TEXT"/>');
@@ -83,9 +88,32 @@
             success: function (data) {
   /*              $('#bio-aboutme').replaceWith('<textarea rows="1" cols="24"  id = "bioAboutMe" value="' + data['Bio'].AboutMe + '"/>')    */
                 $('#bio-aboutme').replaceWith('<textarea rows="5" cols="30"  id = "bioAboutMe"> ' + data['Bio'].AboutMe + ' </textarea>')
-                $('#bio-location').replaceWith('<textarea rows="1" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Location+ ' </textarea>');
-                $('#bio-gender').replaceWith('<textarea rows="1" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Gender + ' </textarea>');
-                $('#bio-quote').replaceWith('<textarea rows="5" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Quote + ' </textarea>');
+                $('#bio-location').replaceWith('<textarea rows="1" cols="30"  id = "bioLocation"> ' + data['Bio'].Location+ ' </textarea>');
+                $('#bio-gender').replaceWith('<textarea rows="1" cols="30"  id = "bioGender"> ' + data['Bio'].Gender + ' </textarea>');
+                $('#bio-quote').replaceWith('<textarea rows="5" cols="30"  id = "bioQuote"> ' + data['Bio'].Quote + ' </textarea>');
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    });
+
+    $("#savebio").click(function (event) {
+        var id = $("#savebio").attr("user-id")
+
+        var aboutme = $("#bioAboutMe").val();
+        var location = $("#bioLocation").val();
+        var gender = $("#bioGender").val();
+        var quote = $("#bioQuote").val();
+
+        var datavalue = { "id": id,"AboutMe": aboutme, "Location": location, "Gender": gender, "Quote": quote};
+
+        $.ajax({
+            url: '/Home/saveBio',
+            type: 'POST',
+            data: datavalue,
+            success: function (data) {
+                window.location.reload();
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));

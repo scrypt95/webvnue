@@ -78,9 +78,15 @@
                             <div class="bio-panel"><strong>Quote</strong></div>
                             <p id="bio-quote">@visitedUserProfileBio.Quote</p>
 
-                            <div class="updatebio">
-                                <button class="btn btn-success" id="savebio" type="button" user-id="@visitedUser.Id">Save changes</button>
-                            </div>
+                            @if (currentUser != null)
+                            {
+                                if (currentUser.Id == visitedUser.Id)
+                                {
+                                    <div class="updatebio" id="save-user-bio" style="display:none";>
+                                        <button class="btn btn-success" id="savebio" type="button" user-id="@visitedUser.Id">Save changes</button>
+                                    </div>
+                                }
+                            }
 
                         </div>
                     </div>

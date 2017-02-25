@@ -300,6 +300,32 @@ namespace Webvnue.Controllers
             });
         }
 
+        [HttpPost]
+        public ActionResult saveBio(string id, string AboutMe, string Location, string Gender, string Quote)
+        {
+            updateUserBio(id, AboutMe, Location, Gender, Quote);
+
+            return null;
+        }
+
+        private void updateUserBio(string id, string AboutMe, string Location, string Gender, string Quote)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            foreach(var obj in db.UserProfileBio)
+            {
+                if (obj.UserID == id)
+                {
+                    obj.AboutMe = AboutMe;
+                    obj.Location = Location;
+                    obj.Gender = Gender;
+                    obj.Quote = Quote;
+                }
+            }
+
+            db.SaveChanges();
+        }
+
         private List<string> getUserImageIdList(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
