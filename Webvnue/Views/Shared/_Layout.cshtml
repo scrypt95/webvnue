@@ -24,11 +24,24 @@
                 <span class="icon-bar"></span>
             </button>
               </div>
+
+            <div id="custom-search-input">
+                <div class="input-group col-md-3">
+                    <input type="text" class="form-control input-sm" placeholder="Search" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-sm" type="button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
             <div class="collapse navbar-collapse" id="mainNavBar">               
                 @if (currentUser != null)
             {
                     <ul class="nav navbar-nav">
-                        <li><a href="/@currentUser.UserName">Welcome, @currentUser.FirstName</a></li>
+                       <li id="welcomelink"><a href="/@currentUser.UserName">Welcome, @currentUser.FirstName</a></li>
+
                     </ul>
                 }
                 <div class="logoutbutt">

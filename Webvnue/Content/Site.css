@@ -237,7 +237,7 @@ ul{
     border-color:black;
     background-color:white;
 }
-.panel .panel-heading{
+#loginpanel{
 background: rgba(0,0,0,1);
 background: -moz-linear-gradient(left, rgba(0,0,0,1) 0%, rgba(0,0,0,1) 23%, rgba(246,246,246,1) 80%, rgba(255,255,255,1) 100%);
 background: -webkit-gradient(left top, right top, color-stop(0%, rgba(0,0,0,1)), color-stop(23%, rgba(0,0,0,1)), color-stop(80%, rgba(246,246,246,1)), color-stop(100%, rgba(255,255,255,1)));
@@ -259,7 +259,22 @@ border-color:black;
 }
 #editbio{
     position: relative;
-    right: -137px;
+    right: -136px;
     top: -15px;
     opacity: 1;    
+}
+#welcomelink{
+    position: relative;
+    right: 250px;
+
+}
+#custom-search-input{
+    position:relative;
+    right: -500px;
+    top: 10px;
+}
+#bioAboutMe{ 
+    resize: both;
+    overflow: auto;
+    max-width: 100%;
 }

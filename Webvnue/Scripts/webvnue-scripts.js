@@ -81,10 +81,11 @@
             data: datavalue,
             dataType: 'json',
             success: function (data) {
-                $('#bio-aboutme').replaceWith('<input type="text" class = "form-control input-lg"  id = "" value="' + data['Bio'].AboutMe + '"/>')
-                $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" id = "" value="' + data['Bio'].Location + '"/>');
-                $('#bio-gender').replaceWith('<input type="text" class = "form-control input-lg" id = "" value="' + data['Bio'].Gender + '"/>');
-                $('#bio-quote').replaceWith('<input type="text" class = "form-control input-lg" id = "" value=\'' + data['Bio'].Quote + '\'/>');
+  /*              $('#bio-aboutme').replaceWith('<textarea rows="1" cols="24"  id = "bioAboutMe" value="' + data['Bio'].AboutMe + '"/>')    */
+                $('#bio-aboutme').replaceWith('<textarea rows="5" cols="30"  id = "bioAboutMe"> ' + data['Bio'].AboutMe + ' </textarea>')
+                $('#bio-location').replaceWith('<textarea rows="1" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Location+ ' </textarea>');
+                $('#bio-gender').replaceWith('<textarea rows="1" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Gender + ' </textarea>');
+                $('#bio-quote').replaceWith('<textarea rows="5" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Quote + ' </textarea>');
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));
