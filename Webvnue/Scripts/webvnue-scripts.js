@@ -81,10 +81,10 @@
             data: datavalue,
             dataType: 'json',
             success: function (data) {
-                $('#bio-aboutme').replaceWith('<input type="text" class = "form-control input-lg" value="' + data['Bio'].AboutMe + '"/>')
-                $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" value="' + data['Bio'].Location + '"/>');
-                $('#bio-gender').replaceWith('<input type="text" class = "form-control input-lg" value="' + data['Bio'].Gender + '"/>');
-                $('#bio-quote').replaceWith('<input type="text" class = "form-control input-lg" value=\'' + data['Bio'].Quote + '\'/>');
+                $('#bio-aboutme').replaceWith('<input type="text" class = "form-control input-lg"  id = "" value="' + data['Bio'].AboutMe + '"/>')
+                $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" id = "" value="' + data['Bio'].Location + '"/>');
+                $('#bio-gender').replaceWith('<input type="text" class = "form-control input-lg" id = "" value="' + data['Bio'].Gender + '"/>');
+                $('#bio-quote').replaceWith('<input type="text" class = "form-control input-lg" id = "" value=\'' + data['Bio'].Quote + '\'/>');
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));

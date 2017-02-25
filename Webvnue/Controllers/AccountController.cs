@@ -55,9 +55,9 @@ namespace Webvnue.Controllers
 
             var db = new Models.MyIdentityDbContext();
 
-            foreach(var referral in db.Referrals)
+            foreach (var referral in db.Referrals)
             {
-                if(user.Id == referral.ReferrerId)
+                if (user.Id == referral.ReferrerId)
                 {
                     referralList.Add(userManager.FindById(referral.RefereeId));
                 }
@@ -125,17 +125,7 @@ namespace Webvnue.Controllers
                         sendEmail(userManager.FindById(Token), "Webvnue Referral Notification", string.Format("Dear {0}, <br/><br/> {1} has signed up under your referral! <br/><br/> Your monthly income has increased by $4.50. <br/><br/> Best Regards, <br/>Team Webvnue", userManager.FindById(Token).FirstName, user.FirstName));
                     }
 
-                    var db = new Models.MyIdentityDbContext();
-                    db.UserProfileBio.Add(new Models.UserProfileBio()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        UserID = user.Id,
-                        AboutMe = string.Format("Hello World!, I'm {0}. Let's make some money!", user.FirstName),
-                        Location = "Webvnue City",
-                        Gender = "Human",
-                        Quote = "\"You only live once, but if you do it right, once is enough.\" ― Mae West"
-                    });
-                    db.SaveChanges();
+                    addUserDefaultProfileBio(user);
 
                     sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
                     return RedirectToAction("Login", "Account");
@@ -153,14 +143,14 @@ namespace Webvnue.Controllers
             {
                 ViewData["Token"] = "";
             }
-           return View(registerModel);
+            return View(registerModel);
         }
 
         private bool validateToken(string Token)
         {
             Models.MyIdentityUser user = userManager.FindById(Token);
 
-            if(user != null)
+            if (user != null)
             {
                 return true;
             }
@@ -181,6 +171,21 @@ namespace Webvnue.Controllers
             newReferral.RefereeId = user.Id;
 
             db.Referrals.Add(newReferral);
+            db.SaveChanges();
+        }
+
+        private void addUserDefaultProfileBio(Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+            db.UserProfileBio.Add(new Models.UserProfileBio()
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserID = user.Id,
+                AboutMe = string.Format("Hello World!, I'm {0}. Let's make some money!", user.FirstName),
+                Location = "Webvnue City",
+                Gender = "Human",
+                Quote = "\"You only live once, but if you do it right, once is enough.\" ― Mae West"
+            });
             db.SaveChanges();
         }
 
