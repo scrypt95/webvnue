@@ -278,3 +278,7 @@ border-color:black;
     overflow: auto;
     max-width: 100%;
 }
+.updatebio{
+    text-align: center;
+    padding-top: 20px;
+}
