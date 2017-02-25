@@ -85,6 +85,8 @@
                 $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" id = "" value="' + data['Bio'].Location + '"/>');
                 $('#bio-gender').replaceWith('<input type="text" class = "form-control input-lg" id = "" value="' + data['Bio'].Gender + '"/>');
                 $('#bio-quote').replaceWith('<input type="text" class = "form-control input-lg" id = "" value=\'' + data['Bio'].Quote + '\'/>');
+
+                //$('#bio-aboutme').replaceWith('<textarea rows="4" cols="50">' + data['Bio'].AboutMe + '</textarea>')
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));
