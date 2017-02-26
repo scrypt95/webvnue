@@ -69,13 +69,6 @@
     });
 
     $("#editbio").click(function (event) {
-        /*
-        $('#bio-aboutme').replaceWith('<input type="text" class = "form-control input-lg" value="AboutME DUMMY TEXT"/>')
-        $('#bio-location').replaceWith('<input type="text" class = "form-control input-lg" value="LOCATION DUMMY TEXT"/>');
-        $('#bio-gender').replaceWith('<input type="text" class = "form-control input-lg" value="GENDER DUMMY TEXT"/>');
-        $('#bio-quote').replaceWith('<input type="text" class = "form-control input-lg" value="QUOTE DUMMY TEXT"/>');
-        */
-
         var id = $("#editbio").attr("user-id")
 
         var datavalue = { "id" : id};
@@ -86,7 +79,6 @@
             data: datavalue,
             dataType: 'json',
             success: function (data) {
-  /*              $('#bio-aboutme').replaceWith('<textarea rows="1" cols="24"  id = "bioAboutMe" value="' + data['Bio'].AboutMe + '"/>')    */
                 $('#bio-aboutme').replaceWith('<textarea rows="5" cols="30"  id = "bioAboutMe"> ' + data['Bio'].AboutMe + ' </textarea>')
                 $('#bio-location').replaceWith('<textarea rows="1" cols="30"  id = "bioLocation"> ' + data['Bio'].Location+ ' </textarea>');
                 $('#bio-gender').replaceWith('<textarea rows="1" cols="30"  id = "bioGender"> ' + data['Bio'].Gender + ' </textarea>');
@@ -121,10 +113,17 @@
         });
     });
 
-});
+    $("#search-button").click(function (event) {
+        var searchdata = $("#search-input").val();
+        
+        if (searchdata.length != 0) {
+            window.location.href = "/search/users?query=" + searchdata;
+        }
+    });
 
-/*
-function showReferralLink() {
-    document.getElementById('referral-link').style.display = "block";
-}
-*/
+    $('#search-input').keypress(function (e) {
+        if (e.keyCode == 13)
+            $('#search-button').click();
+    });
+
+});

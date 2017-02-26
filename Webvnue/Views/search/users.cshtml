@@ -2,7 +2,22 @@
 @{
     ViewBag.Title = "users";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var userList = (IEnumerable<Webvnue.Models.MyIdentityUser>) ViewData["UserList"];
 }
 
-<h2>SEARCH PAGE</h2>
+<table class="table-sm">
+    <tr>
+    </tr>
+    @foreach (var user in userList)
+    {
+        <tr>
+            <td><a href="/@user.UserName"><img src="/Home/profileimg/@user.Id" style="width:100px;height:80px;"></a></td>
+            <td><a href="/@user.UserName">@user.FirstName @user.LastName</a></td>
+        </tr>
+    }
+
+</table>
+    
+
 

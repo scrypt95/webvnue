@@ -33,7 +33,30 @@ namespace Webvnue.Controllers
             {
                 ViewData["CurrentUser"] = user;
             }
+
             return View();
+        }
+
+        private void fillMissingPics()
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            Models.UserProfileImage defaultImg = db.UserProfileImages.Find("164eb47a-ac68-4e92-8baa-56dd5f730a80");
+
+            foreach (var user in db.Users)
+            {
+                if (db.UserProfileImages.Find(user.Id) == null)
+                {
+                    db.UserProfileImages.Add(new Models.UserProfileImage()
+                    {
+                        UserId = user.Id,
+                        ImageData = defaultImg.ImageData,
+                        FileName = "Default Image"
+                    });
+                }
+            }
+
+            db.SaveChanges();
         }
 
         [HttpPost]
@@ -312,7 +335,7 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
-            foreach(var obj in db.UserProfileBio)
+            foreach (var obj in db.UserProfileBio)
             {
                 if (obj.UserID == id)
                 {
