@@ -59,6 +59,19 @@ namespace Webvnue.Controllers
             db.SaveChanges();
         }
 
+        private void addDefaultPicture(Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+            Models.UserProfileImage defaultImg = db.UserProfileImages.Find("164eb47a-ac68-4e92-8baa-56dd5f730a80");
+            db.UserProfileImages.Add(new Models.UserProfileImage()
+            {
+                UserId = user.Id,
+                ImageData = defaultImg.ImageData,
+                FileName = "Default Image"
+            });
+            db.SaveChanges();
+        }
+
         [HttpPost]
         public ActionResult Index(Models.Register registerModel, string Token)
         {
@@ -84,6 +97,7 @@ namespace Webvnue.Controllers
                         sendEmail(userManager.FindById(Token), "Webvnue Referral Notification", string.Format("Dear {0}, <br/><br/> {1} has signed up under your referral! <br/><br/> Your monthly income has increased by $4.50. <br/><br/> Best Regards, <br/>Team Webvnue", userManager.FindById(Token).FirstName, user.FirstName));
                     }
 
+                    addDefaultPicture(user);
                     addUserDefaultProfileBio(user);
                     sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
 
