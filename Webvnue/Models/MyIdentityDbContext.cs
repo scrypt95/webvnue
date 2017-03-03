@@ -17,7 +17,7 @@ namespace Webvnue.Models
 
         public MyIdentityDbContext() : base("webvnue")
         {
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyIdentityDbContext>());
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<MyIdentityDbContext>());
         }
 
 

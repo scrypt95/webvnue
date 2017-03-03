@@ -85,6 +85,11 @@ namespace Webvnue.Controllers
                 user.LastName = registerModel.LastName;
                 user.BirthDate = registerModel.BirthDate;
 
+                userManager.UserValidator = new UserValidator<Models.MyIdentityUser>(userManager)
+                {
+                    RequireUniqueEmail = true
+                };
+
                 IdentityResult result = userManager.Create(user, registerModel.Password);
 
                 if (result.Succeeded)
@@ -116,6 +121,7 @@ namespace Webvnue.Controllers
                 else
                 {
                     ModelState.AddModelError("UserName", "Username already exists");
+                    ModelState.AddModelError("Email", "Email already exists");
                 }
             }
             if (Token != null && validateToken(Token))
