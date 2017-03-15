@@ -1,8 +1,19 @@
-﻿
-@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+﻿@{ 
+    Layout = null;
 }
 
-<h1>CODE HERE</h1>
 
+<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+
+<a-scene>
+    <a-assets>
+        <img id="boxTexture" src="~/Images/backgroundtexture2.jpg">
+    </a-assets>
+    <a-plane color="black" position="0 0 -4" rotation="-90 0 0" width="4" height="4"></a-plane>
+    <a-sky src="#boxTexture" color="#ECECEC"></a-sky>
+    <a-text value="WEB" color="#BBB"
+            position="-5 3 -10" scale="10 10 10"></a-text>
+    <a-text value="VNUE" color="cornflowerblue"
+            position="-.5 3 -10" scale="10 10 10"></a-text>
+    <a-box position="-1 0.5 -3" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9"></a-box>
+</a-scene>
