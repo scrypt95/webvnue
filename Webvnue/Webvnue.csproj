@@ -172,6 +172,7 @@
     <Content Include="Images\support3.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\release.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -252,6 +253,7 @@
     <Content Include="Views\Home\photo.cshtml" />
     <Content Include="Views\search\users.cshtml" />
     <Content Include="Views\VirtualReality\Index.cshtml" />
+    <Content Include="vrnodels\model.dae" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -261,6 +263,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="vrnodels\model\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702200455067_InitialCreate.resx">
