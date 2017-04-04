@@ -8,13 +8,11 @@
 
 <a-scene>
     <a-assets>
-        <a-asset-item id="tree" src="~/vrnodels/model.dae"></a-asset-item>
+        <a-asset-item id="tree" src="~/vrnodels/elexis.dae"></a-asset-item>
     </a-assets>
 
-    <a-entity collada-model="#tree"></a-entity>
-
     
-    @*
+
     <a-plane color="black" position="0 0 -4" rotation="-90 0 0" width="4" height="4"></a-plane>
 
     <a-sky src="#boxTexture" color="#ECECEC"></a-sky>
@@ -23,21 +21,19 @@
 
     <a-text value="VNUE" color="cornflowerblue" position="-.5 3 -10" scale="10 10 10"></a-text>
 
-    <a-box position="-1 0.5 -3" rotation="0 45 0" width="1" height="1" depth="1" color="#4CC3D9">
-        
+    <a-entity collada-model="#tree" position="-1 0.5 -3" rotation="0 45 0">
+
         <a-animation attribute="position" to="0 2.2 -5" direction="alternate" dur="2000"
                      repeat="indefinite"></a-animation>
         <!-- These animations will start when the box is looked at. -->
         <a-animation attribute="scale" begin="mouseenter" dur="300" to="2.3 2.3 2.3"></a-animation>
         <a-animation attribute="scale" begin="mouseleave" dur="300" to="2 2 2"></a-animation>
         <a-animation attribute="rotation" begin="click" dur="2000" to="360 405 45"></a-animation>
-            
-    </a-box>
+    </a-entity>        
         
 
     <a-camera>
         <a-cursor></a-cursor>
     </a-camera>
-    *@
 
 </a-scene>

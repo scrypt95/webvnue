@@ -178,6 +178,18 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\webvnue-scripts.js" />
+    <Content Include="vrnodels\model\bikini-black.png" />
+    <Content Include="vrnodels\model\body-2nd.png" />
+    <Content Include="vrnodels\model\body-n.png" />
+    <Content Include="vrnodels\model\boots-n.png" />
+    <Content Include="vrnodels\model\boots-white.png" />
+    <Content Include="vrnodels\model\copia-di-pupil-l.png" />
+    <Content Include="vrnodels\model\eyeball-l.png" />
+    <Content Include="vrnodels\model\face-bl-hair.png" />
+    <Content Include="vrnodels\model\face-normal.png" />
+    <Content Include="vrnodels\model\fmouth.png" />
+    <Content Include="vrnodels\model\hair-black.png" />
+    <Content Include="vrnodels\model\hair-normal.png" />
     <Content Include="Web.config" />
     <Content Include="Views\Account\login.cshtml" />
     <Content Include="Views\Account\register.cshtml" />
@@ -254,6 +266,7 @@
     <Content Include="Views\search\users.cshtml" />
     <Content Include="Views\VirtualReality\Index.cshtml" />
     <Content Include="vrnodels\model.dae" />
+    <Content Include="vrnodels\elexis.dae" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -263,7 +276,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="vrnodels\model\" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201702200455067_InitialCreate.resx">
