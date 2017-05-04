@@ -32,6 +32,7 @@ namespace Webvnue.Controllers
             if (user != null)
             {
                 ViewData["CurrentUser"] = user;
+                return Redirect(Url.Content(string.Format("~/{0}", user.UserName)));
             }
 
             return View();

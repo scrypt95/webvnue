@@ -2,14 +2,14 @@
 <COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1">
   <asset><contributor><author></author><authoring_tool>FBX COLLADA exporter</authoring_tool><comments></comments></contributor><created>2017-04-04T07:46:47Z</created><keywords></keywords><modified>2017-04-04T07:46:47Z</modified><revision></revision><subject></subject><title></title><unit meter="1.000000" name="centimeter"></unit><up_axis>Y_UP</up_axis></asset>
   <library_images>
-    <image id="bikini_black.png-image" name="bikini_black.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/462e810bfbf36dc35d5ec3395e1981d5/bikini_black.png</init_from></image>
-    <image id="Body_2nd.png-image" name="Body_2nd.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/b23fea2a3b7f6043439cbda845b308dc/Body_2nd.png</init_from></image>
-    <image id="eyeball_l.png-image" name="eyeball_l.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/6fa6b72ec281b91b4602f24a822dfb12/eyeball_l.png</init_from></image>
-    <image id="Copia-di-pupil_l.png-image" name="Copia-di-pupil_l.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/b9f390841262e8a47a4c04093d84d061/Copia di pupil_l.png</init_from></image>
-    <image id="Boots_white.png-image" name="Boots_white.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/2f527b2381f763a141f1debeb46e1213/Boots_white.png</init_from></image>
-    <image id="fmouth.png-image" name="fmouth.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/932c90353014bccc0d672e7a253d731f/fmouth.png</init_from></image>
-    <image id="Hair_black.png-image" name="Hair_black.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/96bd7645e1185abe32013ff13afec3a6/Hair_black.png</init_from></image>
-    <image id="Face_bl_hair.png-image" name="Face_bl_hair.png"><init_from>file:///tmp/8fbae280-1b68-46c6-ba19-11840c1ecc8e/2f446b09310240a3f0b64a18f22db5a7/Face_bl_hair.png</init_from></image>
+    <image id="bikini_black.png-image" name="bikini_black.png"><init_from>model/bikini-black.png</init_from></image>
+    <image id="Body_2nd.png-image" name="Body_2nd.png"><init_from>model/body-2nd.png</init_from></image>
+    <image id="eyeball_l.png-image" name="eyeball_l.png"><init_from>model/eyeball-l.png</init_from></image>
+    <image id="Copia-di-pupil_l.png-image" name="Copia-di-pupil_l.png"><init_from>model/copia-di-pupil-l.png</init_from></image>
+    <image id="Boots_white.png-image" name="Boots_white.png"><init_from>model/boots-white.png</init_from></image>
+    <image id="fmouth.png-image" name="fmouth.png"><init_from>model/fmouth.png</init_from></image>
+    <image id="Hair_black.png-image" name="Hair_black.png"><init_from>model/hair-black.png</init_from></image>
+    <image id="Face_bl_hair.png-image" name="Face_bl_hair.png"><init_from>model/face-bl-hair.png</init_from></image>
   </library_images>
   <library_materials>
     <material id="NudeEL_Nude__Elexis_reference_s0" name="NudeEL_Nude__Elexis_reference_s0">
