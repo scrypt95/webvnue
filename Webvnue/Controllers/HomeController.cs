@@ -32,7 +32,6 @@ namespace Webvnue.Controllers
             if (user != null)
             {
                 ViewData["CurrentUser"] = user;
-                return Redirect(Url.Content(string.Format("~/{0}", user.UserName)));
             }
 
             return View();
@@ -120,6 +119,8 @@ namespace Webvnue.Controllers
                 ViewData["VisitedUserImagesCount"] = getUserImageIdList(requestedUserPage).Count;
                 ViewData["VisitedUserReferralListCount"] = getReferralList(requestedUserPage).Count;
                 ViewData["VisitedUserProfileBio"] = getUserProfileBio(requestedUserPage.Id);
+                ViewData["FollowingCount"] = getUserFollowingCount(requestedUserPage.Id);
+                ViewData["FollowerCount"] = getUserFollowerCount(requestedUserPage.Id);
 
                 if (userLoggedIn != null) {
                     ViewData["CurrentUserIsFollowing"] = checkIfFollowing(userLoggedIn.Id, requestedUserPage.Id);
@@ -255,9 +256,17 @@ namespace Webvnue.Controllers
         }
 
         [HttpPost]
-        public ActionResult addFollower(string id)
+        public ActionResult addFollowing(string id)
         {
             addNewFollow(getCurrentUser().Id, id);
+
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult removeFollowing(string id)
+        {
+            removeFollow(getCurrentUser().Id, id);
 
             return null;
         }
@@ -445,6 +454,21 @@ namespace Webvnue.Controllers
             db.SaveChanges();
         }
 
+        private void removeFollow(string currentUserId, string followingUserId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            foreach (var obj in db.UserFollowers)
+            {
+                if (obj.UserId == currentUserId && obj.FollowingUserId == followingUserId)
+                {
+                    db.UserFollowers.Remove(obj);
+                }
+            }
+
+            db.SaveChanges();
+        }
+
         private void addUserDefaultProfileBio(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
@@ -522,6 +546,40 @@ namespace Webvnue.Controllers
             }
 
             return false;
+        }
+
+        private int getUserFollowingCount(string userId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            int count = 0;
+
+            foreach(var obj in db.UserFollowers)
+            {
+                if(obj.UserId == userId)
+                {
+                    count++;
+                }
+            }
+
+            return count;
+        }
+
+        private int getUserFollowerCount(string userId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            int count = 0;
+
+            foreach (var obj in db.UserFollowers)
+            {
+                if (obj.FollowingUserId == userId)
+                {
+                    count++;
+                }
+            }
+
+            return count;
         }
     }
 }

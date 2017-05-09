@@ -9,6 +9,9 @@
     var visitedUserImageCount = (int)ViewData["VisitedUserImagesCount"];
     var visitedUserReferralCount = (int)ViewData["VisitedUserReferralListCount"];
     var visitedUserProfileBio = (Webvnue.Models.UserProfileBio)ViewData["VisitedUserProfileBio"];
+    var currentUserIsFollowing = (bool)ViewData["CurrentUserIsFollowing"];
+    var visitedUserFollowingCount = (int)ViewData["FollowingCount"];
+    var visitedUserFollowerCount = (int)ViewData["FollowerCount"];
 } 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -99,16 +102,26 @@
 
                     <span class="pull-left">                        
                         <a href="#" class="btn btn-link" style="text-decoration:none;"> Referrals <span class="badge">@visitedUserReferralCount</span></a>
-                        <a href="#" class="btn btn-link" style="text-decoration:none;"> Followers <span class="badge">-</span></a>
-                        <a href="#" class="btn btn-link" style="text-decoration:none;"> Following <span class="badge">-</span></a>
+                        <a href="#" class="btn btn-link" style="text-decoration:none;"> Followers <span class="badge">@visitedUserFollowerCount</span></a>
+                        <a href="#" class="btn btn-link" style="text-decoration:none;"> Following <span class="badge">@visitedUserFollowingCount</span></a>
                     </span>
                     <div class="pull-right">
                         <div class="dropdown">
-                            <button class="btn btn-primary btn-sm" id="follow-button" user-id="@visitedUser.Id" style="text-decoration:none; font-family:'oswald'"><span class="glyphicon glyphicon-plus"></span> FOLLOW</button>
 
-                            <button class="btn btn-danger btn-sm" id="follow-button" style="text-decoration:none; font-family:'oswald'"><span class="glyphicon glyphicon-minus"></span> UNFOLLOW</button>
+                            @if (currentUser != null && currentUser.Id != visitedUser.Id)
+                            {
+                                if (!currentUserIsFollowing)
+                                {
+                                    <button class="btn btn-primary btn-sm" id="follow-button" user-id="@visitedUser.Id" style="text-decoration:none; font-family:'oswald'"><span class="glyphicon glyphicon-plus"></span> FOLLOW</button>
+                                    <button class="btn btn-danger btn-sm" id="unfollow-button" user-id="@visitedUser.Id" style="text-decoration:none; display:none; font-family:'oswald'"><span class="glyphicon glyphicon-minus"></span> UNFOLLOW</button>
+                                }
+                                else
+                                {
+                                    <button class="btn btn-danger btn-sm" id="unfollow-button" user-id="@visitedUser.Id" style="text-decoration:none; font-family:'oswald'"><span class="glyphicon glyphicon-minus"></span> UNFOLLOW</button>
+                                    <button class="btn btn-primary btn-sm" id="follow-button" user-id="@visitedUser.Id" style="text-decoration:none; display:none; font-family:'oswald'"><span class="glyphicon glyphicon-plus"></span> FOLLOW</button>
 
-
+                                }
+                            }
 
                             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">                                                                
                                 <span class="glyphicon glyphicon-chevron-down"></span>
