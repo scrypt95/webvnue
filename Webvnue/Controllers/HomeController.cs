@@ -122,9 +122,7 @@ namespace Webvnue.Controllers
                 ViewData["FollowingCount"] = getUserFollowingCount(requestedUserPage.Id);
                 ViewData["FollowerCount"] = getUserFollowerCount(requestedUserPage.Id);
 
-                if (userLoggedIn != null) {
-                    ViewData["CurrentUserIsFollowing"] = checkIfFollowing(userLoggedIn.Id, requestedUserPage.Id);
-                }
+                ViewData["CurrentUserIsFollowing"] = (userLoggedIn != null) ? checkIfFollowing(userLoggedIn.Id, requestedUserPage.Id) : false;
 
                 return View();
             }
