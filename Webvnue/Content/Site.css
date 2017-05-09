@@ -282,14 +282,3 @@ border-color:black;
     text-align: center;
     padding-top: 20px;
 }
-
-.glyphicon.glyphicon-heart {
-    font-size: 30px;
-    color: darkred;
-}
-.glyphicon.glyphicon-retweet {
-    font-size: 30px;
-}
-.profilename{
-    padding-left: 40px;
-}
