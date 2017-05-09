@@ -283,3 +283,10 @@ border-color:black;
     padding-top: 20px;
 }
 
+.glyphicon.glyphicon-heart {
+    font-size: 30px;
+    color: darkred;
+}
+.glyphicon.glyphicon-retweet {
+    font-size: 30px;
+}
