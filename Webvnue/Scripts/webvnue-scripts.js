@@ -132,11 +132,31 @@
         var datavalue = { "id": id };
 
         $.ajax({
-            url: '/Home/addFollower',
+            url: '/Home/addFollowing',
             type: 'POST',
             data: datavalue,
             success: function (data) {
-                window.location.reload();
+                $("#unfollow-button").show();
+                $("#follow-button").hide();
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    });
+
+    $("#unfollow-button").click(function (event) {
+        var id = $("#unfollow-button").attr("user-id")
+
+        var datavalue = { "id": id };
+
+        $.ajax({
+            url: '/Home/removeFollowing',
+            type: 'POST',
+            data: datavalue,
+            success: function (data) {
+                $("#follow-button").show();
+                $("#unfollow-button").hide();
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));

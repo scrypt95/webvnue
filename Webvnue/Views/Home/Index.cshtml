@@ -12,13 +12,14 @@
 @model Webvnue.Models.Register
 
 
-<!DOCTYPE html>
+@if (currentUser == null)
+{
 <head>
     <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
     <link href="/Content/Site.css" type="text/css" rel="stylesheet">
     <title>WEBVNUE</title>
 </head>
-@using (Html.BeginForm("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
+using (Html.BeginForm("Index", "Home", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post))
 {
     @Html.AntiForgeryToken();
 
@@ -167,3 +168,8 @@
         <iframe width="900" height="450" src="https://www.youtube.com/embed/n8bCcSi2V4g?autoplay=0" frameborder="0" allowfullscreen></iframe>
     </div>
 *@
+}
+else {
+    <h1>@currentUser.FirstName's HOME FEED!!!</h1>
+
+}
