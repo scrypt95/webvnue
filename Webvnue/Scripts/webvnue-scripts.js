@@ -80,9 +80,9 @@
             dataType: 'json',
             success: function (data) {
                 $('#bio-aboutme').replaceWith('<textarea rows="5" cols="30"  id = "bioAboutMe"> ' + data['Bio'].AboutMe + ' </textarea>')
-                $('#bio-location').replaceWith('<textarea rows="1" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Location+ ' </textarea>');
-                $('#bio-gender').replaceWith('<textarea rows="1" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Gender + ' </textarea>');
-                $('#bio-quote').replaceWith('<textarea rows="5" cols="30"  id = "bioAboutMe"> ' + data['Bio'].Quote + ' </textarea>');
+                $('#bio-location').replaceWith('<textarea rows="1" cols="30"  id = "bioLocation"> ' + data['Bio'].Location + ' </textarea>');
+                $('#bio-gender').replaceWith('<textarea rows="1" cols="30"  id = "bioGender"> ' + data['Bio'].Gender + ' </textarea>');
+                $('#bio-quote').replaceWith('<textarea rows="5" cols="30"  id = "bioQuote"> ' + data['Bio'].Quote + ' </textarea>');
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));
