@@ -216,12 +216,17 @@
     <Compile Include="Migrations\201702240706537_AddUserProfileBio.Designer.cs">
       <DependentUpon>201702240706537_AddUserProfileBio.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705090149327_UserFollows.cs" />
+    <Compile Include="Migrations\201705090149327_UserFollows.Designer.cs">
+      <DependentUpon>201705090149327_UserFollows.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ChangeProfile.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\CreditCardModel.cs" />
+    <Compile Include="Models\Follows.cs" />
     <Compile Include="Models\forgotpassword.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\MyIdentityDbContext.cs" />
@@ -283,6 +288,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201702240706537_AddUserProfileBio.resx">
       <DependentUpon>201702240706537_AddUserProfileBio.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705090149327_UserFollows.resx">
+      <DependentUpon>201705090149327_UserFollows.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
