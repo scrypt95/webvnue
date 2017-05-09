@@ -38,41 +38,6 @@ namespace Webvnue.Controllers
             return View();
         }
 
-        private void fillMissingPics()
-        {
-            var db = new Models.MyIdentityDbContext();
-
-            Models.UserProfileImage defaultImg = db.UserProfileImages.Find("164eb47a-ac68-4e92-8baa-56dd5f730a80");
-
-            foreach (var user in db.Users)
-            {
-                if (db.UserProfileImages.Find(user.Id) == null)
-                {
-                    db.UserProfileImages.Add(new Models.UserProfileImage()
-                    {
-                        UserId = user.Id,
-                        ImageData = defaultImg.ImageData,
-                        FileName = "Default Image"
-                    });
-                }
-            }
-
-            db.SaveChanges();
-        }
-
-        private void addDefaultPicture(Models.MyIdentityUser user)
-        {
-            var db = new Models.MyIdentityDbContext();
-            Models.UserProfileImage defaultImg = db.UserProfileImages.Find("164eb47a-ac68-4e92-8baa-56dd5f730a80");
-            db.UserProfileImages.Add(new Models.UserProfileImage()
-            {
-                UserId = user.Id,
-                ImageData = defaultImg.ImageData,
-                FileName = "Default Image"
-            });
-            db.SaveChanges();
-        }
-
         [HttpPost]
         public ActionResult Index(Models.Register registerModel, string Token)
         {
@@ -155,6 +120,10 @@ namespace Webvnue.Controllers
                 ViewData["VisitedUserImagesCount"] = getUserImageIdList(requestedUserPage).Count;
                 ViewData["VisitedUserReferralListCount"] = getReferralList(requestedUserPage).Count;
                 ViewData["VisitedUserProfileBio"] = getUserProfileBio(requestedUserPage.Id);
+
+                if (userLoggedIn != null) {
+                    ViewData["CurrentUserIsFollowing"] = checkIfFollowing(userLoggedIn.Id, requestedUserPage.Id);
+                }
 
                 return View();
             }
@@ -255,6 +224,44 @@ namespace Webvnue.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        [HttpPost]
+        public ActionResult ajaxUserProfileBio(string id)
+        {
+
+            var db = new Models.MyIdentityDbContext();
+
+            Models.UserProfileBio bio = new Models.UserProfileBio();
+
+            foreach (var obj in db.UserProfileBio)
+            {
+                if (obj.UserID == id)
+                {
+                    bio = obj;
+                }
+            }
+
+            return Json(new
+            {
+                Bio = bio
+            });
+        }
+
+        [HttpPost]
+        public ActionResult saveBio(string id, string AboutMe, string Location, string Gender, string Quote)
+        {
+            updateUserBio(id, AboutMe, Location, Gender, Quote);
+
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult addFollower(string id)
+        {
+            addNewFollow(getCurrentUser().Id, id);
+
+            return null;
+        }
+
         public ActionResult profileimg(string id)
         {
             var db = new Models.MyIdentityDbContext();
@@ -320,36 +327,6 @@ namespace Webvnue.Controllers
                 Bio = bio
             });
             */
-        }
-
-        [HttpPost]
-        public ActionResult ajaxUserProfileBio(string id)
-        {
-
-            var db = new Models.MyIdentityDbContext();
-
-            Models.UserProfileBio bio = new Models.UserProfileBio();
-
-            foreach (var obj in db.UserProfileBio)
-            {
-                if (obj.UserID == id)
-                {
-                    bio = obj;
-                }
-            }
-
-            return Json(new
-            {
-                Bio = bio
-            });
-        }
-
-        [HttpPost]
-        public ActionResult saveBio(string id, string AboutMe, string Location, string Gender, string Quote)
-        {
-            updateUserBio(id, AboutMe, Location, Gender, Quote);
-
-            return null;
         }
 
         private void updateUserBio(string id, string AboutMe, string Location, string Gender, string Quote)
@@ -455,6 +432,19 @@ namespace Webvnue.Controllers
             db.SaveChanges();
         }
 
+        private void addNewFollow(string userId, string followingUserId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            Models.Follows newFollower = new Models.Follows();
+            newFollower.Id = Guid.NewGuid().ToString();
+            newFollower.UserId = userId;
+            newFollower.FollowingUserId = followingUserId;
+
+            db.UserFollowers.Add(newFollower);
+            db.SaveChanges();
+        }
+
         private void addUserDefaultProfileBio(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
@@ -482,6 +472,56 @@ namespace Webvnue.Controllers
             smtp.Credentials = new System.Net.NetworkCredential("webvnue@gmail.com", "Password999");
             smtp.EnableSsl = true;
             smtp.Send(m);
+        }
+
+        private void fillMissingPics()
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            Models.UserProfileImage defaultImg = db.UserProfileImages.Find("164eb47a-ac68-4e92-8baa-56dd5f730a80");
+
+            foreach (var user in db.Users)
+            {
+                if (db.UserProfileImages.Find(user.Id) == null)
+                {
+                    db.UserProfileImages.Add(new Models.UserProfileImage()
+                    {
+                        UserId = user.Id,
+                        ImageData = defaultImg.ImageData,
+                        FileName = "Default Image"
+                    });
+                }
+            }
+
+            db.SaveChanges();
+        }
+
+        private void addDefaultPicture(Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+            Models.UserProfileImage defaultImg = db.UserProfileImages.Find("164eb47a-ac68-4e92-8baa-56dd5f730a80");
+            db.UserProfileImages.Add(new Models.UserProfileImage()
+            {
+                UserId = user.Id,
+                ImageData = defaultImg.ImageData,
+                FileName = "Default Image"
+            });
+            db.SaveChanges();
+        }
+
+        private bool checkIfFollowing(string currentUserId, string visitedUserId)
+        {
+            var db = new Models.MyIdentityDbContext();
+            
+            foreach(var obj in db.UserFollowers)
+            {
+                if(obj.UserId == currentUserId && obj.FollowingUserId == visitedUserId)
+                {
+                    return true;
+                }
+            }
+
+            return false;
         }
     }
 }

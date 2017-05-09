@@ -126,4 +126,22 @@
             $('#search-button').click();
     });
 
+    $("#follow-button").click(function (event) {
+        var id = $("#follow-button").attr("user-id")
+
+        var datavalue = { "id": id };
+
+        $.ajax({
+            url: '/Home/addFollower',
+            type: 'POST',
+            data: datavalue,
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    });
+
 });
