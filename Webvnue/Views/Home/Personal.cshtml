@@ -123,6 +123,8 @@
                                 }
                             }
 
+                        @if (currentUser != null && currentUser.Id != visitedUser.Id)
+                        {
                             <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dd1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">                                                                
                                 <span class="glyphicon glyphicon-chevron-down"></span>
                             </button>
@@ -130,9 +132,8 @@
                                 <li><a href="#"><span class="glyphicon glyphicon-remove-sign"></span> Block User</a></li>
                                 <li><a href="#"><span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span> Report User</a></li>                                
                             </ul>
+                        }
                         </div>
-                        
-
                     </div>
                 </div>
             </div>
