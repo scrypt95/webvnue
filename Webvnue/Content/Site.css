@@ -282,3 +282,13 @@ border-color:black;
     text-align: center;
     padding-top: 20px;
 }
+#leftSideBar{
+    padding-left: 350px;
+
+
+}
+#rightSideBar{
+    padding-right: 300px;
+
+
+}

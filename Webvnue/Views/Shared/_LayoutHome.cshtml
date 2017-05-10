@@ -82,6 +82,40 @@
 
         </div>
     </nav>
+    <nav class="navbar navbar-left" id="leftSideBar">
+               <div class="panel panel-default" data-spy="affix">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div align="left">
+                                <div class="profilename"> @currentUser.FirstName @currentUser.LastName </div>
+                                <img class="img-rounded img-responsive" src="/Home/profileimg/@currentUser.Id" width="200" height="200" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    </nav>
+ 
+    
+    
+ <!--               RIGHT NAV BAR
+                
+          <nav class="navbar navbar-right" id="rightSideBar">
+        <div class="panel panel-default" data-spy="affix">
+            <div class="panel-body">
+                <div class="media">
+                    <div align="left">
+                        <div class="profilename"> @currentUser.FirstName @currentUser.LastName </div>
+                        <img class="img-rounded img-responsive" src="/Home/profileimg/@currentUser.Id" width="200" height="200" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+ -->
+
+
+
     <div class="container body-content">
         @RenderBody()
 
