@@ -282,6 +282,7 @@
     <Content Include="Views\VirtualReality\Index.cshtml" />
     <Content Include="vrnodels\model.dae" />
     <Content Include="vrnodels\elexis.dae" />
+    <Content Include="Views\Shared\_LayoutHome.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

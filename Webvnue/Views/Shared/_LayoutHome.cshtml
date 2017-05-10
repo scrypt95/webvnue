@@ -1,0 +1,114 @@
+﻿@{
+    var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <link href='https://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webvnue</title>
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/">WEBVNUE</a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#mainNavBar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div id="custom-search-input">
+                <div class="input-group col-md-3">
+                    <input type="text" class="form-control input-sm" placeholder="Search" id="search-input" />
+                    <span class="input-group-btn">
+                        <button class="btn btn-info btn-sm" type="button" id="search-button">
+                            <i class="glyphicon glyphicon-search"></i>
+                        </button>
+                    </span>
+                </div>
+            </div>
+
+            <div class="collapse navbar-collapse" id="mainNavBar">
+                @if (currentUser != null)
+            {
+                    <ul class="nav navbar-nav">
+                        <li id="welcomelink"><a href="/@currentUser.UserName">Welcome, @currentUser.FirstName</a></li>
+
+                    </ul>
+                }
+
+
+                <!--       VR BUTTON
+
+                           <ul class="nav navbar-nav">
+                               <li id="VR"><a href="/VirtualReality/Index">Virtual Reality</a></li>
+
+                           </ul>
+                    -->
+
+
+
+                <div class="logoutbutt">
+                    <ul class="nav navbar-nav navbar-right">
+
+                        @if (currentUser != null)
+                        {
+                            <li><a href="/account/settings"><span class="glyphicon glyphicon-cog"></span> Account</a></li>
+                        }
+                        <!--                    <li><a href="/help/contact">Contact Us</a></li>
+                                        <li><a href="/help/faq">FAQ</a></li>
+                        -->
+                        @if (currentUser != null)
+                        {
+                            <li><a href="/account/logout"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+                        }
+                        else
+                        {
+                            <li><a href="/account/logon" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+
+
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                </div>
+            </div>
+        </div>
+
+        <hr />
+        <footer>
+            <p>
+                &copy; @DateTime.Now.Year - Webvnue |
+
+                <a class="bottomlinks" href="/help/contact">Contact Us </a>
+                |
+
+                <a class="bottomlinks" href="/help/FAQ">FAQ</a>
+
+            </p>
+
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/webvnue-scripts.js"></script>
+</body>
+</html>
