@@ -145,6 +145,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Images\add-button-md.png" />
     <Content Include="Images\backgroundtexture2.jpg" />
     <Content Include="Content\accountindex.css" />
     <Content Include="Content\bootstrap.css" />
