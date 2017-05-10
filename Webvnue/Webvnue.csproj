@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201705100504029_UserPosts.Designer.cs">
       <DependentUpon>201705100504029_UserPosts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705100633485_UserPosts2.cs" />
+    <Compile Include="Migrations\201705100633485_UserPosts2.Designer.cs">
+      <DependentUpon>201705100633485_UserPosts2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
@@ -300,6 +304,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705100504029_UserPosts.resx">
       <DependentUpon>201705100504029_UserPosts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705100633485_UserPosts2.resx">
+      <DependentUpon>201705100633485_UserPosts2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

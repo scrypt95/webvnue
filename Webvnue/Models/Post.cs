@@ -8,9 +8,9 @@ namespace Webvnue.Models
 {
     public class Post
     {
-        [Key]
         public string Id { get; set; }
         public string UserId { get; set; }
+        public string OriginalPostUserId { get; set; }
         public byte[] ImageData { get; set; }
         public DateTime TimeStamp { get; set; }
     }

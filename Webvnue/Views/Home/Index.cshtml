@@ -8,7 +8,7 @@
 
 
     var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
-    var currentUserFollowers = (IEnumerable<Webvnue.Models.MyIdentityUser>) ViewData["Followers"];
+    var currentUserPosts = (IEnumerable<Webvnue.Models.Post>) ViewData["Posts"];
 }
 @model Webvnue.Models.Register
 
@@ -195,7 +195,8 @@ else
 
           
             
-            
+            @foreach (var post in currentUserPosts)
+            {
               <div class="col-md-offset-3 col-md-6">
                   <br />
                   <br />
@@ -204,13 +205,13 @@ else
                         <span class="pull-left">
                         <img class="img-circle" src="https://scontent.forf1-2.fna.fbcdn.net/v/t31.0-8/14242403_1186267638096185_1846690254998461154_o.jpg?oh=e572add9f78576b164d46ec71147e27d&oe=597A0490" width="50" height="50" />
                             
-                            <a href="#" class="btn btn-link" style="text-decoration:none;"> Josh Peterson</a>
+                            <a href="#" class="btn btn-link" style="text-decoration:none;">@post.OriginalPostUserId</a>
                         
                         </span>
                       
                           </div>
                     <div class="panel-body">
-                        <div class="img-responsive img-thumbnail ratio-4-3" data-toggle="modal" onMouseOver="this.style.cursor='pointer'" data-target="" style="background-image:url('https://i.ytimg.com/vi/v1Yd8g1kV3Y/hqdefault.jpg')">
+                        <div class="img-responsive img-thumbnail ratio-4-3" data-toggle="modal" onMouseOver="this.style.cursor='pointer'" data-target="" style="background-image:url('/Home/showPostImage/@post.Id')">
                         </div>
 
 
@@ -248,18 +249,13 @@ else
                        </div>
                       </div>
                     </div>
+            }
 
-               
-        
-       
-        
+
+
+
+
                     </div>
                </div>
-               foreach(var item in currentUserFollowers)
-               {
-                   <h1>@item.FirstName @item.LastName</h1>
-               }
-
-
 
                 }

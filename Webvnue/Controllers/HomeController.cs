@@ -3,6 +3,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin.Security;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Security.Claims;
@@ -32,7 +33,7 @@ namespace Webvnue.Controllers
             if (user != null)
             {
                 ViewData["CurrentUser"] = user;
-                ViewData["Followers"] = getFollowers(user.Id);
+                ViewData["Posts"] = getUserPosts(user);
             }
 
             return View();
@@ -219,7 +220,7 @@ namespace Webvnue.Controllers
 
                     var post = new Models.Post() {
                         Id = Guid.NewGuid().ToString(),
-                        UserId = getCurrentUser().Id,
+                        OriginalPostUserId = getCurrentUser().Id,
                         ImageData = imageData,
                         TimeStamp = DateTime.Now
                     };
@@ -301,6 +302,23 @@ namespace Webvnue.Controllers
             byte[] buffer = image.ImageData;
 
             return File(buffer, "image/jpg", string.Format("{0}.jpg", id));
+        }
+
+        public ActionResult showPostImage(string id)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            byte[] defaultBuffer = new Byte[0];
+
+            foreach(var obj in db.UserPosts.Find(getCurrentUser().Id).Posts){
+                if(obj.Id == id)
+                {
+                    byte[] buffer = obj.ImageData;
+                    return File(buffer, "image/jpg", string.Format("{0}.jpg", Guid.NewGuid().ToString()));
+                }
+            }
+
+            return File(defaultBuffer, "image/jpg", string.Format("{0}.jpg", Guid.NewGuid().ToString()));
         }
 
         public ActionResult photo(string id)
@@ -550,8 +568,8 @@ namespace Webvnue.Controllers
             var db = new Models.MyIdentityDbContext();
             db.UserPosts.Add(new Models.UserPosts()
             {
-                UserId = user.Id,
-                Posts = new List<Models.Post>()
+                UserId = user.Id
+                //Posts = new Collection<Models.Post>()
             });
 
             db.SaveChanges();
@@ -621,6 +639,13 @@ namespace Webvnue.Controllers
             }
 
             return followerList;
+        }
+
+        private List<Models.Post> getUserPosts(Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            return db.UserPosts.Find(user.Id).Posts.ToList();
         }
     }
 }
