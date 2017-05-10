@@ -8,6 +8,7 @@
 
 
     var currentUser = (Webvnue.Models.MyIdentityUser)ViewData["CurrentUser"];
+    var currentUserFollowers = (IEnumerable<Webvnue.Models.MyIdentityUser>) ViewData["Followers"];
 }
 @model Webvnue.Models.Register
 
@@ -254,6 +255,10 @@ else
         
                     </div>
                </div>
+               foreach(var item in currentUserFollowers)
+               {
+                   <h1>@item.FirstName @item.LastName</h1>
+               }
 
 
 

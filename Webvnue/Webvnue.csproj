@@ -220,6 +220,10 @@
     <Compile Include="Migrations\201705090149327_UserFollows.Designer.cs">
       <DependentUpon>201705090149327_UserFollows.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705100504029_UserPosts.cs" />
+    <Compile Include="Migrations\201705100504029_UserPosts.Designer.cs">
+      <DependentUpon>201705100504029_UserPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
@@ -232,11 +236,13 @@
     <Compile Include="Models\MyIdentityDbContext.cs" />
     <Compile Include="Models\MyIdentityRole.cs" />
     <Compile Include="Models\MyIdentityUser.cs" />
+    <Compile Include="Models\Post.cs" />
     <Compile Include="Models\Referral.cs" />
     <Compile Include="Models\Register.cs" />
     <Compile Include="Models\ResetPassword.cs" />
     <Compile Include="Models\UserCreditCard.cs" />
     <Compile Include="Models\UserImage.cs" />
+    <Compile Include="Models\UserPosts.cs" />
     <Compile Include="Models\UserProfileBio.cs" />
     <Compile Include="Models\UserProfileImage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -291,6 +297,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705090149327_UserFollows.resx">
       <DependentUpon>201705090149327_UserFollows.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705100504029_UserPosts.resx">
+      <DependentUpon>201705100504029_UserPosts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -15,6 +15,7 @@ namespace Webvnue.Models
         public DbSet<UserImage> UserImages { get; set; }
         public DbSet<UserProfileBio> UserProfileBio { get; set; }
         public DbSet<Follows> UserFollowers { get; set; }
+        public DbSet<UserPosts> UserPosts { get; set; }
 
         public MyIdentityDbContext() : base("webvnue")
         {

@@ -32,6 +32,7 @@ namespace Webvnue.Controllers
             if (user != null)
             {
                 ViewData["CurrentUser"] = user;
+                ViewData["Followers"] = getFollowers(user.Id);
             }
 
             return View();
@@ -69,6 +70,7 @@ namespace Webvnue.Controllers
 
                     //addDefaultPicture(user);
                     addUserDefaultProfileBio(user);
+                    initializeUserPosts(user);
                     sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
 
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
@@ -214,6 +216,18 @@ namespace Webvnue.Controllers
                         Views = 0
 
                     };
+
+                    var post = new Models.Post() {
+                        Id = Guid.NewGuid().ToString(),
+                        UserId = getCurrentUser().Id,
+                        ImageData = imageData,
+                        TimeStamp = DateTime.Now
+                    };
+
+                    foreach(var follower in getFollowers(getCurrentUser().Id))
+                    {
+                        db.UserPosts.Find(follower.Id).Posts.Add(post);
+                    }
 
                     db.UserImages.Add(userImage);
                     db.SaveChanges();
@@ -531,6 +545,18 @@ namespace Webvnue.Controllers
             db.SaveChanges();
         }
 
+        private void initializeUserPosts(Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+            db.UserPosts.Add(new Models.UserPosts()
+            {
+                UserId = user.Id,
+                Posts = new List<Models.Post>()
+            });
+
+            db.SaveChanges();
+        }
+
         private bool checkIfFollowing(string currentUserId, string visitedUserId)
         {
             var db = new Models.MyIdentityDbContext();
@@ -578,6 +604,23 @@ namespace Webvnue.Controllers
             }
 
             return count;
+        }
+
+        private List<Models.MyIdentityUser> getFollowers(string userId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            List<Models.MyIdentityUser> followerList = new List<Models.MyIdentityUser>();
+
+            foreach (var obj in db.UserFollowers)
+            {
+                if (obj.FollowingUserId == userId)
+                {
+                    followerList.Add(userManager.FindById(obj.UserId));
+                }
+            }
+
+            return followerList;
         }
     }
 }
