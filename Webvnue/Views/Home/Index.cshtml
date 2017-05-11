@@ -11,7 +11,7 @@
     var currentUserPosts = (IEnumerable<Webvnue.Models.Post>) ViewData["Posts"];
 }
 @model Webvnue.Models.Register
-
+<script type="text/javascript" src="~/Scripts/webvnue-scripts.js"></script>
 
 @if (currentUser == null)
 {
@@ -214,7 +214,21 @@ else
                                 </div>
                                 <div class="tab-pane" id="2a">
                                     <div align="center">
-                                    <b>ADD TEXT TO A PHOTO AND SHARE WITH YOUR FRIENDS</b>
+                                        <div class="container">                                            
+                                                    <input type="file" id="file"/>
+
+                                        <br />
+                                        </div>
+                                        <div id="image-container">
+                                            <canvas width="500" height="500"></canvas>
+                                            <div class="inputs">
+                                                <br />
+                                                <br />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <input id="topLineText" type="text" placeholder="Enter text here">
+                                        <button class="btn btn-primary text-center" id="saveBtn">Post</button>
                                     </div>
                                 </div>
                             </div>
@@ -290,11 +304,6 @@ else
 
             </div>
                </div>
-
-
-
-            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-
 
 
 }
