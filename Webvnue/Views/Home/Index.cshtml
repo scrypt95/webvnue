@@ -177,63 +177,72 @@ else
     <div class="mainbody container-fluid">
         <div class="row">
             <div style="padding-top:10px;"> </div>
-            <!--            <div class="col-md-offset-4 col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <div class="media">
-                                <div align="center">
-                                    <img class="img-rounded img-responsive" id="addImgButton" src="~/Images/add-button-md.png" width="50" height="50"/>
-                                    <span class="text-center"><b>Click here to share photo's with friends!</b></span>
-                                </div>
+
+            <div class="col-md-3">
+                <div class="panel panel-default" data-spy="affix">
+                    <div class="panel-body">
+                        <div class="media">
+                            <div align="left">
+                                <div class="profilename"> @currentUser.FirstName @currentUser.LastName </div>
+                                <img class="img-rounded img-responsive" src="/Home/profileimg/@currentUser.Id" width="200" height="200" />
                             </div>
                         </div>
                     </div>
                 </div>
-            -->
-            <div id="exTab1" class="container">
-                <div class="col-md-offset-3 col-md-6">
-                    <div class="panel panel-default">
-                        <div class="panel-body">
-                            <ul class="nav nav-pills">
-                                <li class="active pull-left">
-                                    <a href="#1a" data-toggle="tab">POST PHOTO</a>
-                                </li>
-                                <li class="pull-left">
-                                    <a href="#2a" data-toggle="tab">CREATE MEME</a>
-                                </li>
-                            </ul>
-                            <hr />
+            </div>
 
-                            <div class="tab-content clearfix">
-                                <div class="tab-pane active" id="1a">
-                                    <div align="center">
-                                        <button class="btn btn-default"><img class="img-rounded img-responsive" id="addImgButton" src="~/Images/Add-icon.png" width="50" height="50" /></button>
-                                        <br />
-                                        <span class="text-center"><b>Click here to share photo's with friends!</b></span>
-                                    </div>
-                                </div>
-                                <div class="tab-pane" id="2a">
-                                    <div align="center">
-                                        <div class="container">                                            
-                                                    <input type="file" id="file"/>
 
-                                        <br />
+
+
+
+
+
+
+            <div class="col-md-6">
+                <div id="exTab1" class="container">
+                    <div class="col-md-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <ul class="nav nav-pills">
+                                    <li class="active pull-left">
+                                        <a href="#1a" data-toggle="tab">POST PHOTO</a>
+                                    </li>
+                                    <li class="pull-left">
+                                        <a href="#2a" data-toggle="tab">CREATE MEME</a>
+                                    </li>
+                                </ul>
+                                <hr />
+
+                                <div class="tab-content clearfix">
+                                    <div class="tab-pane active" id="1a">
+                                        <div align="center">
+                                            <button class="btn btn-default"><img class="img-rounded img-responsive" id="addImgButton" src="~/Images/Add-icon.png" width="50" height="50" /></button>
+                                            <br />
+                                            <span class="text-center"><b>Click here to share photo's with friends!</b></span>
                                         </div>
-                                        <div id="image-container">
-                                            <canvas width="500" height="500"></canvas>
-                                            <div class="inputs">
-                                                <br />
+                                    </div>
+                                    <div class="tab-pane" id="2a">
+                                        <div align="center">
+                                            <div class="container">
+                                                <input type="file" id="file" />
+
                                                 <br />
                                             </div>
+                                            <div id="image-container">
+                                                <canvas width="500" height="500"></canvas>
+                                                <div class="inputs">
+                                                    <br />
+                                                    <br />
+                                                </div>
+                                            </div>
+                                            <br />
+                                            <input id="topLineText" type="text" placeholder="Enter text here">
+                                            <button class="btn btn-primary text-center" id="saveBtn">Post</button>
                                         </div>
-                                        <br />
-                                        <input id="topLineText" type="text" placeholder="Enter text here">
-                                        <button class="btn btn-primary text-center" id="saveBtn">Post</button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                      </div>
                     </div>
                 </div>
 
@@ -242,7 +251,7 @@ else
 
                 @foreach (var post in currentUserPosts)
                 {
-                    <div class="col-md-6 col-md-offset-3">
+                    <div class="col-md-12">
                         <br />
                         <br />
                         <div class="panel panel-default">
@@ -309,14 +318,47 @@ else
                             </div>
                         </div>
                     </div>
+
+
                 }
 
 
 
 
-
             </div>
-               </div>
+            <div class="col-md-3">
+            <div class="panel panel-default" data-spy="affix">
+                <div class="panel-body">
+                    <div class="media">
+                        <span class="text-center"><b>Recent Activity</b></span>
+                        <hr />
+                        <div class="pull-left">
+                            <a href="#">Ken Hoac</a> is now following you!
+                            <br />
+                            <br />
+                            <a href="#">Andy Tran</a> signed up under your refferal!
+                            <br />
+                            <br />
+                            <a href="#">Ken Hoac</a> is now streaming live on <b>twitch.tv</b>
+                            <br />
+                            Watch his stream live at <a href="#">twitch.tv/iEatManAss</a>
+                            <br />
+                        </div>                        
+                        <div class="text-center"><a href="#">See more</a></div>
+                    </div>
+                </div>
+            </div>
+           </div>
+
+
+
+
+
+
+
+
+           </div>
+         </div>
 
 
 }

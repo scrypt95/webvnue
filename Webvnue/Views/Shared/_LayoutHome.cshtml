@@ -82,48 +82,9 @@
 
         </div>
     </nav>
-    <nav class="navbar navbar-left" id="leftSideBar">
-               <div class="panel panel-default" data-spy="affix">
-                    <div class="panel-body">
-                        <div class="media">
-                            <div align="left">
-                                <div class="profilename"> @currentUser.FirstName @currentUser.LastName </div>
-                                <img class="img-rounded img-responsive" src="/Home/profileimg/@currentUser.Id" width="200" height="200" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-    </nav>
- 
-    
-    
-                
-     <nav class="navbar navbar-right" id="rightSideBar">
-         <div class="panel panel-default" data-spy="affix">
-            <div class="panel-body">
-                <div class="media">
-                    <span class="text-center"><b>Recent Activity</b></span>
-                    <hr />
-                    <div class="pull-left">
-                        <a href="#">Ken Hoac</a> is now following you!
-                        <br />
-                        <br />
-                        <a href="#">Andy Tran</a> signed up under your refferal!
-                        <br />
-                        <br />
-                        <a href="#">Ken Hoac</a> is now streaming live on <b>twitch.tv</b>
-                        <br />
-                        Watch his stream live at <a href="#">twitch.tv/iEatManAss</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </nav>
 
 
-
-
-    <div class="container body-content" id="homeContainer">
+    <div class="container body-content">
         @RenderBody()
 
         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
