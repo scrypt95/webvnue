@@ -214,8 +214,8 @@
 
     function handleFileSelect(evt) {
         //make canvas
-        var canvasWidth = 500;
-        var canvasHeight = 500;
+        var canvasWidth = 400;
+        var canvasHeight = 400;
         var file = evt.target.files[0];
 
         //image upload
