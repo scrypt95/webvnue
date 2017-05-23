@@ -17,8 +17,7 @@
     <AssemblyName>Webvnue</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>
-    </IISExpressSSLPort>
+    <IISExpressSSLPort>44304</IISExpressSSLPort>
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
@@ -231,6 +230,10 @@
     <Compile Include="Migrations\201705100633485_UserPosts2.Designer.cs">
       <DependentUpon>201705100633485_UserPosts2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705230724258_BackToOldUserPostId.cs" />
+    <Compile Include="Migrations\201705230724258_BackToOldUserPostId.Designer.cs">
+      <DependentUpon>201705230724258_BackToOldUserPostId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
@@ -311,6 +314,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705100633485_UserPosts2.resx">
       <DependentUpon>201705100633485_UserPosts2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705230724258_BackToOldUserPostId.resx">
+      <DependentUpon>201705230724258_BackToOldUserPostId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

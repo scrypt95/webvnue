@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -13,5 +14,7 @@ namespace Webvnue.Models
         public string OriginalPostUserId { get; set; }
         public byte[] ImageData { get; set; }
         public DateTime TimeStamp { get; set; }
+        [NotMapped]
+        public Models.MyIdentityUser OriginalPostUser { get; set; }
     }
 }

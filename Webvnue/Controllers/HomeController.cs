@@ -33,7 +33,13 @@ namespace Webvnue.Controllers
             if (user != null)
             {
                 ViewData["CurrentUser"] = user;
-                ViewData["Posts"] = getUserPosts(user);
+
+                List<Models.Post> userPosts = getUserPosts(user);
+                foreach(var post in userPosts)
+                {
+                    post.OriginalPostUser = getUser(post.OriginalPostUserId);
+                }
+                ViewData["Posts"] = userPosts;
             }
 
             return View();
@@ -646,6 +652,13 @@ namespace Webvnue.Controllers
             var db = new Models.MyIdentityDbContext();
 
             return db.UserPosts.Find(user.Id).Posts.ToList();
+        }
+
+        private Models.MyIdentityUser getUser(string userId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            return db.Users.Find(userId);
         }
     }
 }
