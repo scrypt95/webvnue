@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -14,7 +15,13 @@ namespace Webvnue.Models
         public string OriginalPostUserId { get; set; }
         public byte[] ImageData { get; set; }
         public DateTime TimeStamp { get; set; }
+        public virtual Collection<Comment> Comments { get; set; }
         [NotMapped]
         public Models.MyIdentityUser OriginalPostUser { get; set; }
+
+        public Post()
+        {
+            Comments = new Collection<Comment>();
+        }
     }
 }

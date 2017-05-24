@@ -234,10 +234,15 @@
     <Compile Include="Migrations\201705230724258_BackToOldUserPostId.Designer.cs">
       <DependentUpon>201705230724258_BackToOldUserPostId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705240602153_PostCommentsNow.cs" />
+    <Compile Include="Migrations\201705240602153_PostCommentsNow.Designer.cs">
+      <DependentUpon>201705240602153_PostCommentsNow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
     <Compile Include="Models\ChangeProfile.cs" />
+    <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\Configuration.cs" />
     <Compile Include="Models\CreditCardModel.cs" />
     <Compile Include="Models\Follows.cs" />
@@ -317,6 +322,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705230724258_BackToOldUserPostId.resx">
       <DependentUpon>201705230724258_BackToOldUserPostId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705240602153_PostCommentsNow.resx">
+      <DependentUpon>201705240602153_PostCommentsNow.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
