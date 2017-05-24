@@ -38,6 +38,10 @@ namespace Webvnue.Controllers
                 foreach(var post in userPosts)
                 {
                     post.OriginalPostUser = getUser(post.OriginalPostUserId);
+                    foreach(var comment in post.Comments)
+                    {
+                        comment.OriginalUser = getUser(comment.OriginalUserId);
+                    }
                 }
                 ViewData["Posts"] = userPosts;
             }
@@ -286,6 +290,14 @@ namespace Webvnue.Controllers
         public ActionResult removeFollowing(string id)
         {
             removeFollow(getCurrentUser().Id, id);
+
+            return null;
+        }
+
+        [HttpPost]
+        public ActionResult addComment(string id, string PostId, string Message)
+        {
+            addNewCommentToPost(id, PostId, Message);
 
             return null;
         }
@@ -659,6 +671,22 @@ namespace Webvnue.Controllers
             var db = new Models.MyIdentityDbContext();
 
             return db.Users.Find(userId);
+        }
+
+        private void addNewCommentToPost(string id, string postId, string message)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            var newComment = new Models.Comment() {
+                Id = Guid.NewGuid().ToString(),
+                OriginalUserId = id,
+                Message = message,
+                TimeStamp = DateTime.Now
+            };
+
+            db.UserPosts.Find(id).Posts.FirstOrDefault(x => x.Id == postId).Comments.Add(newComment);
+
+            db.SaveChanges();
         }
     }
 }

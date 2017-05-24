@@ -304,32 +304,26 @@ else
 
                             </div>
                             <div class="panel-body">
-
-                                <ul>
-                                    <li>
-                                        <img class="img-circle" src="https://scontent.forf1-2.fna.fbcdn.net/v/t31.0-8/14242403_1186267638096185_1846690254998461154_o.jpg?oh=e572add9f78576b164d46ec71147e27d&oe=597A0490" width="15" height="15" />
-                                        <a href="#"><b>Josh Peterson</b></a> : WOW YOU ARE A CUNT<span class="pull-right"><small>1:29pm</small></span>
-                                    </li>
-                                    <li>
-                                        <img class="img-circle" src="https://scontent.forf1-2.fna.fbcdn.net/v/t1.0-9/17992240_1719902478024554_5207744693830943800_n.jpg?oh=1e479e0df01658c7c49b343d3213c607&oe=59801FBC" width="15" height="15" />
-                                        <a href="#"><b>Andy Tran</b></a> : OMG IM FUCKING GAY<span class="pull-right"><small>3:00pm</small></span>
-                                    </li>
-                                </ul>
-                                <div class="input-group">
-                                    <input type="text" id="userComment" class="form-control input-sm chat-input" placeholder="Write your message here..." />
-                                    <span class="input-group-btn" onclick="addComment()">
-                                        <button class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</button>
-
-
-                                        <!--<a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>-->
-                                    </span>
-                                </div>
+                                <div class="commentDiv">
+                                    <ul>
+                                    @foreach (var comment in post.Comments)
+                                    {
+                                            <li>
+                                                <img class="img-circle" src="/Home/profileimg/@comment.OriginalUser.Id" width="15" height="15" />
+                                                <a href="#"><b>@comment.OriginalUser.FirstName @comment.OriginalUser.LastName</b></a> : @comment.Message<span class="pull-right"><small>1:29pm</small></span>
+                                            </li>
+                                    }
+                                    </ul>
+                                    <div class="input-group">
+                                        <input type="text" id="user-comment" class="form-control input-sm chat-input" placeholder="Write your message here..." />
+                                        <span class="input-group-btn" onclick="addComment()">
+                                            <button class="btn btn-primary btn-sm" id="add-comment" user-id="@currentUser.Id" post-id="@post.Id"><span class="glyphicon glyphicon-comment"></span> Add Comment</button>
 
 
-
-
-
-
+                                            <!--<a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>-->
+                                        </span>
+                                    </div>
+                                    </div>
                             </div>
                         </div>
                     </div>

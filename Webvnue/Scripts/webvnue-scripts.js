@@ -163,6 +163,28 @@
             }
         });
     });
+
+    $("#add-comment").click(function (event) {
+        var id = $("#add-comment").attr("user-id")
+        var postid = $("#add-comment").attr("post-id")
+        var message = $("#user-comment").val();
+
+        var datavalue = { "id": id, "PostId": postid, "Message": message };
+
+        $.ajax({
+            url: '/Home/addComment',
+            type: 'POST',
+            data: datavalue,
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    });
+
+
     function textChangeListener(evt) {
         var id = evt.target.id;
         var text = evt.target.value;
