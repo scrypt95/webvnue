@@ -38,11 +38,15 @@ namespace Webvnue.Controllers
                 foreach(var post in userPosts)
                 {
                     post.OriginalPostUser = getUser(post.OriginalPostUserId);
-                    foreach(var comment in post.Comments)
+                    foreach (var comment in post.Comments)
                     {
                         comment.OriginalUser = getUser(comment.OriginalUserId);
                     }
+                   
+                    post.Comments.OrderBy(x => x.TimeStamp);
                 }
+                userPosts.OrderBy(x => x.TimeStamp);
+
                 ViewData["Posts"] = userPosts;
             }
 
