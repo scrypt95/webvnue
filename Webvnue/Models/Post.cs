@@ -15,13 +15,13 @@ namespace Webvnue.Models
         public string OriginalPostUserId { get; set; }
         public byte[] ImageData { get; set; }
         public DateTime TimeStamp { get; set; }
-        public virtual Collection<Comment> Comments { get; set; }
+        public virtual List<Comment> Comments { get; set; }
         [NotMapped]
         public Models.MyIdentityUser OriginalPostUser { get; set; }
 
         public Post()
         {
-            Comments = new Collection<Comment>();
+            Comments = new List<Comment>();
         }
     }
 }

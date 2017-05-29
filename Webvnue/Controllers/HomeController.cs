@@ -42,10 +42,10 @@ namespace Webvnue.Controllers
                     {
                         comment.OriginalUser = getUser(comment.OriginalUserId);
                     }
-                   
-                    post.Comments.OrderBy(x => x.TimeStamp);
+
+                    post.Comments.Sort((x,y) => DateTime.Compare(x.TimeStamp, y.TimeStamp));
                 }
-                userPosts.OrderBy(x => x.TimeStamp);
+                userPosts.Sort((x, y) => DateTime.Compare(y.TimeStamp, x.TimeStamp));
 
                 ViewData["Posts"] = userPosts;
             }

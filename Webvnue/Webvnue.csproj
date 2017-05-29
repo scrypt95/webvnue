@@ -238,6 +238,14 @@
     <Compile Include="Migrations\201705240602153_PostCommentsNow.Designer.cs">
       <DependentUpon>201705240602153_PostCommentsNow.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705290421582_ListInsteadOfCollection.cs" />
+    <Compile Include="Migrations\201705290421582_ListInsteadOfCollection.Designer.cs">
+      <DependentUpon>201705290421582_ListInsteadOfCollection.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705290423596_PostUsesListInsteadOfCollection.cs" />
+    <Compile Include="Migrations\201705290423596_PostUsesListInsteadOfCollection.Designer.cs">
+      <DependentUpon>201705290423596_PostUsesListInsteadOfCollection.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
@@ -325,6 +333,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705240602153_PostCommentsNow.resx">
       <DependentUpon>201705240602153_PostCommentsNow.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705290421582_ListInsteadOfCollection.resx">
+      <DependentUpon>201705290421582_ListInsteadOfCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705290423596_PostUsesListInsteadOfCollection.resx">
+      <DependentUpon>201705290423596_PostUsesListInsteadOfCollection.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

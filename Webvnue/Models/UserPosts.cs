@@ -11,11 +11,11 @@ namespace Webvnue.Models
     {
         [Key]
         public string UserId { get; set; }
-        public virtual Collection<Models.Post> Posts { get; set; }
+        public virtual List<Models.Post> Posts { get; set; }
 
         public UserPosts()
         {
-            Posts = new Collection<Post>();
+            Posts = new List<Post>();
         }
     }
 }
