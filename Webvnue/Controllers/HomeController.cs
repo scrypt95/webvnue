@@ -153,6 +153,7 @@ namespace Webvnue.Controllers
         public ActionResult UploadProfileImage(HttpPostedFileBase[] uploadImage)
         {
             var db = new Models.MyIdentityDbContext();
+            var currentUser = getCurrentUser();
 
             if (uploadImage.Length == 0)
             {
@@ -164,9 +165,9 @@ namespace Webvnue.Controllers
                 return Redirect(Request.UrlReferrer.ToString());
             }
 
-            if (db.UserProfileImages.Find(getCurrentUser().Id) != null)
+            if (db.UserProfileImages.Find(currentUser.Id) != null)
             {
-                var profile = db.UserProfileImages.Find(getCurrentUser().Id);
+                var profile = db.UserProfileImages.Find(currentUser.Id);
                 db.UserProfileImages.Remove(profile);
                 db.SaveChanges();
             }
@@ -183,10 +184,25 @@ namespace Webvnue.Controllers
                     }
                     var userImage = new Models.UserProfileImage()
                     {
-                        UserId = getCurrentUser().Id,
+                        UserId = currentUser.Id,
                         ImageData = imageData,
                         FileName = image.FileName
                     };
+
+                    var post = new Models.Post()
+                    {
+                        Id = Guid.NewGuid().ToString(),
+                        OriginalPostUserId = currentUser.Id,
+                        ImageData = imageData,
+                        TimeStamp = DateTime.Now
+                    };
+
+                    foreach (var follower in getFollowers(currentUser.Id))
+                    {
+                        db.UserPosts.Find(follower.Id).Posts.Add(post);
+                    }
+
+                    db.UserPosts.Find(currentUser.Id).Posts.Add(post);
 
                     db.UserProfileImages.Add(userImage);
                     db.SaveChanges();
@@ -199,6 +215,7 @@ namespace Webvnue.Controllers
         public ActionResult UploadImage(HttpPostedFileBase[] uploadMainImage)
         {
             var db = new Models.MyIdentityDbContext();
+            var currentUser = getCurrentUser();
 
             if (uploadMainImage.Length == 0)
             {
@@ -223,7 +240,7 @@ namespace Webvnue.Controllers
                     var userImage = new Models.UserImage()
                     {
                         Id = Guid.NewGuid().ToString(),
-                        UserId = getCurrentUser().Id,
+                        UserId = currentUser.Id,
                         ImageData = imageData,
                         FileName = image.FileName,
                         Rating = 0,
@@ -234,16 +251,17 @@ namespace Webvnue.Controllers
 
                     var post = new Models.Post() {
                         Id = Guid.NewGuid().ToString(),
-                        OriginalPostUserId = getCurrentUser().Id,
+                        OriginalPostUserId = currentUser.Id,
                         ImageData = imageData,
                         TimeStamp = DateTime.Now
                     };
 
-                    foreach(var follower in getFollowers(getCurrentUser().Id))
+                    foreach(var follower in getFollowers(currentUser.Id))
                     {
                         db.UserPosts.Find(follower.Id).Posts.Add(post);
                     }
 
+                    db.UserPosts.Find(currentUser.Id).Posts.Add(post);
                     db.UserImages.Add(userImage);
                     db.SaveChanges();
                 }
