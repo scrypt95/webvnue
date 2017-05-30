@@ -321,3 +321,30 @@ border-color:black;
     color: #fff;
     border: 0;
 }
+.myBox {
+border: none;
+padding: 5px;
+width: 500px;
+height: 100px;
+overflow: scroll;
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+width: 5px;
+height: 0px;
+}
+
+::-webkit-scrollbar-track {
+border: 1px solid gray;
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+background: gray;  
+border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+background: black;  
+}

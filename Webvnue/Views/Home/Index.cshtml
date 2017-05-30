@@ -276,7 +276,7 @@ else
                         <div class="panel panel-default">
                             <div class="panel-body">
                                 <span class="pull-left">
-                                    <img class="img-circle" src="/Home/profileimg/@post.OriginalPostUserId" width="50" height="50" />
+                                    <img class="img-thumbnail img-responsive" src="/Home/profileimg/@post.OriginalPostUserId" width="50" height="50" />
 
                                     <a href="~/@post.OriginalPostUser.UserName" class="btn btn-link" style="text-decoration:none;">@post.OriginalPostUser.FirstName @post.OriginalPostUser.LastName</a>
 
@@ -289,7 +289,7 @@ else
                                             <span class="caret"></span>
                                         </button>
                                         <ul class="dropdown-menu" aria-labelledby="dd2" style="float: right;">
-                                            <li><a href="#"><span class="glyphicon glyphicon-ban-circle"></span> Hide Post</a></li>
+                                            <li><a href=""><span class="glyphicon glyphicon-ban-circle"></span> Hide Post</a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -309,15 +309,17 @@ else
                             </div>
                             <div class="panel-body">
                                 <div class="commentDiv">
+                                    <div class="myBox">
                                     <ul>
                                     @foreach (var comment in post.Comments)
                                     {
                                             <li>
-                                                <img class="img-circle" src="/Home/profileimg/@comment.OriginalUser.Id" width="15" height="15" />
+                                                <img class="img-thumbnail img-responsive" src="/Home/profileimg/@comment.OriginalUser.Id" width="30" height="30" />
                                                 <a href="~/@comment.OriginalUser.UserName"><b>@comment.OriginalUser.FirstName @comment.OriginalUser.LastName</b></a> : @comment.Message<span class="pull-right"><small>@comment.TimeStamp.Month/@comment.TimeStamp.Day/@comment.TimeStamp.Year</small></span>
                                             </li>
                                     }
                                     </ul>
+                                    </div>
                                     <div class="input-group">
                                         <input type="text" id="user-comment" class="form-control input-sm chat-input" placeholder="Write your message here..." />
                                         <span class="input-group-btn" onclick="addComment()">
