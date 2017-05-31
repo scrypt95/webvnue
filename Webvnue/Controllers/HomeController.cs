@@ -189,20 +189,8 @@ namespace Webvnue.Controllers
                         FileName = image.FileName
                     };
 
-                    var post = new Models.Post()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        OriginalPostUserId = currentUser.Id,
-                        ImageData = imageData,
-                        TimeStamp = DateTime.Now
-                    };
-
-                    foreach (var follower in getFollowers(currentUser.Id))
-                    {
-                        db.UserPosts.Find(follower.Id).Posts.Add(post);
-                    }
-
-                    //db.UserPosts.Find(currentUser.Id).Posts.Add(post);
+                    AddNewPostToFollowers(imageData, currentUser);
+                    AddNewPostToCurrentUser(imageData, currentUser);
 
                     db.UserProfileImages.Add(userImage);
                     db.SaveChanges();
