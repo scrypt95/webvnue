@@ -75,7 +75,7 @@ namespace Webvnue.Controllers
 
                 if (result.Succeeded)
                 {
-                    userManager.AddToRole(user.Id, "User");
+                    //userManager.AddToRole(user.Id, "User");
 
                     if (Token != null && validateToken(Token))
                     {
@@ -189,20 +189,8 @@ namespace Webvnue.Controllers
                         FileName = image.FileName
                     };
 
-                    var post = new Models.Post()
-                    {
-                        Id = Guid.NewGuid().ToString(),
-                        OriginalPostUserId = currentUser.Id,
-                        ImageData = imageData,
-                        TimeStamp = DateTime.Now
-                    };
-
-                    foreach (var follower in getFollowers(currentUser.Id))
-                    {
-                        db.UserPosts.Find(follower.Id).Posts.Add(post);
-                    }
-
-                    db.UserPosts.Find(currentUser.Id).Posts.Add(post);
+                    AddNewPostToFollowers(imageData, currentUser);
+                    AddNewPostToCurrentUser(imageData, currentUser);
 
                     db.UserProfileImages.Add(userImage);
                     db.SaveChanges();
@@ -249,19 +237,10 @@ namespace Webvnue.Controllers
 
                     };
 
-                    var post = new Models.Post() {
-                        Id = Guid.NewGuid().ToString(),
-                        OriginalPostUserId = currentUser.Id,
-                        ImageData = imageData,
-                        TimeStamp = DateTime.Now
-                    };
+                    AddNewPostToFollowers(imageData, currentUser);
+                    AddNewPostToCurrentUser(imageData, currentUser);
 
-                    foreach(var follower in getFollowers(currentUser.Id))
-                    {
-                        db.UserPosts.Find(follower.Id).Posts.Add(post);
-                    }
-
-                    db.UserPosts.Find(currentUser.Id).Posts.Add(post);
+                    
                     db.UserImages.Add(userImage);
                     db.SaveChanges();
                 }
@@ -707,6 +686,43 @@ namespace Webvnue.Controllers
             };
 
             db.UserPosts.Find(id).Posts.FirstOrDefault(x => x.Id == postId).Comments.Add(newComment);
+
+            db.SaveChanges();
+        }
+
+        private void AddNewPostToFollowers(byte[] imageData, Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            var post = new Models.Post()
+            {
+                Id = Guid.NewGuid().ToString(),
+                OriginalPostUserId = user.Id,
+                ImageData = imageData,
+                TimeStamp = DateTime.Now
+            };
+
+            foreach (var follower in getFollowers(user.Id))
+            {
+                db.UserPosts.Find(follower.Id).Posts.Add(post);
+            }
+
+            db.SaveChanges();
+        }
+
+        private void AddNewPostToCurrentUser(byte[] imageData, Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            var post = new Models.Post()
+            {
+                Id = Guid.NewGuid().ToString(),
+                OriginalPostUserId = user.Id,
+                ImageData = imageData,
+                TimeStamp = DateTime.Now
+            };
+
+            db.UserPosts.Find(user.Id).Posts.Add(post);
 
             db.SaveChanges();
         }
