@@ -226,8 +226,7 @@ ul{
     /*background-color: #FF0000;*/
 }
 .container .userphoto img {
-    position: center;
-    width: 500px;
+    width: 600px;
     height: auto;
 }
 .modal{
@@ -330,21 +329,21 @@ overflow: scroll;
 }
 
 /* Scrollbar styles */
-::-webkit-scrollbar {
+#myBox::-webkit-scrollbar {
 width: 5px;
 height: 0px;
 }
 
-::-webkit-scrollbar-track {
+#myBox::-webkit-scrollbar-track {
 border: 1px solid gray;
 border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb {
+#myBox::-webkit-scrollbar-thumb {
 background: gray;  
 border-radius: 10px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+#myBox::-webkit-scrollbar-thumb:hover {
 background: black;  
 }

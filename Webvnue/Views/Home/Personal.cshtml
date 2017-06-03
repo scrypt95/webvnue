@@ -214,29 +214,71 @@
                      }
 
 
-
-                     <div class="modal fade" id="@imageid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-
+                         <div class="modal fade" id="@imageid" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                     <div class="panel panel default col col-md-6 col-md-offset-3">
+                             <div class="panel body">
                              <div class="container">
                                  <div class="row">
-                                     <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
-                                                 <div class="userphoto">
-                                                     <div class="img-responsive img-thumbnail">
-                                                         <button type="button" class="close" style="position:absolute;right:70px;" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"style="color:red"></span></button>
+                                     <div class="col-md-7">
+                                                <div class="userphoto">
+                                                     <div class="">
+                                                         
                                                          <img src="/Home/showImage/@imageid">
                                                      </div>
+                                                     </div>
+                                                   </div>
+
+                                     <div class="col-md-4 col-md-offset-1">
+                                         <button type="button" class="close" style="position:absolute;right:0px;" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove" style="color:red"></span></button>
+                                                 <img class="img-thumbnail img-responsive" src="~/Images/andyfuckingmoon.jpg" width="50" height="50" />
+                                                 <a href="#">Joshua Peterson</a>
+                                                 <small>4/20/1969</small>
+                                         <br />
+                                         <br />
+                                         <button class="btn btn-default glyphicon glyphicon-heart">Like</button>
+                                         <button class="btn btn-default glyphicon glyphicon-retweet">Share</button>
+                                         <hr />
+
+
+                                             <div class="commentDiv2">
+                                                 <div class="myBox2" id="myBox2">
+                                                     <ul>
+                                                             <li>
+                                                                 <img class="img-thumbnail img-responsive" src="~/Images/andyfuckingmoon.jpg" width="30" height="30" />
+                                                                 <a href=""><b>JOSHUA PETERSON</b></a> : NICE COCK
+                                                             </li>
+
+                                                     </ul>
                                                  </div>
+                                                 <div class="input-group">
+                                                     <input type="text" id="user-comment" class="form-control input-sm chat-input" placeholder="Write your message here..." />
+                                                     <span class="input-group-btn" onclick="addComment()">
+                                                         <button class="btn btn-primary btn-sm" id="add-comment" user-id="#" post-id="#"><span class="glyphicon glyphicon-comment"></span></button>
 
 
-
-
-                                                 <!--          <img src="/Home/showImage/@imageid" style="width:500px;height:400px;">  -->
+                                                         <!--<a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>-->
+                                                     </span>
+                                                 </div>
                                              </div>
+
+
+
+                                         
+
+                                             </div>
+                                         </div>
                                      </div>
+
+
+
+                                 </div>
                              </div><!-- /.modal-content -->
                          </div><!-- /.modal-dialog -->
 
-                    </li>
+
+
+
+</li>
                 }
 
 
