@@ -313,7 +313,7 @@ else
                                     <ul>
                                     @foreach (var comment in post.Comments)
                                     {
-                                            <li>
+                                            <li id="commentText">
                                                 <img class="img-thumbnail img-responsive" src="/Home/profileimg/@comment.OriginalUser.Id" width="30" height="30" />
                                                 <a href="~/@comment.OriginalUser.UserName"><b>@comment.OriginalUser.FirstName @comment.OriginalUser.LastName</b></a> : @comment.Message<span class="pull-right"><small>@comment.TimeStamp.Month/@comment.TimeStamp.Day/@comment.TimeStamp.Year</small></span>
                                             </li>

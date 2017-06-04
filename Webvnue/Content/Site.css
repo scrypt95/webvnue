@@ -347,3 +347,8 @@ border-radius: 10px;
 #comment-box::-webkit-scrollbar-thumb:hover {
 background: black;  
 }
+#commentText{
+    background-color:#f2f2f2;
+    border: 2px solid white;
+    border-radius: 5px;
+}
