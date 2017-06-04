@@ -37,7 +37,7 @@ namespace Webvnue.Controllers
                 List<Models.Post> userPosts = getUserPosts(user);
                 foreach(var post in userPosts)
                 {
-                    post.OriginalPostUser = getUser(post.OriginalPostUserId);
+                    post.UserModel = getUser(post.UserId);
                     foreach (var comment in post.Comments)
                     {
                         comment.OriginalUser = getUser(comment.OriginalUserId);
@@ -85,7 +85,7 @@ namespace Webvnue.Controllers
 
                     //addDefaultPicture(user);
                     addUserDefaultProfileBio(user);
-                    initializeUserPosts(user);
+                    //initializeUserPosts(user);
                     sendEmail(user, "Webvnue Registration", string.Format("Dear, {0} <br/><br/> Thank you for joining Webvnue. <br/><br/> You're on your way to becoming your own boss. <br/><br/> Best Regards, <br/>Team Webvnue", user.FirstName));
 
                     IAuthenticationManager authenticationManager = HttpContext.GetOwinContext().Authentication;
@@ -189,8 +189,9 @@ namespace Webvnue.Controllers
                         FileName = image.FileName
                     };
 
-                    AddNewPostToFollowers(imageData, currentUser);
-                    AddNewPostToCurrentUser(imageData, currentUser);
+                    //AddNewPostToFollowers(imageData, currentUser);
+                    //AddNewPostToCurrentUser(imageData, currentUser);
+                    AddNewPost(imageData, currentUser);
 
                     db.UserProfileImages.Add(userImage);
                     db.SaveChanges();
@@ -237,10 +238,10 @@ namespace Webvnue.Controllers
 
                     };
 
-                    AddNewPostToFollowers(imageData, currentUser);
-                    AddNewPostToCurrentUser(imageData, currentUser);
+                    //AddNewPostToFollowers(imageData, currentUser);
+                    //AddNewPostToCurrentUser(imageData, currentUser);
+                    AddNewPost(imageData, currentUser);
 
-                    
                     db.UserImages.Add(userImage);
                     db.SaveChanges();
                 }
@@ -255,8 +256,11 @@ namespace Webvnue.Controllers
 
             var db = new Models.MyIdentityDbContext();
 
-            Models.UserProfileBio bio = new Models.UserProfileBio();
+            Models.UserProfileBio bio = db.UserProfileBio.FirstOrDefault(x => x.UserID == id);
 
+            //Models.UserProfileBio bio = new Models.UserProfileBio();
+
+            /*
             foreach (var obj in db.UserProfileBio)
             {
                 if (obj.UserID == id)
@@ -264,6 +268,7 @@ namespace Webvnue.Controllers
                     bio = obj;
                 }
             }
+            */
 
             return Json(new
             {
@@ -323,22 +328,16 @@ namespace Webvnue.Controllers
             return File(buffer, "image/jpg", string.Format("{0}.jpg", id));
         }
 
+        
         public ActionResult showPostImage(string id)
         {
             var db = new Models.MyIdentityDbContext();
 
-            byte[] defaultBuffer = new Byte[0];
+            byte[] buffer = db.Posts.Find(id).ImageData;
 
-            foreach(var obj in db.UserPosts.Find(getCurrentUser().Id).Posts){
-                if(obj.Id == id)
-                {
-                    byte[] buffer = obj.ImageData;
-                    return File(buffer, "image/jpg", string.Format("{0}.jpg", Guid.NewGuid().ToString()));
-                }
-            }
-
-            return File(defaultBuffer, "image/jpg", string.Format("{0}.jpg", Guid.NewGuid().ToString()));
+            return File(buffer, "image/jpg", string.Format("{0}.jpg", Guid.NewGuid().ToString()));
         }
+        
 
         public ActionResult photo(string id)
         {
@@ -350,6 +349,7 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
+            /*
             foreach (var obj in db.UserImages)
             {
                 if (obj.Id == id)
@@ -357,6 +357,9 @@ namespace Webvnue.Controllers
                     db.UserImages.Remove(obj);
                 }
             }
+            */
+
+            db.UserImages.Remove(db.UserImages.Find(id));
 
             db.SaveChanges();
 
@@ -367,15 +370,18 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
-            Models.UserProfileBio bio = new Models.UserProfileBio();
+            //Models.UserProfileBio bio = new Models.UserProfileBio();
 
+            /*
             foreach (var obj in db.UserProfileBio)
             {
                 if (obj.UserID == id)
                 {
                     bio = obj;
                 }
-            }
+            }*/
+
+            Models.UserProfileBio bio = db.UserProfileBio.FirstOrDefault(x => x.UserID == id);
 
             return bio;
 
@@ -391,6 +397,7 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
+            /*
             foreach (var obj in db.UserProfileBio)
             {
                 if (obj.UserID == id)
@@ -401,6 +408,12 @@ namespace Webvnue.Controllers
                     obj.Quote = Quote;
                 }
             }
+            */
+
+            db.UserProfileBio.FirstOrDefault(x => x.UserID == id).AboutMe = AboutMe;
+            db.UserProfileBio.FirstOrDefault(x => x.UserID == id).Location = Location;
+            db.UserProfileBio.FirstOrDefault(x => x.UserID == id).Gender = Gender;
+            db.UserProfileBio.FirstOrDefault(x => x.UserID == id).Quote = Quote;
 
             db.SaveChanges();
         }
@@ -409,14 +422,23 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
-            List<string> userImageIdList = new List<string>();
+            //List<string> userImageIdList = new List<string>();
 
+            /*
             foreach (var obj in db.UserImages)
             {
                 if (obj.UserId == user.Id)
                 {
                     userImageIdList.Add(obj.Id);
                 }
+            }
+            */
+
+            List<string> userImageIdList = new List<string>();
+
+            foreach(var image in db.UserImages.Where(x => x.UserId == user.Id).ToList())
+            {
+                userImageIdList.Add(image.Id);
             }
 
             return userImageIdList;
@@ -451,12 +473,19 @@ namespace Webvnue.Controllers
 
             var db = new Models.MyIdentityDbContext();
 
+            /*
             foreach (var referral in db.Referrals)
             {
                 if (user.Id == referral.ReferrerId)
                 {
                     referralList.Add(userManager.FindById(referral.RefereeId));
                 }
+            }
+            */
+
+            foreach(var referral in db.Referrals.Where(x => x.ReferrerId == user.Id))
+            {
+                referralList.Add(userManager.FindById(referral.RefereeId));
             }
 
             return referralList;
@@ -507,6 +536,7 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
+            /*
             foreach (var obj in db.UserFollowers)
             {
                 if (obj.UserId == currentUserId && obj.FollowingUserId == followingUserId)
@@ -514,6 +544,9 @@ namespace Webvnue.Controllers
                     db.UserFollowers.Remove(obj);
                 }
             }
+            */
+
+            db.UserFollowers.Remove(db.UserFollowers.FirstOrDefault(x => x.UserId == currentUserId && x.FollowingUserId == followingUserId));
 
             db.SaveChanges();
         }
@@ -547,6 +580,7 @@ namespace Webvnue.Controllers
             smtp.Send(m);
         }
 
+        /*
         private void fillMissingPics()
         {
             var db = new Models.MyIdentityDbContext();
@@ -568,6 +602,7 @@ namespace Webvnue.Controllers
 
             db.SaveChanges();
         }
+        */
 
         private void addDefaultPicture(Models.MyIdentityUser user)
         {
@@ -582,6 +617,7 @@ namespace Webvnue.Controllers
             db.SaveChanges();
         }
 
+        /*
         private void initializeUserPosts(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
@@ -593,11 +629,13 @@ namespace Webvnue.Controllers
 
             db.SaveChanges();
         }
+        */
 
         private bool checkIfFollowing(string currentUserId, string visitedUserId)
         {
             var db = new Models.MyIdentityDbContext();
-            
+
+            /*
             foreach(var obj in db.UserFollowers)
             {
                 if(obj.UserId == currentUserId && obj.FollowingUserId == visitedUserId)
@@ -605,14 +643,23 @@ namespace Webvnue.Controllers
                     return true;
                 }
             }
+            */
 
-            return false;
+            if (db.UserFollowers.FirstOrDefault(x => x.UserId == currentUserId && x.FollowingUserId == visitedUserId) != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         private int getUserFollowingCount(string userId)
         {
             var db = new Models.MyIdentityDbContext();
 
+            /*
             int count = 0;
 
             foreach(var obj in db.UserFollowers)
@@ -622,6 +669,9 @@ namespace Webvnue.Controllers
                     count++;
                 }
             }
+            */
+
+            int count = db.UserFollowers.Where(x => x.UserId == userId).Count();
 
             return count;
         }
@@ -630,6 +680,7 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
+            /*
             int count = 0;
 
             foreach (var obj in db.UserFollowers)
@@ -639,6 +690,9 @@ namespace Webvnue.Controllers
                     count++;
                 }
             }
+            */
+
+            int count = db.UserFollowers.Where(x => x.FollowingUserId == userId).Count();
 
             return count;
         }
@@ -647,8 +701,9 @@ namespace Webvnue.Controllers
         {
             var db = new Models.MyIdentityDbContext();
 
-            List<Models.MyIdentityUser> followerList = new List<Models.MyIdentityUser>();
+            //List<Models.MyIdentityUser> followerList = new List<Models.MyIdentityUser>();
 
+            /*
             foreach (var obj in db.UserFollowers)
             {
                 if (obj.FollowingUserId == userId)
@@ -656,16 +711,33 @@ namespace Webvnue.Controllers
                     followerList.Add(userManager.FindById(obj.UserId));
                 }
             }
+            */
+
+            List<Models.MyIdentityUser> followerList = new List<Models.MyIdentityUser>();
+
+            foreach(var follower in db.UserFollowers.Where(x => x.FollowingUserId == userId))
+            {
+                followerList.Add(userManager.FindById(follower.UserId));
+            }
 
             return followerList;
         }
 
+        
         private List<Models.Post> getUserPosts(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
 
-            return db.UserPosts.Find(user.Id).Posts.ToList();
+            List<Models.Post> userPostList = new List<Models.Post>();
+
+            foreach(var follower in getFollowers(user.Id))
+            {
+                userPostList.AddRange(db.Posts.Where(x => x.UserId == follower.Id || x.UserId == user.Id).ToList());
+            }
+
+            return userPostList;
         }
+        
 
         private Models.MyIdentityUser getUser(string userId)
         {
@@ -685,11 +757,12 @@ namespace Webvnue.Controllers
                 TimeStamp = DateTime.Now
             };
 
-            db.UserPosts.Find(id).Posts.FirstOrDefault(x => x.Id == postId).Comments.Add(newComment);
+            db.Posts.FirstOrDefault(x => x.Id == postId).Comments.Add(newComment);
 
             db.SaveChanges();
         }
 
+        /*
         private void AddNewPostToFollowers(byte[] imageData, Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
@@ -723,6 +796,24 @@ namespace Webvnue.Controllers
             };
 
             db.UserPosts.Find(user.Id).Posts.Add(post);
+
+            db.SaveChanges();
+        }
+        */
+
+        private void AddNewPost(byte[] imageData, Models.MyIdentityUser user)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            var post = new Models.Post()
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserId = user.Id,
+                ImageData = imageData,
+                TimeStamp = DateTime.Now
+            };
+
+            db.Posts.Add(post);
 
             db.SaveChanges();
         }

@@ -12,12 +12,13 @@ namespace Webvnue.Models
     {
         public string Id { get; set; }
         public string UserId { get; set; }
-        public string OriginalPostUserId { get; set; }
+        //public string OriginalPostUserId { get; set; }
         public byte[] ImageData { get; set; }
         public DateTime TimeStamp { get; set; }
         public virtual List<Comment> Comments { get; set; }
         [NotMapped]
-        public Models.MyIdentityUser OriginalPostUser { get; set; }
+        public Models.MyIdentityUser UserModel { get; set; }
+        //public Models.MyIdentityUser OriginalPostUser { get; set; }
 
         public Post()
         {

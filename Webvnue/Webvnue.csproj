@@ -246,6 +246,10 @@
     <Compile Include="Migrations\201705290423596_PostUsesListInsteadOfCollection.Designer.cs">
       <DependentUpon>201705290423596_PostUsesListInsteadOfCollection.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201706040352165_UniversalPosts.cs" />
+    <Compile Include="Migrations\201706040352165_UniversalPosts.Designer.cs">
+      <DependentUpon>201706040352165_UniversalPosts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\BillingPlanCreate.cs" />
     <Compile Include="Models\ChangePassword.cs" />
@@ -339,6 +343,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705290423596_PostUsesListInsteadOfCollection.resx">
       <DependentUpon>201705290423596_PostUsesListInsteadOfCollection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201706040352165_UniversalPosts.resx">
+      <DependentUpon>201706040352165_UniversalPosts.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
