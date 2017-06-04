@@ -164,6 +164,7 @@
         });
     });
 
+    /*
     $("#add-comment").click(function (event) {
         var id = $("#add-comment").attr("user-id")
         var postid = $("#add-comment").attr("post-id")
@@ -182,6 +183,48 @@
                 alert("Request: " + JSON.stringify(request));
             }
         });
+    });
+    */
+
+    /*
+    $(".commentButton").click(function (event) {
+        var stringId = $(this).attr('id');
+        var id = $(this.id).attr("user-id")
+        var postid = $(this.id).attr("post-id")
+        var message = document.getElementById(stringId).getElementsByClassName("commentText")[0];
+
+        var datavalue = { "id": id, "PostId": postid, "Message": message };
+
+        $.ajax({
+            url: '/Home/addComment',
+            type: 'POST',
+            data: datavalue,
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    });
+    */
+
+    $(".commentButton").click(function (event) {
+        var stringId = $(this).attr('id');
+        var elements = document.getElementsByClassName("commentText");
+        var final = "blank";
+
+        for (i = 0; i < elements.length; i++) {
+            if (elements[i].id == stringId) {
+                final = elements[i];
+            }
+        }
+
+
+
+
+        alert(message);
+
     });
 
     function textChangeListener(evt) {

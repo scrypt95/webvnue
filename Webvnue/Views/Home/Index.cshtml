@@ -321,9 +321,9 @@ else
                                     </ul>
                                     </div>
                                     <div class="input-group">
-                                        <input type="text" id="user-comment" class="form-control input-sm chat-input" placeholder="Write your message here..." />
+                                        <input type="text" id="@post.Id" class="commentText form-control input-sm chat-input" placeholder="Write your message here..." />
                                         <span class="input-group-btn" onclick="addComment()">
-                                            <button class="btn btn-primary btn-sm" id="add-comment" user-id="@currentUser.Id" post-id="@post.Id"><span class="glyphicon glyphicon-comment"></span> Add Comment</button>
+                                            <button class="commentButton btn btn-primary btn-sm" id="@post.Id" user-id="@currentUser.Id" post-id="@post.Id"><span class="glyphicon glyphicon-comment"></span> Add Comment</button>
 
 
                                             <!--<a href="#" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-comment"></span> Add Comment</a>-->
