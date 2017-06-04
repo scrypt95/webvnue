@@ -329,21 +329,21 @@ overflow: scroll;
 }
 
 /* Scrollbar styles */
-#myBox::-webkit-scrollbar {
+#comment-box::-webkit-scrollbar {
 width: 5px;
 height: 0px;
 }
 
-#myBox::-webkit-scrollbar-track {
+#comment-box::-webkit-scrollbar-track {
 border: 1px solid gray;
 border-radius: 10px;
 }
 
-#myBox::-webkit-scrollbar-thumb {
+#comment-box::-webkit-scrollbar-thumb {
 background: gray;  
 border-radius: 10px;
 }
 
-#myBox::-webkit-scrollbar-thumb:hover {
+#comment-box::-webkit-scrollbar-thumb:hover {
 background: black;  
 }
