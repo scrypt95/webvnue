@@ -324,7 +324,7 @@ border-color:black;
 border: none;
 padding: 5px;
 width: 500px;
-height: 100px;
+max-height: 100px;
 overflow: scroll;
 }
 
