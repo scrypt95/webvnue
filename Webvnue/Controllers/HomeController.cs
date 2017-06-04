@@ -723,17 +723,33 @@ namespace Webvnue.Controllers
             return followerList;
         }
 
-        
+        private List<Models.MyIdentityUser> getFollowing(string userId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            List<Models.MyIdentityUser> followingList = new List<Models.MyIdentityUser>();
+
+            foreach (var following in db.UserFollowers.Where(x => x.UserId == userId))
+            {
+                followingList.Add(userManager.FindById(following.FollowingUserId));
+            }
+
+            return followingList;
+        }
+
+
         private List<Models.Post> getUserPosts(Models.MyIdentityUser user)
         {
             var db = new Models.MyIdentityDbContext();
 
             List<Models.Post> userPostList = new List<Models.Post>();
 
-            foreach(var follower in getFollowers(user.Id))
+
+            foreach(var following in getFollowing(user.Id))
             {
-                userPostList.AddRange(db.Posts.Where(x => x.UserId == follower.Id || x.UserId == user.Id).ToList());
+                userPostList.AddRange(db.Posts.Where(x => x.UserId == following.Id).ToList());
             }
+            userPostList.AddRange(db.Posts.Where(x => x.UserId == user.Id).ToList());
 
             return userPostList;
         }

@@ -184,7 +184,6 @@
         });
     });
 
-
     function textChangeListener(evt) {
         var id = evt.target.id;
         var text = evt.target.value;
