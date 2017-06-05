@@ -209,23 +209,38 @@
     });
     */
 
+    
     $(".commentButton").click(function (event) {
-        var stringId = $(this).attr('id');
+        var commentButtonId = $(this).attr('id');
+
+        var id = $(this).attr("user-id")
+        var postid = $(this).attr('post-id')
+
         var elements = document.getElementsByClassName("commentText");
-        var final = "blank";
+        var message;
 
         for (i = 0; i < elements.length; i++) {
-            if (elements[i].id == stringId) {
-                final = elements[i];
+            if (elements[i].id == commentButtonId) {
+                message = elements[i].value;
             }
         }
 
+        var datavalue = { "id": id, "PostId": postid, "Message": message };
 
-
-
-        alert(message);
+        $.ajax({
+            url: '/Home/addComment',
+            type: 'POST',
+            data: datavalue,
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
 
     });
+    
 
     function textChangeListener(evt) {
         var id = evt.target.id;
