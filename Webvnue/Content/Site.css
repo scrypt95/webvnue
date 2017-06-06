@@ -329,22 +329,22 @@ overflow: scroll;
 }
 
 /* Scrollbar styles */
-#scrollbar::-webkit-scrollbar {
+.scrollbar::-webkit-scrollbar {
 width: 5px;
 height: 0px;
 }
 
-#scrollbar::-webkit-scrollbar-track {
+.scrollbar::-webkit-scrollbar-track {
 border: 0px solid gray;
 border-radius: 10px;
 }
 
-#scrollbar::-webkit-scrollbar-thumb {
+.scrollbar::-webkit-scrollbar-thumb {
 background: gray;  
 border-radius: 10px;
 }
 
-#scrollbar::-webkit-scrollbar-thumb:hover {
+.scrollbar::-webkit-scrollbar-thumb:hover {
 background: black;  
 }
 #commentText{
