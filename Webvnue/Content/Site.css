@@ -335,7 +335,7 @@ height: 0px;
 }
 
 #scrollbar::-webkit-scrollbar-track {
-border: 1px solid gray;
+border: 0px solid gray;
 border-radius: 10px;
 }
 
