@@ -310,6 +310,7 @@ else
                             </div>
                             <div class="panel-body">
                                 <div class="commentDiv">
+                                    <div class="scrollbar" id="scrollbar">
                                     <div class="myBox" id="@post.Id@post.Id" style="overflow:auto">
                                     <ul>
                                     @foreach (var comment in post.Comments)
@@ -321,6 +322,7 @@ else
                                     }
                                     </ul>
                                     </div>
+                                     </div>
                                     <div class="input-group">
                                         <input type="text" id="@post.Id" class="commentText form-control input-sm chat-input" placeholder="Write your message here..." />
                                         <span class="input-group-btn" onclick="addComment()">

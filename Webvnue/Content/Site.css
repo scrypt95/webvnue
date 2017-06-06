@@ -320,7 +320,7 @@ border-color:black;
     color: #fff;
     border: 0;
 }
-.myBox {
+.scrollbar {
 border: none;
 padding: 5px;
 width: 500px;
@@ -329,22 +329,22 @@ overflow: scroll;
 }
 
 /* Scrollbar styles */
-#comment-box::-webkit-scrollbar {
+#scrollbar::-webkit-scrollbar {
 width: 5px;
 height: 0px;
 }
 
-#comment-box::-webkit-scrollbar-track {
+#scrollbar::-webkit-scrollbar-track {
 border: 1px solid gray;
 border-radius: 10px;
 }
 
-#comment-box::-webkit-scrollbar-thumb {
+#scrollbar::-webkit-scrollbar-thumb {
 background: gray;  
 border-radius: 10px;
 }
 
-#comment-box::-webkit-scrollbar-thumb:hover {
+#scrollbar::-webkit-scrollbar-thumb:hover {
 background: black;  
 }
 #commentText{
