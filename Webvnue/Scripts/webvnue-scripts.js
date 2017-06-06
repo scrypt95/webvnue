@@ -338,16 +338,30 @@
     file.onchange = handleFileSelect;
 
     var input1 = document.getElementById('topLineText');
-    var input2 = document.getElementById('bottomLineText');
+    //var input2 = document.getElementById('bottomLineText');
     input1.oninput = textChangeListener;
-    input2.oninput = textChangeListener;
+    //input2.oninput = textChangeListener;
     document.getElementById('file').addEventListener('change', handleFileSelect, false);
     document.querySelector('button').addEventListener('click', saveFile, false);
 
 
+    /*
+    window.onload = function () {
+        var objDivs = document.getElementsByClassName('myBox')
+        for (i = 0; i < objDivs.length; i++) {
+            var target = document.getElementById(objDivs[i].id)
+            //target.scrollTop = target.scrollHeight;
+            console.log(target)
+        }
 
+    };
+    */
 
-
-
+    var objDiv = document.getElementsByClassName("scrollbar");
+    for (i = 0; i < objDiv.length; i++) {
+        var target = document.getElementById(objDiv[i].id)
+        target.scrollTop = target.scrollHeight;
+        //console.log(target)
+    }
 
 });
