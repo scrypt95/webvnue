@@ -232,7 +232,10 @@
             type: 'POST',
             data: datavalue,
             success: function (data) {
-                window.location.reload();
+                //window.location.reload();
+                $('.myBox').load(document.URL + ' .myBox');
+                //$(".myBox").load(location.href + " .myBox>*", "");
+                console.log("Success called");
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));
