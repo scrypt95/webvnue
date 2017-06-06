@@ -221,11 +221,11 @@
 
         for (i = 0; i < elements.length; i++) {
             if (elements[i].id == commentButtonId) {
-                message = elements[i].value;
+                message = elements[i];
             }
         }
 
-        var datavalue = { "id": id, "PostId": postid, "Message": message };
+        var datavalue = { "id": id, "PostId": postid, "Message": message.value };
 
         $.ajax({
             url: '/Home/addComment',
@@ -233,9 +233,17 @@
             data: datavalue,
             success: function (data) {
                 //window.location.reload();
-                $('.myBox').load(document.URL + ' .myBox');
+                //$('.myBox').load(document.URL + ' .myBox');
                 //$(".myBox").load(location.href + " .myBox>*", "");
-                console.log("Success called");
+
+                var commentDivs = document.getElementsByClassName("myBox");
+
+                for (i = 0; i < commentDivs.length; i++) {
+                    $('#' + commentDivs[i].id).load(document.URL + ' #' + commentDivs[i].id);
+                    message.value = "";
+                }
+
+                //console.log("Success called");
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));
