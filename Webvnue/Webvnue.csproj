@@ -168,6 +168,7 @@
     <Content Include="Images\Faq.jpeg" />
     <Content Include="Images\faq3.jpg" />
     <Content Include="Images\icon.png" />
+    <Content Include="Images\icon2.png" />
     <Content Include="Images\makeitrain.jpg" />
     <Content Include="Images\subscribe.jpeg" />
     <Content Include="Images\support.jpg" />
