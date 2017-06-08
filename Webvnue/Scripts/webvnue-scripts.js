@@ -214,6 +214,8 @@
         var commentButtonId = $(this).attr('id');
 
         var id = $(this).attr("user-id")
+        var userName = $(this).attr("user-username")
+        var userFullName = $(this).attr("user-fullname")
         var postid = $(this).attr('post-id')
 
         var elements = document.getElementsByClassName("commentText");
@@ -236,14 +238,20 @@
                 //$('.myBox').load(document.URL + ' .myBox');
                 //$(".myBox").load(location.href + " .myBox>*", "");
 
+                /*
                 var commentDivs = document.getElementsByClassName("myBox");
 
                 for (i = 0; i < commentDivs.length; i++) {
                     $('#' + commentDivs[i].id).load(document.URL + ' #' + commentDivs[i].id);
                     message.value = "";
-                }
+                }*/
+                
+                $('#' + postid + '-ul').append('<li id="commentText"><img class="img-thumbnail img-responsive" src="/Home/profileimg/' + id + '" width="30" height="30" /><a href="~/' + userName + '"><b>' + userFullName + '</b></a> : ' + message.value + '<span class="pull-right"><small>6/7/2017</small></span></li>');
+                message.value = "";
 
-                //console.log("Success called");
+                var scrollBar = document.getElementById(postid + '-scrollbar');
+                scrollBar.scrollTop = scrollBar.scrollHeight;
+                
             },
             error: function (request, error) {
                 alert("Request: " + JSON.stringify(request));
@@ -357,11 +365,13 @@
     };
     */
 
+    
     var objDiv = document.getElementsByClassName("scrollbar");
     for (i = 0; i < objDiv.length; i++) {
         var target = document.getElementById(objDiv[i].id)
         target.scrollTop = target.scrollHeight;
         //console.log(target)
     }
+    
 
 });
