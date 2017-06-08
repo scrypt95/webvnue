@@ -366,6 +366,13 @@ namespace Webvnue.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
+        public ActionResult DeletePost(string postId)
+        {
+            deletePost(postId);
+
+            return null;
+        }
+
         private Models.UserProfileBio getUserProfileBio(string id)
         {
             var db = new Models.MyIdentityDbContext();
@@ -830,6 +837,15 @@ namespace Webvnue.Controllers
             };
 
             db.Posts.Add(post);
+
+            db.SaveChanges();
+        }
+
+        private void deletePost(string postId)
+        {
+            var db = new Models.MyIdentityDbContext();
+
+            db.Posts.Remove(db.Posts.FirstOrDefault(x => x.Id == postId));
 
             db.SaveChanges();
         }
