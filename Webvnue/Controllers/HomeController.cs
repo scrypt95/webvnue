@@ -12,6 +12,7 @@ using System.Web.Mvc;
 
 namespace Webvnue.Controllers
 {
+
     public class HomeController : Controller
     {
         private UserManager<Models.MyIdentityUser> userManager;
@@ -25,7 +26,6 @@ namespace Webvnue.Controllers
         }
 
         // GET: Home
-        //[RequireHttps]
         public ActionResult Index()
         {
             Models.MyIdentityUser user = getCurrentUser();
@@ -366,9 +366,9 @@ namespace Webvnue.Controllers
             return Redirect(Request.UrlReferrer.ToString());
         }
 
-        public ActionResult DeletePost(string postId)
+        public ActionResult DeletePost(string PostId)
         {
-            deletePost(postId);
+            deletePost(PostId);
 
             return null;
         }

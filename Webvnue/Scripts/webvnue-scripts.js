@@ -259,6 +259,24 @@
         });
 
     });
+
+    $(".deletepost").click(function (event) {
+        var postid = $(this).attr("post-id")
+
+        var datavalue = {"PostId": postid};
+
+        $.ajax({
+            url: '/Home/DeletePost',
+            type: 'POST',
+            data: datavalue,
+            success: function (data) {
+                window.location.reload();
+            },
+            error: function (request, error) {
+                alert("Request: " + JSON.stringify(request));
+            }
+        });
+    });
     
 
     function textChangeListener(evt) {
