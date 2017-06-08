@@ -365,13 +365,12 @@
     };
     */
 
-    
-    var objDiv = document.getElementsByClassName("scrollbar");
-    for (i = 0; i < objDiv.length; i++) {
-        var target = document.getElementById(objDiv[i].id)
-        target.scrollTop = target.scrollHeight;
-        //console.log(target)
-    }
-    
+    window.onload = function () {
+        var objDiv = document.getElementsByClassName("scrollbar");
+        for (i = 0; i < objDiv.length; i++) {
+            var target = document.getElementById(objDiv[i].id)
+            target.scrollTop = target.scrollHeight;
+        }
+    }    
 
 });
