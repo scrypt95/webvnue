@@ -377,3 +377,11 @@ background: black;
     color: #fff;
     border: 0;
 }
+.btn-upload3 input[type=file] {
+    position: absolute;
+    opacity: 0;
+    z-index: 0;
+    max-width: 100%;
+    height: 100%;
+    display: block;
+}
